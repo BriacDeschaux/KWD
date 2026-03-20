@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>KWD Prep</title>
+<style>
+:root{--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--b1:#242424;--b2:#333;--t1:#f0f0f0;--t2:#999;--t3:#555;--amber:#E8A020;--amber2:#c47d10;--green:#22c55e;--green2:#15803d;--red:#ef4444;--r:12px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--t1);font-family:-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh;padding-bottom:32px}
+.scr{display:none;min-height:100vh}.scr.on{display:block}
+.top{position:sticky;top:0;z-index:99;background:rgba(10,10,10,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--b1);padding:11px 16px;display:flex;align-items:center;gap:10px}
+.bk{width:34px;height:34px;border-radius:50%;background:var(--bg3);border:none;color:var(--t1);font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.tt{font-size:15px;font-weight:600;flex:1}.ts{font-size:11px;color:var(--t2);margin-top:1px}
+.hdr{padding:24px 18px 16px;display:flex;align-items:center;justify-content:space-between}
+.logo{height:44px;width:auto}
+.gear{width:36px;height:36px;border-radius:50%;background:var(--bg3);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;color:var(--t2)}
+.tag{font-size:12px;color:var(--t2);padding:0 18px 18px}
+.sl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);padding:14px 18px 8px}
+.bc{margin:0 14px 8px;border-radius:var(--r);border:1px solid var(--b1);padding:14px 16px;cursor:pointer;background:var(--bg2);display:flex;align-items:center;gap:12px}
+.bn{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;flex-shrink:0}
+.bi{flex:1}.bt{font-size:14px;font-weight:600;margin-bottom:2px}.bw{font-size:11px;color:var(--t2)}
+.pb{height:3px;border-radius:2px;background:var(--b2);margin:0 18px 10px;overflow:hidden}
+.pf{height:100%;border-radius:2px}
+.rmb{margin:0 14px 14px;border-radius:var(--r);background:var(--bg3);border:1px solid var(--b1);padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.rmbi{font-size:20px}.rmbt{flex:1}.rmbtl{font-size:13px;font-weight:600;margin-bottom:1px}.rmbts{font-size:11px;color:var(--t2)}
+.rmbs{font-size:11px;color:var(--green);background:#0d2a16;border-radius:5px;padding:2px 7px}
+.rmbu{font-size:11px;color:var(--t3)}
+.wg{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 14px 14px}
+.wc{border-radius:var(--r);border:1px solid var(--b1);padding:13px;cursor:pointer;background:var(--bg2)}
+.wc.dl{border-style:dashed}
+.wn{font-size:21px;font-weight:700;margin-bottom:1px}
+.wt{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--t2);margin-bottom:5px}
+.wd{display:flex;gap:3px;margin-top:5px}
+.wdt{width:8px;height:8px;border-radius:50%;background:var(--b2)}
+.wdt.ok{background:var(--green)}
+.sl2{padding:0 14px 14px}
+.sc{border-radius:var(--r);border:1px solid var(--b1);padding:13px 15px;cursor:pointer;background:var(--bg2);margin-bottom:8px;display:flex;align-items:center;gap:11px}
+.si{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.sn{flex:1}.snl{font-size:14px;font-weight:600;margin-bottom:1px}.snf{font-size:11px;color:var(--t2);line-height:1.3}
+.sdb{font-size:10px;background:var(--green2);color:#fff;border-radius:20px;padding:2px 7px;flex-shrink:0}
+.sab{font-size:15px;flex-shrink:0}
+.sbn{padding:13px 16px;background:var(--bg2);border-bottom:1px solid var(--b1)}
+.sbnt{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.sbnf{font-size:12px;color:var(--t1);line-height:1.4}
+.ex{margin:9px 12px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--b1);overflow:hidden}
+.exh{padding:11px 13px 8px}
+.exn{font-size:13px;font-weight:600;line-height:1.3;margin-bottom:5px}
+.exp{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:3px}
+.pl{display:inline-flex;align-items:center;border-radius:20px;padding:3px 8px;font-size:11px;font-weight:500;border:1px solid}
+.pg{background:var(--bg3);color:var(--t2);border-color:var(--b1)}
+.pbl{background:#111827;color:#7eb3f0;border-color:#1e3a5f}
+.pcalc{background:#0a1e14;color:#4ade80;border-color:#0f3020;font-size:10px}
+.prs{background:#111a11;color:#6db86d;border-color:#1e3a1e}
+.tp{cursor:pointer;border-radius:20px;padding:3px 8px;font-size:11px;font-weight:600;border:1px solid}
+.enote{margin:0 13px 9px;padding:7px 9px;background:var(--bg3);border-radius:6px;font-size:11px;color:var(--t2);line-height:1.5;border-left:3px solid var(--b2)}
+.sa{padding:0 13px 11px}
+.sr{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.snr{font-size:11px;color:var(--t3);width:22px;text-align:center;flex-shrink:0}
+.inp{background:var(--bg3);border:1px solid var(--b2);border-radius:7px;color:var(--t1);font-size:15px;padding:9px 6px;text-align:center;width:100%;-webkit-appearance:none}
+.inp:focus{outline:none;border-color:var(--amber)}
+.inp::placeholder{color:var(--t3);font-size:12px}
+.sx{font-size:12px;color:var(--t3);flex-shrink:0}
+.ck{width:18px;height:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.svb{margin:12px;padding:14px;border-radius:var(--r);background:var(--amber);color:#000;font-size:15px;font-weight:700;border:none;width:calc(100% - 24px);cursor:pointer}
+.svb:active{background:var(--amber2)}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:200;display:none;align-items:flex-end}
+.mo.on{display:flex}
+.md{background:var(--bg2);border-radius:20px 20px 0 0;width:100%;max-height:88vh;overflow-y:auto;padding-bottom:16px}
+.mh{width:34px;height:4px;border-radius:2px;background:var(--b2);margin:11px auto 0}
+.mt{font-size:17px;font-weight:700;padding:13px 17px 3px;color:var(--amber)}
+.ms{font-size:12px;color:var(--t2);padding:0 17px 11px;border-bottom:1px solid var(--b1)}
+.cst{display:flex;align-items:center;gap:8px;padding:10px 17px 6px}
+.csl{font-size:12px;color:var(--t2)}
+.csd{display:flex;gap:4px}
+.csdot{width:10px;height:10px;border-radius:50%}
+.csdot.on{background:var(--red)}
+.csdot.off{background:var(--b2)}
+.mb{padding:13px 17px}
+.mst{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:7px}
+.mstl{list-style:none;margin-bottom:11px}
+.msti{display:flex;gap:9px;margin-bottom:9px}
+.mstn{width:21px;height:21px;border-radius:50%;background:var(--bg3);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.mstt{font-size:13px;color:var(--t1);line-height:1.5}
+.mex{background:var(--bg3);border-radius:8px;padding:11px 13px;margin-bottom:11px;border:1px solid var(--b1)}
+.mexl{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:5px}
+.mext{font-size:13px;color:var(--t1);line-height:1.6}
+.mext b{color:var(--amber)}
+.mcl{margin:0 17px;padding:13px;border-radius:var(--r);background:var(--bg3);color:var(--t1);font-size:14px;font-weight:600;border:1px solid var(--b2);width:calc(100% - 34px);cursor:pointer}
+.rms{padding:18px 16px 8px}
+.rmstl{font-size:19px;font-weight:700;margin-bottom:3px}
+.rmssl{font-size:12px;color:var(--t2);line-height:1.4}
+.rmib{margin:0 14px 14px;border-radius:var(--r);background:#111820;border:1px solid #1e3a5f;padding:11px 13px}
+.rmibt{font-size:12px;color:#7eb3f0;line-height:1.6}
+.rmg{margin:0 14px 12px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--b1);overflow:hidden}
+.rmgt{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);padding:9px 13px 5px;background:var(--bg3);border-bottom:1px solid var(--b1)}
+.rmr{display:flex;align-items:center;padding:9px 13px;border-bottom:1px solid var(--b1);gap:10px}
+.rmr:last-child{border-bottom:none}
+.rmrl{flex:1;font-size:14px;font-weight:500}
+.rmri{background:var(--bg3);border:1px solid var(--b2);border-radius:7px;color:var(--t1);font-size:16px;font-weight:600;padding:7px 9px;text-align:center;width:86px;-webkit-appearance:none}
+.rmri:focus{outline:none;border-color:var(--amber)}
+.rmru{font-size:12px;color:var(--t2);width:22px}
+.rmsvb{margin:0 14px 14px;padding:14px;border-radius:var(--r);background:var(--amber);color:#000;font-size:15px;font-weight:700;border:none;width:calc(100% - 28px);cursor:pointer}
+.tc-T30{background:#0d3326;color:#4ade9a;border-color:#0f4030}
+.tc-T20{background:#0a2a1f;color:#34c47a;border-color:#0d3828}
+.tc-MYO{background:#1a2e0d;color:#86efac;border-color:#1f3a10}
+.tc-RP{background:#2d1c06;color:#fbbf24;border-color:#3a2308}
+.tc-CL11{background:#2d0a0a;color:#f87171;border-color:#3a0f0f}
+.tc-CL21{background:#2a1008;color:#fb923c;border-color:#371508}
+.tc-WL{background:#15123a;color:#a78bfa;border-color:#1e1a4a}
+.tc-PA{background:#0a1e30;color:#60a5fa;border-color:#0f2840}
+.tc-DL{background:#1e1e1e;color:#888;border-color:#2a2a2a}
+</style>
+</head>
+<body>
+
+<div class="scr on" id="s-home">
+  <div class="hdr">
+    <img class="logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAB9KADAAQAAAABAAAB9AAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgB9AH0AwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAQEBAQEBAgEBAgMCAgIDBAMDAwMEBgQEBAQEBgcGBgYGBgYHBwcHBwcHBwgICAgICAkJCQkJCwsLCwsLCwsLC//bAEMBAgICAwMDBQMDBQsIBggLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLC//dAAQAIP/aAAwDAQACEQMRAD8A/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9D/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//0f8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//S/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9P/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//1P8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//V/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9b/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//1/8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Q/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9H/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoor+2T/g1u/wCCDUX7RPiXTP8AgpJ+2BpBfwFoV15vgvQ7pPk1rULdyPt06sPms7aRcRJ0nnXLfu4ykwB+on/Bsr/wb+6V+zz8PLb9vL9uHw1b3fj7xZZEeG/Dmq26yjRNLul5nuIpAQt7dIcbCN0EDbWxJJIkfxL/AMF7P+DWO98MTa1+2P8A8EutCe50thJe698PLJS8tsRlpJ9HQcvEeWaxGWQ5FvlCsMf+hVRQB/gEsrIxRxgjgg9qbX+oL/wXk/4NkvAH7cia5+1p+w3aWfhb4yyeZe6no2UttL8Ty8s5JOI7a/lPInJWKaT/AF+1nadf8yr4gfD7x38J/G+qfDX4naPeeH/EOh3MlnqGm6hA9tdWtxEcPHLE4DIynqCBQBx9FFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/9L/AD/6KKKACiiigAooooAKK/rf/wCCOn/Bsb4T/wCCqH7Flj+1prHxiu/BU15q1/pn9mQ6Il8qiyYKH81ruEndnONnHqa/U7/iBw+H/wD0cfqH/hMR/wDywoA/z0qK/wBC3/iBw+H/AP0cfqH/AITEf/ywo/4gcPh//wBHH6h/4TEf/wAsKAP89Kiv0b/4Kx/sHad/wTR/bu8Y/saaV4mk8XweFYtMkXVZbUWTz/2hYwXhBhEkoXYZtn3znGeM4r85KACiiigAor+nn/gix/wbTfF7/gqp8JNV/aL+Jviyb4XeA/NNroN4dN+33GsTxsVneKNpoAtvEQU83cd8mVUfIxH7af8AEDh8P/8Ao4/UP/CYj/8AlhQB/npUV/oW/wDEDh8P/wDo4/UP/CYj/wDlhR/xA4fD/wD6OP1D/wAJiP8A+WFAH+elRX+hb/xA4fD/AP6OP1D/AMJiP/5YV/If/wAFYf2MP2Y/2A/2nLn9mD9nv4q3HxZ1Hw6rw+JNQOmx2FpZagCB9kiZLm486SIZ88/KsbkJksrhQD8wqKKKACiiigAooooAKKK/Tn/gk5/wS7+N3/BV39qrTvgD8L1fTdBs/LvfFHiF4y9vo+mBsNIRwHnkwUtocgySdSsaySIAfen/AAb0/wDBEfxH/wAFVfj+fiN8W7K5tPgd4Fu4z4gvFLQ/2tdqFkTSreRSG3OpVrl4zuhhYfMjyxE/613hfwv4a8EeGdO8F+DNPttJ0fSLWGysbGziWC2tra3QRxRRRoAqRxooVFUAKoAAxXjX7K/7L3wX/Yx+APhn9mj9n3SE0Xwp4UtFtbSAYMkhyWkmmcAeZNNIWklkIy7sT3r6CoAKKKKACvwN/wCC1v8AwQU/Z6/4K1eApfGWlG38F/GfSLXZo3imOP8Ad3SxglLPUkQbprduiyAGa3J3JuXfDJ++VFAH+E9+1x+yB+0P+wz8ctW/Z2/ad8N3HhrxPpJDGKUbobmBiRHcW0q5SaCTB2SISCQQcMrAfNFf7af/AAU3/wCCWH7LH/BVX4Fv8IP2h9M8nU7ASS+H/ElmqrqejXUgALwuR88T4UTW75jlABIDrG6f5MP/AAVD/wCCUP7U/wDwSi+OLfCn4/6f9r0TUjJJ4e8T2SMdM1i2Q8mNj/q548gT27nzIiQfmjaORwD8yqKKKACiiigAooooAKKKKACivQ/hF4Gj+J/xX8MfDSW5NkviLVrLTDcBPMMQu5ki3hcjdt3ZxkZxjIr++r/iBw+H/wD0cfqH/hMR/wDywoA/z0qK/wBC3/iBw+H/AP0cfqH/AITEf/ywo/4gcPh//wBHH6h/4TEf/wAsKAP89Kiv9C3/AIgcPh//ANHH6h/4TEf/AMsKP+IHD4f/APRx+of+ExH/APLCgD/PSor/AEF9U/4MavDkqf8AEl/aXuYG/wCm/hFZR/47qkdfP/jv/gx+/aE0+CVvhj8e/DurygHy11TR7nTlY9tximvCo9wGoA/hoor+kL9oT/g1I/4LIfAixk1bQ/Buk/EW0hz5knhPVI7iQKO4gu1tLh89hHEze1fgT8Wvgv8AGD4CeMrj4dfHHwrq3g/X7X/W6drVlLY3SDJGTFMqNg44OMHtQB5nRRRQAUUUUAFFFFABRRRQAUUUUAf/0/8AP/ooooAKKKKACiiigD/V7/4NDf8AlDbon/Y1a9/6NSv6fa/mC/4NDf8AlDbon/Y1a9/6NSv6faACiiigD/Ij/wCDqX/lOP8AF7/r18N/+mWxr+eOv6HP+DqX/lOP8Xv+vXw3/wCmWxr+eOgAr9+v+CBf/BFfxl/wVk/aK/tjx1Dc6Z8GvBVxFL4n1SPMbXknDpptq/8Az2mXmR1/1MR3HDNGG+G/+CXn/BNf44/8FS/2qtJ/Zw+DsTWlnxeeINbkjL22kaYjASXEnTc5zshjyDJIQMhdzL/sjfsdfsh/A/8AYV/Z18N/sw/s86Uul+GvDVuIo84M91O3MtzcOAPMnmfLyNgcnAAUAAA9v8BeA/Bnwt8E6T8NvhzpdtomgaDaQ2GnWFnGIoLa2t1CRxxouAqqoAAFdbRRQAUUV/PR/wAF/P8Agt94M/4JQfAn/hCvhrNbar8bPGdrIPD2mviRNOgOUbUrtP8AnnGwIhjb/XSjGCiSEAHxH/wcuf8ABfOD9hnwTefsRfsk6urfGLxJaY1fVLVwT4Z0+4Xghh92+nQ5iHWGM+acExZ/zALi4uLy4ku7uRpZZWLu7kszMxySSeSSeprqPH3j3xr8U/G+rfEr4j6pc63r+vXc1/qOoXkhluLm5nYvJJI7ZLMzEkmuRoAKKKKACiiigAoorovCHhDxV8QfFmmeA/Aum3Osa3rV3DYafYWUTT3N1dXDiOKKKNAWeSR2CqqgkkgDmgD2r9kz9lT41/ts/tCeGf2ZP2e9KbV/FPim6FtbR8rFCg+aWedwD5cEKBpJXwdqKeCcA/7IP/BKj/gmJ8D/APglP+yppn7PPwnVdQ1efbe+JfEEkYS51jU2XDysOdkKfct4QSIowMlpGkkf4U/4N+P+CJnhT/glD+z4fGXxNtba++N3ji1jbxJqClZhp1sSJE0u1kGR5UbBWndDieZQcskcO3+hagAooooACQBk1+bX7Gv/AAVu/YJ/b3+Lnjr4Gfsz+OrXW/E3gC9ltbq0bEf263h2q17p7ElbuzEhMZmiJAYBiBHJC8n8v3/B1D/wXhi+G2i6x/wS/wD2QNYb/hJNShNv4/1yzkwLC0lXnSoHU5M8yH/S2HEUR8n5neQRf5+nwh+L/wAUPgF8S9G+MnwW1698M+KfD1yt3p2p6fKYbi3lXIyrDsQSrKcqykqwKkigD/exor+Un/gg/wD8HKXwu/4KHWGlfsw/tczWXg/43xqtvaT5EGmeJyBgPbZO2G8P/LS1J2ufngyCYov6tqACvnP9qz9k39n79tr4I6v+zz+0z4btvFHhbWF/eW9wMPDMoISeCRcPDPHklJYyGXJ5wSD9GUUAf5CP/BbT/ggH+0D/AMEnPGlx8QvCxufG3wT1O5C6X4lWMefYNKcJaamiALFMD8qTKBDPwV2OWhT+fWv987xx4G8F/E3wdqfw8+I2k2mu6DrVtJZ6hp1/Clxa3VvMpV45YpAyOjKSCrAgiv8ANG/4L1f8GxXjP9jJNc/a9/YIsrvxJ8JIfMvdX8PAvc6l4ah5Z5EJ3SXNhHyTIS00CDMpdFeYAH8dVFFFABRRRQAUUUUAfQH7Jv8AydP8NP8Asa9G/wDSyKv93iv8If8AZN/5On+Gn/Y16N/6WRV/u8UAFFFFABRRRQAUUUUAFfPn7SP7KH7Nn7YHw+n+Fn7TvgnSPG+hTgj7NqlssxiZv44ZOJIZB2kiZHHY19B0UAf5w/8AwWQ/4NJPFvwQ0TV/2j/+CZUl74r8N2SNc33ge6ZrnV7SJeXawlxuu0Uc+S/78AfK0zHA/iEngntZ3tbpGjljYq6MMMrDggg8gg9RX+/nX8Bv/B1t/wAENNAs9C1T/gqV+ybowtZ4ZPN+IekWaYjkSQgDVoo1HysGOLwLwwYTEAiVmAP8/miiigAooooAKKKKACiiigD/1P8AP/ooooAKKKKACiiigD/V7/4NDf8AlDbon/Y1a9/6NSv6fa/mC/4NDf8AlDbon/Y1a9/6NSv6faACiiigD/Ij/wCDqX/lOP8AF7/r18N/+mWxr8Wf2Zv2a/jJ+198dfDf7OPwB0eTXfFfiq7W0srWPhQTy8kjdI4okDSSyNwiKWPAr9v/APg6C8O6/wCMP+C8/wAT/CXhSyn1LVNUXwtaWdpaxtLPcXE+j2KRxxooLM7sQqqASScCv7fP+Dd//gh74f8A+CW/wK/4W58Z7OC8+OHji0Q6xP8ALINGsnw66bA4yMggNcyKcSSAKCyRoSAffH/BIn/gld8G/wDgk7+ytY/A/wAA+VqnifUvLvfFXiHy9suqajtwSM/MtvDkpbxZ+Vcscu7s36n0UUAFFFfF/wC35+3h8BP+CcX7M2u/tP8A7Qt/9n0vSk8qzsoiPtep38gPk2lshI3SykH/AGUUM7EIrEAHzf8A8FgP+CsPwX/4JL/swXXxg8cmLVvF+sCW08J+HBJtl1O+VfvNj5ktoMhp5f4VIUZd0U/48f7T/wC038af2xfjt4j/AGj/ANoPWpde8V+KLprm8uZOFUdEiiTpHDEgCRRrwiAAV7l/wUa/4KGfHz/gpr+09rP7TPx8u8T3Z+z6VpULlrTSdORiYrS3B/hTJLvgNJIWduWr4RoAKKKKACiiigAooooAK/0rv+DXX/gg0/7MXhPTv+CjH7X2jiP4jeIbXzPCOiXcf7zQdOuEI+1TKw+S9uo2wqY3QQNhj5kjpF+VH/Brh/wQbi/aU8U6Z/wUg/a90fzfh7oF0ZPB2iXSfJrmo2z4+2TqfvWdrIpCJ0nnX5v3cbJL/pQ0AFFFFABX80X/AAcX/wDBcjSP+CX/AMDj8EPgRewXXxy8dWbjTF+WUaDYPlG1KaM5BkyGW0jcbWkBdgyRNG/6Bf8ABYP/AIKr/B//AIJMfso3vxs8bNBqfi7V/NsfCHh5nxLqmohQcsFIZbW3DLJcy8BVKoD5kkat/jm/tG/tEfGD9rL44eJf2jPj5rU2v+LvFt699qN7MfvO2AqIo4jiiQLHFGoCRxqqKAqgAA8n1vWtZ8S6zd+IvEV3Nf6hqE0lzdXVzI0s080rFnkkdiWZ2YksxJJJyeazKKKALNneXenXcWoafK8E8DrJHJGxV0dTkMpHIIPII5Br/QN/4IMf8HUMGrrof7HP/BUjXFiu/wB3Y6F8Rb1wqS/wxw6zIThW6KL88NwbjBDzt/n00UAf7+kUsU8SzwMHRwGVlOQQehB9Kkr/AC7f+CDH/BzJ8Qf2ELnRf2Uf23Lq98VfBcbLPTtUAa51PwwnRNg5e4sE4DQcyQpzBuCCB/8ATZ+GnxM+Hnxl8A6T8VPhPrVn4j8N69bJd6fqWnzLPbXMEn3XjkQlSO3Xggg8g0AdzRRXxn+3/wDtyfBj/gnR+yn4p/av+ONxt0vw/BttLKNgtxqWoTZW2s4Ac5kmfjOCI0DSPhEYgA/zzP8Ag7O/4J9f8E/f2L/jx4T8d/sw3a+F/HXxD+0ajrXgawhT+zYLMEquoxAODZiaYNGsCo0UpWRk8rymWT+Qavpr9sb9rX4yftz/ALSniz9qb483wvfEni29a6mWPIgtoR8sNtArElYLeILFGpJO1RuLMST4z8Ofh342+Lnj3R/hf8N9Ol1fX9fvIbDT7ODG+e4nYIigkhRknksQoHJIAJqKlSFODnNpRSu29Ekt232Gk20ktT6M/Y+/Zhn/AGhPEfiHxb4qM1j8P/h1pM3iPxbqUY2mKytwTHaxOQVF1eyAW9sDn52L7SqNXyZqV4moajcX8cEdss8jyCGEERxhjnagJJCr0GSTjua/qI/4KzfDPwR/wSr/AOCdHw7/AOCZngK5hufG3xGuU8WfEHUYCS12tkdsEZ3BT9n+08W42jAtSzAO7lv5aq+R4Pzyed0q2bQusPOTjRXeEG4uo/Ocua39xQ6tnoZhhVhpRw7+NK8vV9PkrfO4UUUV9iecfQH7Jv8AydP8NP8Asa9G/wDSyKv93iv8If8AZN/5On+Gn/Y16N/6WRV/u8UAFFFFAHz/APtZfGLVP2eP2WPiX+0BodnFqF74G8Kaz4ht7WclYp5dMs5blI3K/MFdowrEc4PFf5/n/Ebv+1h/0RLwl/4HXn+Nf3Rf8FOP+UbP7Qn/AGTTxZ/6a7mv8OigD+6Pwl/wfB/HS01FH8d/AHQdQtMjelhrdxZyY74aS3uBn/gNf0S/8E2P+Dm//gnj/wAFDvF+n/B2/mvfhb8QNTdYbPSPEhjFtfTtjEdpfRsYnckhVjlEMjtwiMa/yN6killglWeBijoQyspwQR0IPY0Af7+lFfzP/wDBrv8A8FQ/F3/BQ39hi7+H3xr1JtV+IvwiuLfR9SvZn33F/ptwjNYXUxJy0pWOWGRjy7Q72JZzX9MFABXOeMfCHhj4g+EdU8BeNrGHVNG1u0nsL+zuF3xXFtcoY5Y3U9VdGKsO4NdHRQB/iF/8FT/2JtW/4J5ft8fEn9lG7WU6d4e1R5NFnmyWuNIvAJ7KQt0ZvIdFkI4EisOoNfn3X9z3/B7h+zdZeH/jl8F/2stIt8P4n0fUPDOpSKML5mkypcWxb1Z0u5QD12xAdhX8MNABRRRQAUUUUAFFFFAH/9X/AD/6KKKACiiigAooooA/1e/+DQ3/AJQ26J/2NWvf+jUr+n2v5gv+DQ3/AJQ26J/2NWvf+jUr+n2gAooooA/FH4df8Eevhs3/AAWA+J//AAVh+NC2+t61qK6RZeCLAjfHpiWel2tpc3sgIwbl5EkjhHSKMF8lnHl/tdRRQAUUUUAFf5PX/B1x8c/20/HP/BTnWvg7+00n9l+EPCMSyeBNNtXZrGXSLsZW+BIHmXE7IVuGx8jxmIErGCf9YWv5wv8Ag5X/AOCTC/8ABST9i2b4hfCrTvtHxZ+FcVxquhCJf32o2W0NeadxyxkVRJAOvnIqjAkckA/yRKKcysjFHGCOCD2ptABRRRQAUUUUAFf0Rf8ABvl/wRH8U/8ABVr4/nx78VLS5sfgh4Guo28Q367ov7Uul2yLpdtICG3yKQ1w6HMEJByryRZ/E/8AZi+F/gv42/tHeA/g58R/E0HgvQPFXiDTtJ1HXrlQ0Om215OkUly4ZkXbErFzudVGMsyjJH+4D+yp+y38FP2LfgB4a/Zn/Z70hNF8KeFrUW1pCDukkYktJNM+B5k00haSVyMs7E8dKAPZvCnhTwx4E8L6b4I8E6dbaRo2jWsNjYWNnEsFta21ugjiiijQBUjjRQqqoAUAADFb9FFABXy/+2V+2F8C/wBg39nPxJ+1D+0Vqn9meGvDdv5jrGA9zd3D8Q2ttGSvmTzvhI1yBk7mZUDMPdvHXjnwf8MfBWr/ABI+Iep2+jaBoFnPqOpX93IIre1tLZDJLLI54VERSzE9AK/yJP8Agvh/wWo8cf8ABWb9o06Z4KmudL+DHgueSLwtpD5ja7k5R9Tu073EwyI1PEEJCAb2leQA+F/+CnP/AAUg+OX/AAVH/aq1j9pf40SfZIZM2ehaLFIZLbR9LjZmhtoyQu9huLSy7VMsjM2FBCr+elFFABRRRQAUUUUAFfvF/wAEW/8AgvH+0d/wST8fp4XlM/jL4O6xcB9a8KTS4MDufmu9OduILkD7y8RXA+WQBhHLH+DtFAH+6X+yH+21+zP+3P8As/af+01+zZ4ottc8KXiN58pYRTWE8Shpbe8iY7reaIEF0fHykOpZGVj/AJc3/Bxx/wAFj73/AIKg/tWnwB8ItQl/4Ux8Np57Pw/GrbYtVvM7LjVHUdRLjZbB8lIBuAR5ZVr8S/g9+1P+0X+z94O8b/D34LeMtU8N6H8SNKOieJrGynMcGp2LHJimToeCybhh/LkkjzskkVvAaACv7oP+Daj/AIJaRfDbwhF/wUO+O2nqmua7bMvhC2uY8NZabMpD33z8rJdISsTADFuSQzLPhfwN/wCCIn/BMTUP+Chf7SsWs+PbOQ/DHwTLDd69LnYt9NndDp6N1PnbS05XBSEN8yO8ZP8AaR/wXN/ausf2J/8Agmt4pi8IzJYa74wiXwjoccOEMbXyMs8iBeU8m0WVkZRhZNg4yK/mzxp4yr4zF0OBMln+/wATKMasl9mMn8PzXvT7Q02k7fZcOZdGlTlmmJXuwTcV3a6/ovP0P4H/APgq9+19J+2/+3l4++ONhcm40E3p0vQOcoNK0/8AcwMo7ecAZ2HZ5Wr86aKK/oPKssoZdgqOAwytTpRjCK8oqy+emp8lXrSq1JVZ7ybb+YUUUV6BkfQH7Jv/ACdP8NP+xr0b/wBLIq/3eK/wh/2Tf+Tp/hp/2Nejf+lkVf7vFABRRRQB8Pf8FOP+UbP7Qn/ZNPFn/prua/w6K/3F/wDgpx/yjZ/aE/7Jp4s/9NdzX+HRQAUUUUAf2Lf8GVvxN1Xw9/wUc+IXwsWQjTvEvgG5upEB4Nzp19aeUx7cRzzD8a/04q/ywP8Agze/5S5X/wD2IOs/+lFlX+p/QAUUUUAfyJf8Hn3w7XxP/wAEu/CfjmBAZ/DHxB06VnI5Fvd2V7C4B95DEfwr/L0r/WH/AODumC3l/wCCM3iOSY4aLxNoLR+7eeR/6CTX+TxQAUUUUAFFFFABRRRQB//W/wA/+iiigAooooAKKKKAP9Xv/g0N/wCUNuif9jVr3/o1K/p9r+YL/g0N/wCUNuif9jVr3/o1K/p9oAKKKKACiivi39u//goD+y9/wTh+Bl58ff2pfEMej6ZHuisbKPEmoandAZW3s4Mgyyt35CIPmdlQFgAfaVFfx6f8EVv+DmbVf+Ckf/BQHxj+zR8cNEsPBmkeJ4PtPw6tYm3So1irtcWl1OSPOuJ4f36lVRF8p0A5XP8AYXQAUUUUAf5YP/B1T/wSW/4Yi/axH7Xfwc03yPhl8Xrya4ljgTEOl+ISDJc2+AMLHcjdcQj181FAWMV/KLX+5n+33+xV8Kv+ChP7JnjH9k74vxgab4osylveKgabT76P57a7iz/HDKFbGQGXKH5WIr/FJ/al/Zr+Kv7Hn7Qvi79mX422P9n+J/Buoy6fexjJR9nMcsZIG6KaMrLE2PmjZT3oA8CooooAKKKKACv9T/8A4NYP+Cvsn7dX7Lz/ALInxx1Q3PxV+EtlFHHPcODNrHh5SsVvck53PNakrb3DEEkGGRmZ5Xx/lgV9TfsU/tffF39g39qHwf8AtXfA+5EOv+Eb5blYZCfIvLdgUuLWcDBMNxEzxSYIYK2VIYAgA/3UqK+Wv2K/2vvhB+3j+zD4Q/as+Bl0bjw/4usluVikx59pcKSlxazgZAmt5VeJ8EqSuVLKVY/UtAHK+O/A3hD4neCNY+G3xB06DV9B8Q2NxpupWFyu+C6tLuNopopFPBSRGKsO4Nf40H/Baf8A4Je+M/8AglP+2zrnwPuI7i68EawX1bwbqs3zfa9Jlc7Y3cAA3Fq2YZxhSWUSBVSRM/7RNfjH/wAF0P8AglV4b/4KufsTan8L9Lit7f4jeFvM1jwXqMoVTHqCph7R5Dgrb3qARSfNtVxHKQxiUUAf40dFbvijwx4j8E+JdR8GeMbCfS9X0i5msr6yuo2intrm3cpLFIjAMjo4KspAIIINYVABRRRQAUUVteG/DmveMPENh4S8K2c2o6pqlzFZ2drboZJp7idgkcaKOWZ2IVQOSTilKSinKTskNK+iMWiv0a/4KL/8Ezvjt/wTY8W+EfDPxjaG9i8XaJBqUF5ag+Ql2qqLyz3EkNJayMAWHDo6OMbio/OWuDK81wmZYWnjsDVVSlPWMls9bfg016mlehUozdOrG0lugr2n9nb4AfEz9qX41+HPgD8H7L7d4h8TXa2tsjZEcYwWkmlZQxWKGMNJKwU7UUnBxivFq/0L/wDg3k/4JZv+yh8G/wDhpj4y6a9v8RfHtojLb3CbZdJ0dyJIrcqfmWa4IWWcNhlASMqrI+743xL48w/CuTTx07OtL3aUf5pd3/djvL5K6bR6eSZVLH4hU9oLWT7L/N7L/gH7MfsDfsY/DL9hL9mrw/8AAH4ZxK0OnReZe3pjEc2oX0oBnupeWO6Vh8oLN5cYSNTtRRX8S3/Bz9+2D/wvH9tmw/Zv8NXXm6F8J7H7POEbKPrGohJrk5HB8uIQRYPKOsg7kV/d3+1R+0D4U/ZT/Zw8aftFeMyp0/wfpNzqJiJ2+fLGv7mBT2aaUpEv+0wr/Ia+JHxB8V/Fn4ha78UvHd017rfiTULnVNQuG6y3N3I0srfi7E1/OP0dcjxGb57jOKswbnKF0pPd1amsn6qN0/8AGj63i/Fxo4angqSsn07RWy+/8ji6KKK/tA/OgooooA+gP2Tf+Tp/hp/2Nejf+lkVf7vFf4Q/7Jv/ACdP8NP+xr0b/wBLIq/3eKACiiigD4e/4Kcf8o2f2hP+yaeLP/TXc1/h0V/uL/8ABTj/AJRs/tCf9k08Wf8Aprua/wAOigAooooA/rk/4Mw/Cmo6z/wVS8U+I4YybXRvh1qkksmPlDTX2nxoufVssQPRT6V/qKV/Fr/wZnfsH+Jvgz+y943/AG3fiDYvZ3XxVubfTtASZdrnR9KMm+4UEA7Li5dlGeogVhwwJ/tKoAKKKKAP5QP+DyPxvaeF/wDgkppvhyU/vfEnj3R7GMd/3VveXRP0HkY+pFf5Y1f6B/8Awe/fH23j0f4EfsuafOrSyzat4q1CHPzIsax2lm2PRi90M/7Nf5+FABRRRQAUUUUAFFFFAH//1/8AP/ooooAKKKKACiiigD/V7/4NDf8AlDbon/Y1a9/6NSv6fa/mC/4NDf8AlDbon/Y1a9/6NSv6faACiiigD8SP+CxH/Bcr9l//AIJKfDxrHxHJH4s+KWq2xk0TwhaTBZmDZC3F643fZrUEfeILyEERq2GK/wCUb+3Z+37+1B/wUb+Od58fv2pPEMmsapNuisrOPMdhplqTlbezgyRFEv1Lufmdmclj+pv/AAdS/wDKcf4vf9evhv8A9MtjX88dAHffCv4n+O/gn8S9A+MHwv1GXSPEfhfULfVNMvYTiSC6tXEkTjscMoODweh4r/ay/wCCW/7ffgT/AIKW/sS+DP2rfBvlW93qtv8AZdc0+Nt39n6zagLd25zztD/PETy0Lo38Vf4h9f1Uf8Gp3/BUr/hin9tQfss/FPUfs/w6+M88FhumfENhr4+SyuOThVnz9mlIxktEzHbHQB/qoUUUUAFfxaf8HdX/AASW/wCF+fBCD/gpF8EtN8zxf8ObQW3iuCBfnvvD6klbkgDLSWLMSx6/Z2ck4iUV/aXWdrGj6V4h0m60DXraK9sb6F7e4t50EkUsUqlXR1bIZWUkEEYIODQB/gMUV+3n/BfH/gldqv8AwSx/bk1PwR4Ytpf+FaeNPN1vwbdNllW0Z/3tkzHrJZyMIzkljEYnPL1+IdABRRRQAUUUUAf1ff8ABq//AMFf1/YY/aeb9j344amLf4V/Fq+ijhnuJCsGj+IXCxQXOSdqRXQCW9wxAAIhkZlSJ8/6nVf4A9f6vn/BsR/wV/b/AIKI/snn9n342ar9q+L/AMKLWG1vpbmXdcazowxHbah8x3ySJxBdt8x8zZI7ZnCgA/p8ooooA/zvP+Dvb/gkEvgnxQn/AAVR+AGlBNI1yaGw+IFpaxkLb37lYrXUyFyoW5O2C4PyjzxG3zvO5H8JVf723xZ+FXw++Onww8Q/Bn4r6ZFrXhnxVp9xpWqWM2QlxaXSGORCVIZcqxwykMp5BBANf4vv/BXD/gm58Qf+CWf7a/iT9mbxWZb3Q8/2n4X1aQf8hLRblm8iUkKo82Mq0M4CgCaN9uU2sQD8y6KKKACv7LP+DZD/AIJfrrGo/wDDxn41WGbazea08FWs3R5RmK41Ar0IT5oYMk/N5j7QVjev5+P+CV3/AAT58W/8FF/2q9K+EdolxbeFNNKah4n1KEAfZtPRgDGjN8onuG/dQjDEEmTayRvj/VG8BeBvCvwy8E6T8O/A1jDpmjaHaQ2NjaW67IoLe3QJHGijoqKAoHYCv5l+kN4kf2dgv9XMBP8Af1l+8a3jTf2fWfX+5fT3kz7ThPJ/az+uVV7sfh833+X5+h+e/wDwVq/YB0X/AIKJ/sc678H7eOJPFumZ1bwvdyYXytTgVtsbOcbY7hS0MmeAGD4JRa/ysdd0LWfC+t3nhrxHay2OoadPJa3VtOpSWGaFijo6nlWVgQQeQRX+0HX8Z3/BZz/ghX8Qf2gP2+PCHxe/Zls1stF+LF79n8W3Sxb4NHvoEMk1/IgKjZcQIzbcr5lyhUsHmWvzr6PniZQymdfI82qqGHkpVISltGUVecfSUVdL+ZWSbkerxVk08Qo4nDxvPRNLqnt9z/D0PzO/4N9P+CXn/DXPxqH7T/xi05bj4deArxPs1rOu6PV9ZQB44SvRobfKyzBvldjHGQ6tIF/0VNOslsbVYR97qx9TXz5+y1+zt8Nf2Yfgv4d+CXwlsBp/h3wxaLZ2URxvfktJNIQFDSyyM0kj4G6RmbvX0ZPPBawPdXTrHFGpZ3Y4VVHJJJ4AA6mvyvxQ49xHFWczxbuqMfdpx7Rvu1/NLeXnpdpI+gyjK4YDDKiviesn3f8Akun3n8in/B1z+2C3hH4ReC/2JvDFzsvPFs48Ra2iHDf2dZOUtY2HdJrkNJ7NbCv4V6/QP/gqR+13P+3B+3R4++PlrM0ui3V8bDQ1OcLpVj+5tiAfumRF85x/fkavz8r+8PCvhT/V7hnCYCcbVWuep3556tP/AAq0PSJ+WZ3jvreMnVT93Zei/wA9/mFFFFfoZ5IUUUUAfQH7Jv8AydP8NP8Asa9G/wDSyKv93iv8If8AZN/5On+Gn/Y16N/6WRV/u8UAFFFFAHyV+334F8W/FH9hP41fDPwBYyapr3iLwH4j0zTbOHHmXF3d6fPFDEuSBueRlUZIGTX+Sj/xD2/8Fnv+jfvEf/fVr/8AH6/2Y6KAP8cnwl/wbdf8FsPGWpR6bp/wH1S0MjAGS/v9Os4kB7lprpOB14yfQGv6LP8Agml/wZqeJdO8aab8U/8Agpt4msJtKspFnHgzw3M8zXZUghL2+KxhEyMPHbhy4PEyV/oFUUAYPhbwt4b8D+GdP8GeDbC30rSNJtorOysrSNYYLe3gUJHHGigKiIoCqoAAAwK3qKKACgnHJor+W7/g5z/4LIaF+wJ+y7e/stfBrVUb4wfFCwmtIlgk/faLo84Mc96+07klkG6K16HfukB/dYIB/CJ/wcHftx2H7fH/AAVM+IXxN8KXS3nhXwxInhLw/NG25JbDSGdGlRskFJ7lp50I/gkFfinRRQAUUUUAFFFFABRRRQB//9D/AD/6KKKACiiigAooooA/1e/+DQ3/AJQ26J/2NWvf+jUr+n2v4I/+Dcr/AILg/wDBLv8AYO/4Jo6X+z9+1d8T/wDhFfF9t4g1a+ksP7F1a+xBcyK0TebZ2U8R3AHgPkdwK/d7/iKN/wCCFH/Rc/8Ay2fEP/ysoA/f6ivwB/4ijf8AghR/0XP/AMtnxD/8rKP+Io3/AIIUf9Fz/wDLZ8Q//KygD+CH/g6l/wCU4/xe/wCvXw3/AOmWxr+eOv2V/wCC/n7VvwC/bZ/4Kq/Eb9pL9mPXv+Em8Fa9BoiWOo/Zbmy81rPTLW3mHk3cUMy7ZY3X5oxnGRkEE/jVQAVLBPNbTJc2ztHJGwZWU4ZWHIII6EVFRQB/sL/8G8f/AAVDh/4KbfsC6TrPji/W4+Jnw+8rw/4tRmzLPNGn+jXxHpeRLuY4A85ZVHCiv3hr/Gk/4IR/8FP77/gln+3lofxZ8TXMw+HniVRofjK2jVpf+JbOwK3SxpktJaSbZl2qXZA8a/6w1/ou/wDEUb/wQo/6Ln/5bPiH/wCVlAH7/UV+AP8AxFG/8EKP+i5/+Wz4h/8AlZR/xFG/8EKP+i5/+Wz4h/8AlZQB9Df8FtP+CYfhn/gqj+w5rvwSijhg8caLu1nwfqEuF8jVYEO2J37Q3S5hl6gBg+CyLX+NB4u8JeJvAPivU/AvjSxm0vWdFu5rC/s7lDHNb3Ns5jlikU8q6OpVgehFf67P/EUb/wAEKP8Aouf/AJbPiH/5WV/CL/wchfFr/glp+1b+0/p/7Yv/AATn+IcPiLVfGEZi8ZaMuj6npmy9t1Aiv42vbO3ibz4xsmVW3eYgfDGRyAD+b+iiigAooooAK+yf2Av23fi//wAE7f2sPCX7WPwVmP8Aafhu6BurJnKwalp8vy3NnNwf3c8eVzglG2yLh0Uj42ooA/3c/wBlD9p/4Sftofs6eEf2ovgXfG/8L+M9PS/s3faJYiSVlgmVWZVmglV4ZkDHbIjDJxmvoWv8wb/g08/4K9J+yP8AtFP+wX8ddU8j4c/FW+Q6LcTk+XpXiSQLHFzn5Yb8BIHyGCzLC3yKZWP+nzQAV/Lb/wAHbv7Pf7LvxM/4JeXvxn+Nupw6B4x8A6lA/gu9IDT3d9fuqTaaq/eeO5hRpXCkFDbrMfkjdW/qLurq2sbaS9vZFhhhUvJI5CqqqMkkngADkk1/kU/8HGP/AAV7u/8AgqF+2HL4Z+F1+7fB/wCGktxpnhlF4j1GcsFudTYdT9oKBYN33bdUO1HeQEA/nkre8LeF/EXjjxPp3gvwfZTalq2sXUNlZWduhkmuLm4cRxxxqOWd3YKoHJJxWDX9kX/BtD/wTGk1G9X/AIKE/GOwwoM1n4Ktpu5+aK51Er7fNBBk9fNfbxE9fIcc8X4XhrJ62aYnVrSEf55v4Y/q30im+h6OVZdPHYmNCHzfZdX/AF1P6Ff+CQH/AATn8Nf8E7P2WbDwLcRwXPjPW9moeJ9RiGfPv2XHko55MFsp8qLoGO+TarSMK/WGo4okhjWKMYVRgVJX+Y2d5xis1x1bMcbPmq1JOUn69uyWyWyVktD9moUKdGnGlSVoxVkFRTwx3ETQyjKsMGpaK8s1GRxpEgjjGFUYAr8V/wDgvv8Ath/8Mjf8E6PFMeg3X2fxL8Qj/wAIppW04dRfI32qUY5Hl2qy7XH3ZGTuRX7V1/nW/wDBzh+2Efj3+3PB8APDd153h/4S2X2Bgpyj6vehZrxh/uKIYCCMq8T+tfq/gvwp/b3FWGpVI3pUv3s+1oNWT/xTcU12bPD4ix31XBTkn70vdXz/AMlc/m5ooor/AElPx8KKKKACiiigD6A/ZN/5On+Gn/Y16N/6WRV/u8V/gz/s9eKdB8DfH3wP428Uz/ZdM0fxBpl9eTbWfy4Le5jkkbagLNtVScKCT2BNf6zX/EUb/wAEKP8Aouf/AJbPiH/5WUAfv9RX4A/8RRv/AAQo/wCi5/8Als+If/lZR/xFG/8ABCj/AKLn/wCWz4h/+VlAH7/UV+AP/EUb/wAEKP8Aouf/AJbPiH/5WUf8RRv/AAQo/wCi5/8Als+If/lZQB+/1Ffz53n/AAdMf8EL7Vd0HxpluT6R+GtdB/8AH9PWvCPH/wDwd7f8EcfB1vLN4c1bxZ4reMErHpehSRNIR2X7bJagZ/2iKAP6g6QkAZPAFfwT/tCf8HvfhGCzlsP2UvgbeXVw2fLvvFmpJAieha0sxKXz3AuUx6mv5hf26f8Ag4E/4Kjf8FALG+8JfFX4gSeHPCOoApL4b8KxnStOeNuscpRmuZ0PdJ55F46UAf3b/wDBZH/g55/Zf/YL0TV/gr+yneWPxP8AjDsaALayefomjSnjfeTxsBLKh/5doWLZGJGi4z/mAfHr49fF79p74v6/8evjxrtz4l8W+JrprzUdQuiC8sjcAAABURFASONAERAFUBQAPIqKACiiigAooooAKKKKACiiigD/0f8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAcrMjB0JDA5BHBBr/W4/4Nsv8Agr5H/wAFMf2QE+HHxe1JZvjD8LoYNP14zOTPqtiRttdTG4ku0gXy7kgnE6lyEWaNa/yRa+zv2Bf28v2gv+Cbn7S2kftTfs23kEGvaXFPazWl6ryWGoWdyu2S2u4o5ImkhYhXwHUrIiOpDopAB/fH/wAHav8AwWHX9nj4ON/wTY+AGqIPG3xDsS/jC5gcmTTPD84Ki1yvCzagMq4JJW1DZUCeNx/mnV638efjt8Wv2nfjH4j+P/x21ufxF4u8WXsmoanqFzgPLNJ2CqAkcaKAkcaKsccaqiKqqAOE8J+FPEnjvxVpngfwbZTanq+s3cNjY2dupeW4ubhxHFGijks7sFUDqTUylGMXKTskNJt2R+hP/BKz/gn14o/4KJftT6b8LVW4tfCGkbNS8UalEuPs+no3+qRz8onuW/dRDkjLSbWWNxX+pb8MfAnhn4deDNM8H+D7CHS9J0q0hsbCzt0CQ21rboI4o0UcKqooAA6ACvzO/wCCSn/BOrwx/wAE+v2Y9M+FxjgufF2r7NT8V6lD832i/ZQPJRzyYLcHyohhQcNJtVpHr9cgABgdBX+dnjT4ivibN3Tw0v8AZKN40/73803/AImtO0UtE2z9f4fyhYDDe+v3ktZeXZfLr5/IWiiql/f2OlWM2qapNHbW1tG0s00rBI440GWZmOAFAGSScAV+MpNuyPcMhvF3hVfFq+Am1G2GtvaNfrYeav2k2quIzMI87vLDsFLYxuOM5roq/wAz34+f8Fnvixff8FeLn/goH8KLqWbRPD95/YukabI5jiu/DFuxRreQHO37WC9wQQ3lzSBhyi4/0Xv2evjz8Nv2n/gp4b+P3whvhqHh3xTZR3tpLwHUNw8cgBO2WJw0ciZyrqVPSv0vj3wwzLhbDYHF4rWFeCb0+Cpa7pvzS2fW0rfCeNledUcbOrCG8X967/15dzlv2vP2i/DH7JH7Mnjj9pHxdtaz8IaTPfLE52i4uANtvAD2aeZkiX3YV/kP+PPG3ib4l+ONZ+I/jW6a+1nxBfXGpX9y/wB6a5u5Gllc+7OxJ+tf2yf8HXv7YX/CPfDvwP8AsQ+FrrbdeIZv+Em11EOGFlas0VnGw7rLP5shHZoFPev4cK/qP6NvCn9n5BUzetH95iZaf9e4XUfvlzPzXKz4rjDHe1xSw8XpBfi9/wALfiFFFFf0afIhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH/9L/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAr+yP8A4Nq/+CaDLn/goj8ZbAgnz7LwVbTY6HMVzqBXr/eggyR/y1cr/qnr+N0cHNf6rH/BKT9qf4Pftn/sfeEPiZ8IrC10K10azg0a/wBAtAqRaRe2Maxm1RFJ2wqoV7fPJgZCQpJUfgv0heIMxy3hxUcFBqnXlyVJr7MbX5f+4mqvtZNbyR9bwfhKFXGOdV6wV4ru+/y/PXofpVpFj9htAG++/Lf4fhWrRRX+f0m27s/UG7u4V/Op/wAHJX7dv/DL37FbfATwVeeT4u+Lhm0oeW2JINGjA+3ScdPNVktgCPmWVyDlK/oju7u1sLWS+vpEhghRpJJJGCqiqMkkngADkk9K/wAqP/grr+3Fdft+ftxeKvjHp07SeF9Of+xfDUZzhdKsmYRyAHkG4cvcMDyDJt6AV+2eA3BX9u8RwxNeN8PhrVJdnK/7uPzkuZrZqLXU+a4nzH6rhHCL96ei9Or+7T5n5l1/Ud/wbc/8FR7T9mv4szfsX/HLVUtPAvjm587Rry7kCw6ZrTAKELMQEhvAAhzwswQ8B5Gr+XGiv7q4u4WwfEWVVspxq9ya0fWMl8Ml5p/erp6Nn5ngMbUwleNenuvxXVH3h/wUz/a2uv23f24PH/7QqSvJpWpai1roqPkeXpVkBBa/Kful4kEjgf8ALR2PU5r4Poor2Mty+hgMJRwOGjanTjGEV2UVZfgjnrVZVakqk3q22/mFFFFdpmFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/0/8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACv2C/wCCLH/BSfUv+Ccv7WNrrnim4kPw68YmHS/FVuNzCOHcfJvVRc5ktGZm4Vi0TSoo3OCPx9oryc9yXCZvl9bLMdHmpVYuMl+TXZp2afRpM3w2JqYerGtSdpJ3P9orS9U0zW9Mt9a0W4ivLO8iSeCeBxJFLFIAyujKSGVgQQQSCDkVer+ST/g2X/4KeH4q/D9v+CfXxo1Lf4i8J2zXHhG4uZfnvNJj5kshu5aSz+9EoJJtyQFVICT/AFrzTQ20L3Fw4jjjBZmY4AA5JJPQCv8AMPjThLF8N5xWynFq7g/dl0nB/DJeq37O63R+z5dj6eMw8a9Pruuz6o/ny/4OOv26x+yn+xBcfBrwdeeR4w+LRm0aAI2JIdKVR9vm9tyOtuOh/fEj7pr/ADeK/U7/AILH/tzzft8ftz+J/ifol0Z/COht/YXhlQfkOnWbMBMB/wBPMpefkZCuqn7or8sa/v7wd4K/1b4bo0K0bYir+8qd1KSVo/8AbkbJr+bma3Py3iDMfrmMlKL92Oi9F1+b/CwUUUV+qHhhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/1P8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD0r4OfF74hfAL4qaB8afhPqMmk+I/DN7FqGn3UfJSaE5G5Tw6MMq6MCroSrAqSK/t6/4KMf8Fy/h98Sv+COOk/ED4KXiad47+MaTeF7vTY5Q0+jyQRr/bGcHdtWOREhc7XKXMUuAcgfwd0V8LxX4fZXn+OwGYY2P7zDT5lp8S35Jd483LLrs19pnp4HNa+FpVaVN6TVvR91520/4YKKKK+6PMCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/1f8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//W/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9f/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//0P8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//R/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9L/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//0/8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//U/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9X/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//1v8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z" alt="KWD">
+    <div class="gear" id="gear-btn">⚙</div>
+  </div>
+  <div class="tag">Préparation physique · Football américain · 12 semaines</div>
+  <div id="rm-home"></div>
+  <div class="sl">Blocs d&#39;entraînement</div>
+  <div id="blocs"></div>
+  <div class="sl" style="margin-top:4px">Techniques d&#39;intensification</div>
+  <div style="padding:0 14px 28px;display:flex;flex-wrap:wrap;gap:7px" id="tech-home"></div>
+</div>
+
+<div class="scr" id="s-rm">
+  <div class="top">
+    <button class="bk" id="rm-back">&#8592;</button>
+    <div><div class="tt">Mes 1RM</div><div class="ts">Charges calculées automatiquement</div></div>
+  </div>
+  <div class="rms">
+    <div class="rmstl">Renseigne tes 1RM</div>
+    <div class="rmssl">Les charges (%) seront calculées et affichées en vert dans chaque séance, arrondies au 2.5kg.</div>
+  </div>
+  <div class="rmib"><div class="rmibt">Si tu n&#39;as pas de 1RM précis, utilise ton meilleur single propre. Tu peux mettre à jour ces valeurs à tout moment.</div></div>
+  <div class="rmg">
+    <div class="rmgt">Mouvements de force — Séances Upper / Lower</div>
+    <div class="rmr"><div class="rmrl">Bench Press</div><input class="rmri" type="number" inputmode="decimal" placeholder="—" id="rm-bench"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">Zercher Squat</div><input class="rmri" type="number" inputmode="decimal" placeholder="—" id="rm-zercher"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">RDL</div><input class="rmri" type="number" inputmode="decimal" placeholder="—" id="rm-rdl"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">Rowing BB Explo</div><input class="rmri" type="number" inputmode="decimal" placeholder="—" id="rm-rowing"><div class="rmru">kg</div></div>
+  </div>
+  <div class="rmg">
+    <div class="rmgt">Accessoires — Séances Hypertrophie</div>
+    <div class="rmr"><div class="rmrl">Bench Press (hyp.)</div><input class="rmri" type="number" inputmode="decimal" placeholder="—" id="rm-benchhyp"><div class="rmru">kg</div></div>
+  </div>
+  <button class="rmsvb" id="rm-save-btn">&#10003; Enregistrer et revenir</button>
+  <div style="height:24px"></div>
+</div>
+
+<div class="scr" id="s-weeks">
+  <div class="top">
+    <button class="bk" id="weeks-back">&#8592;</button>
+    <div><div class="tt" id="weeks-title"></div><div class="ts" id="weeks-sub"></div></div>
+  </div>
+  <div class="sl">Sélectionne la semaine</div>
+  <div class="wg" id="week-grid"></div>
+</div>
+
+<div class="scr" id="s-sessions">
+  <div class="top">
+    <button class="bk" id="sess-back">&#8592;</button>
+    <div><div class="tt" id="sess-title"></div><div class="ts" id="sess-sub"></div></div>
+  </div>
+  <div class="sl">Sélectionne la séance</div>
+  <div class="sl2" id="sess-list"></div>
+</div>
+
+<div class="scr" id="s-detail">
+  <div class="top">
+    <button class="bk" id="det-back">&#8592;</button>
+    <div><div class="tt" id="det-title"></div><div class="ts" id="det-sub"></div></div>
+  </div>
+  <div class="sbn" id="det-banner"></div>
+  <div id="det-exs"></div>
+  <button class="svb" id="det-done-btn">&#10003; Séance terminée</button>
+  <div style="height:28px"></div>
+</div>
+
+<div class="mo" id="tech-modal">
+  <div class="md">
+    <div class="mh"></div>
+    <div id="modal-inner"></div>
+    <button class="mcl" id="modal-close-btn">Fermer</button>
+    <div style="height:6px"></div>
+  </div>
+</div>
+
+<script>
+var PROG = {"1": {"b": 1, "dl": false, "theme": "Rodage — Tempo 3-0-1 sur tirages et RDL. Séances force : bar speed pur.", "pull": {"f": "Connexion neuromusculaire — excentrique 3s sur tirages", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "4×8", "RPE 7", "1'30", "T30", "Excentrique 3s, concentrique explosif. Wrist wraps.", 4], ["Tractions Lestées", "4×8", "RPE 7", "2'00", null, "", 4], ["Avants (ss tractions)", "4×15", "RPE 6", "—", null, "", 4], ["Tirage Horizontal Poulie", "3×10", "RPE 7", "2'00", "T30", "3s excentrique.", 3], ["Pullover Poulie", "3×12", "RPE 7", "1'45", null, "", 3], ["Biceps Curl Haltère", "3×10", "RPE 7", "1'30", null, "", 3], ["Brachial Curl", "3×10", "RPE 7", "1'30", null, "", 3], ["Shrugs + Chin Up (ss)", "3×15 / 3×max", "RPE 8", "1'00", null, "", 3]]}, "push": {"f": "Bench 65% — volume structurant", "e": [["Éch. Plyo Push + Coiffe rot.", "2×8", "—", "—", null, "", 0], ["Bench Press", "4×8", "65%", "2'00", null, "Descente 2s, concentrique explosif. Wrist wraps.", 4], ["Cable Flies 14°", "2×10", "RPE 7", "1'30", null, "", 2], ["Cable Flies 11°", "2×10", "RPE 7", "1'30", null, "", 2], ["Dips", "3×8", "RPE 7", "1'30", null, "", 3], ["DVP Militaire", "4×8", "RPE 7", "2'00", null, "", 4], ["Lateral Raises", "4×13", "RPE 7", "1'30", null, "", 4], ["Overhead Tric. Ext.", "3×10", "RPE 7", "1'45", null, "", 3], ["Triceps Extension", "3×10", "RPE 7", "1'45", null, "", 3]]}, "legs": {"f": "Activation fessiers — Tempo RDL 3s", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 7", "1'45", null, "Poussée explosive, serrage fessiers.", 3], ["Zercher Lunges", "3×8", "RPE 7", "1'30", null, "Wrist wraps.", 3], ["RDL", "4×10", "RPE 7", "2'00", "T30", "Excentrique 3s, hanches arrière.", 4], ["Press Inclinée", "3×10", "RPE 7", "2'00", null, "", 3], ["Seated Calf Raise", "4×20", "RPE 7", "2'00", null, "", 4], ["Pallof Press", "3×30s", "—", "1'00", null, "", 0], ["Side Plank", "3×30s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "3×12", "RPE 7", "1'30", null, "", 3]]}, "refo": {"f": "Stabilité et trapèzes", "e": [["Mobilité articulaire", "—", "10 min", "—", null, "", 0], ["Overhead Carry", "5×10 pas", "Lourd", "1'30", null, "Wrist wraps.", 0], ["Pallof Press ISO", "4×20s", "—", "1'00", null, "", 0], ["One Side BB Hold", "4×20s", "—", "1'00", null, "", 0], ["Traps High Pull", "5×8", "Lourd", "1'30", null, "Coudes hauts.", 5], ["Cuban Press", "3×10", "RPE 7", "1'30", null, "", 3], ["Shrugs", "3×15", "Lourd", "1'30", null, "", 3], ["Étirements", "—", "10 min", "—", null, "", 0]]}, "upper": {"f": "Force explosive — Bench 75%, bar speed. Aucune technique S1.", "e": [["Éch. articulaire + Plyo Push", "2×5", "—", "—", null, "", 0], ["Bench Press Explo", "4×3", "75%", "3'00", null, "Intent explosif max. Wrist wraps.", 4], ["Cable Flies 14°", "3×10", "RPE 7", "1'30", null, "", 3], ["Cable Flies 11°", "2×10", "RPE 7", "1'30", null, "", 2], ["Rowing BB Explo", "4×8", "70%", "2'00", "T20", "Excentrique 2s.", 4], ["Tirage Vertical", "4×10", "RPE 7", "2'00", null, "", 4], ["Rowing Barre Banc", "3×8", "RPE 7", "1'30", null, "", 3], ["Lateral Raise Bisét", "3×15", "RPE 7", "—", null, "", 3], ["Dips + Tractions", "3×max / 3×max", "max", "1'30", null, "", 3]]}, "lower": {"f": "Zercher 65% + Pause 1s — RDL 65% Tempo 3s", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×8", "RPE 7", "1'45", null, "", 4], ["Zercher Squat", "4×8", "65%", "2'00", "PA", "Pause 1s position stable. Wrist wraps.", 4], ["RDL", "4×8", "65%", "2'30", "T30", "Excentrique 3s.", 4], ["Barbell Lunges", "3×10", "RPE 7", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×10", "RPE 7", "2'00", null, "", 3], ["Stand Calf Raises", "5×15", "Lourd", "2'00", null, "", 5], ["AB Wheel Rollout", "3×12", "RPE 7", "1'30", null, "", 3]]}}, "2": {"b": 1, "dl": false, "theme": "Progression reps. Myo-reps introduits : biceps, lateral raises, cable flies. Bench 70%.", "pull": {"f": "Volume +1 rep — Myo-reps Biceps Curl", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "4×9", "RPE 7-8", "1'30", "T30", "", 4], ["Tractions Lestées", "4×9", "RPE 7-8", "2'00", null, "", 4], ["Avants (ss)", "4×15", "RPE 6", "—", null, "", 4], ["Tirage Horizontal Poulie", "3×11", "RPE 7-8", "2'00", "T30", "", 3], ["Pullover Poulie", "3×13", "RPE 7", "1'45", null, "", 3], ["Biceps Curl Haltère", "Myo-reps", "RPE 8", "1'30", "MYO", "1×12 activation puis 5 souffles puis 4×4 mini-séries.", 1], ["Brachial Curl", "3×10", "RPE 7-8", "1'30", null, "", 3], ["Shrugs + Chin Up (ss)", "3×15 / 3×max", "RPE 8", "1'00", null, "", 3]]}, "push": {"f": "Bench 70% — Myo-reps Lateral Raises + Cable Flies 14°", "e": [["Éch. Plyo Push + Coiffe rot.", "2×8", "—", "—", null, "", 0], ["Bench Press", "4×8", "70%", "2'00", null, "Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 8", "1'30", "MYO", "1×14 activation puis 4×4. Cable 11° : 2×10 classique.", 1], ["Cable Flies 11°", "2×10", "RPE 7", "1'30", null, "", 2], ["Dips", "3×9", "RPE 7-8", "1'30", null, "", 3], ["DVP Militaire", "4×9", "RPE 7-8", "2'00", null, "", 4], ["Lateral Raises", "Myo-reps", "RPE 8", "1'30", "MYO", "1×15 activation puis 4×4 mini-séries.", 1], ["Overhead Tric. Ext.", "3×10", "RPE 7-8", "1'45", null, "", 3], ["Triceps Extension", "3×10", "RPE 7-8", "1'45", null, "", 3]]}, "legs": {"f": "Volume +1 rep, +2.5kg vs S1", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×9", "RPE 7-8", "1'45", null, "+2.5kg vs S1.", 3], ["Zercher Lunges", "3×9", "RPE 7-8", "1'30", null, "Wrist wraps.", 3], ["RDL", "4×10", "RPE 7-8", "2'00", "T30", "", 4], ["Press Inclinée", "3×11", "RPE 7-8", "2'00", null, "", 3], ["Seated Calf Raise", "4×20", "RPE 7-8", "2'00", null, "", 4], ["Pallof Press", "3×30s", "—", "1'00", null, "", 0], ["Side Plank", "3×30s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "3×13", "RPE 7", "1'30", null, "", 3]]}, "refo": {"f": "+2.5kg sur tous les exercices", "e": [["Mobilité articulaire", "—", "—", "—", null, "", 0], ["Overhead Carry", "5×10 pas", "+2.5kg", "1'30", null, "", 0], ["Pallof Press ISO", "4×20s", "—", "1'00", null, "", 0], ["One Side BB Hold", "4×20s", "—", "1'00", null, "", 0], ["Traps High Pull", "5×8", "+2.5kg", "1'30", null, "", 5], ["Cuban Press", "3×10", "RPE 7-8", "1'30", null, "", 3], ["Shrugs", "3×15", "Lourd", "1'30", null, "", 3], ["Étirements", "—", "—", "—", null, "", 0]]}, "upper": {"f": "Bench 77.5% — 5 séries — Myo-reps Cable Flies", "e": [["Éch. articulaire + Plyo Push", "2×5", "—", "—", null, "", 0], ["Bench Press Explo", "5×3", "77.5%", "3'00", null, "5 séries. Wrist wraps.", 5], ["Cable Flies 14°", "Myo-reps", "RPE 8", "1'30", "MYO", "1×14 puis 4×4.", 1], ["Cable Flies 11°", "2×10", "RPE 7", "1'30", null, "", 2], ["Rowing BB Explo", "4×8", "72.5%", "2'00", "T20", "", 4], ["Tirage Vertical", "4×11", "RPE 7-8", "2'00", null, "", 4], ["Rowing Barre Banc", "3×9", "RPE 7-8", "1'30", null, "", 3], ["Lateral Raise Bisét", "3×15", "RPE 7-8", "—", null, "", 3], ["Dips + Tractions", "3×max / 3×max", "max", "1'30", null, "", 3]]}, "lower": {"f": "Zercher 70% Pause 1s — RDL 70% Tempo 3s", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×9", "RPE 7-8", "1'45", null, "", 4], ["Zercher Squat", "4×8", "70%", "2'00", "PA", "Pause 1s. Wrist wraps.", 4], ["RDL", "4×8", "70%", "2'30", "T30", "", 4], ["Barbell Lunges", "3×10", "RPE 7-8", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×10", "RPE 7-8", "2'00", null, "", 3], ["Stand Calf Raises", "5×15", "Lourd", "2'00", null, "", 5], ["AB Wheel Rollout", "3×13", "RPE 7", "1'30", null, "", 3]]}}, "3": {"b": 1, "dl": false, "theme": "Peak volume. CLUSTER (1+1+1) Bench 80% et Zercher 72.5%. Rest-pause sur isolations bras.", "pull": {"f": "Volume maximal — Rest-pause Brachial Curl", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "4×10", "RPE 8", "1'30", "T30", "", 4], ["Tractions Lestées", "4×10", "RPE 8", "2'00", null, "", 4], ["Avants (ss)", "4×15", "RPE 7", "—", null, "", 4], ["Tirage Horizontal Poulie", "3×12", "RPE 8", "2'00", "T30", "", 3], ["Pullover Poulie", "Myo-reps", "RPE 8", "1'45", "MYO", "1×15 puis 5×4.", 1], ["Biceps Curl Haltère", "Myo-reps", "RPE 8-9", "1'30", "MYO", "+2.5kg vs S2. 1×12 puis 5×4.", 1], ["Brachial Curl", "Rest-pause", "RPE 9", "1'30", "RP", "10 reps puis 15s puis 4 reps puis 15s puis 2 reps.", 1], ["Shrugs + Chin Up (ss)", "3×15 / 3×max", "RPE 9", "1'00", null, "", 3]]}, "push": {"f": "Bench 72.5% — Rest-pause Overhead Tric.", "e": [["Éch. Plyo Push + Coiffe rot.", "2×8", "—", "—", null, "", 0], ["Bench Press", "4×8", "72.5%", "2'00", null, "Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 8", "1'30", "MYO", "", 1], ["Cable Flies 11°", "2×10", "RPE 8", "1'30", null, "", 2], ["Dips", "3×10", "RPE 8", "1'30", null, "", 3], ["DVP Militaire", "4×10", "RPE 8", "2'00", null, "", 4], ["Lateral Raises", "Myo-reps", "RPE 8", "1'30", "MYO", "1×15 puis 5×4.", 1], ["Overhead Tric. Ext.", "Rest-pause", "RPE 9", "1'45", "RP", "10 reps puis 15s puis 4 reps puis 15s puis 2 reps.", 1], ["Triceps Extension", "3×10", "RPE 8", "1'45", null, "", 3]]}, "legs": {"f": "Volume maximum — charges record Bloc 1", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×10", "RPE 8", "1'45", null, "+2.5kg vs S2.", 3], ["Zercher Lunges", "3×10", "RPE 8", "1'30", null, "Wrist wraps.", 3], ["RDL", "4×10", "RPE 8", "2'00", "T30", "", 4], ["Press Inclinée", "3×12", "RPE 8", "2'00", null, "", 3], ["Seated Calf Raise", "4×20", "RPE 8", "2'00", null, "", 4], ["Pallof Press", "3×35s", "—", "1'00", null, "", 0], ["Side Plank", "3×35s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "3×15", "RPE 8", "1'30", null, "", 3]]}, "refo": {"f": "Charges maximales Bloc 1", "e": [["Mobilité articulaire", "—", "—", "—", null, "", 0], ["Overhead Carry", "5×10 pas", "+2.5kg/S2", "1'30", null, "", 0], ["Pallof Press ISO", "4×25s", "—", "1'00", null, "", 0], ["One Side BB Hold", "4×25s", "—", "1'00", null, "", 0], ["Traps High Pull", "5×8", "+2.5kg/S2", "1'30", null, "", 5], ["Cuban Press", "3×10", "RPE 8", "1'30", null, "", 3], ["Shrugs", "3×15", "Très lourd", "1'30", null, "", 3], ["Étirements", "—", "—", "—", null, "", 0]]}, "upper": {"f": "CLUSTER (1+1+1) Bench 80%", "e": [["Éch. articulaire + Plyo Push", "3×3", "—", "—", null, "", 0], ["Bench Press — Cluster (1+1+1)", "4×(1+1+1)", "80%", "25-30s intra / 3min inter", "CL11", "Reposer la barre entre chaque single. Intent explosif. Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 8", "1'30", "MYO", "", 1], ["Rowing BB Explo", "4×8", "75%", "2'00", "T20", "", 4], ["Tirage Vertical", "4×12", "RPE 8", "2'00", null, "", 4], ["Rowing Barre Banc", "3×10", "RPE 8", "1'30", null, "", 3], ["Lateral Raise Bisét", "3×15", "RPE 8", "—", null, "", 3], ["Dips + Tractions", "3×max / 3×max", "max", "1'30", null, "", 3]]}, "lower": {"f": "CLUSTER (1+1+1) Zercher 72.5%", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×10", "RPE 8", "1'45", null, "", 4], ["Zercher Squat — Cluster (1+1+1)", "4×(1+1+1)", "72.5%", "25-30s intra / 3min inter", "CL11", "3 singles séparés. Sortie explosive. Wrist wraps.", 4], ["RDL", "4×8", "72.5%", "2'30", "T30", "", 4], ["Barbell Lunges", "3×10", "RPE 8", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×10", "RPE 8", "2'00", null, "", 3], ["Stand Calf Raises", "5×15", "Lourd", "2'00", null, "", 5], ["AB Wheel Rollout", "3×15", "RPE 8", "1'30", null, "", 3]]}}, "4": {"b": 1, "dl": true, "theme": "DÉCHARGE — Volume -25%, RPE max 6-7. Pas de myo ni rest-pause. Clusters réduits.", "pull": {"f": "Maintenance, charges allégées", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "3×8", "RPE 6", "1'30", "T30", "Tempo maintenu.", 3], ["Tractions Lestées", "3×8", "RPE 6", "2'00", null, "", 3], ["Avants (ss)", "3×12", "RPE 6", "—", null, "", 3], ["Tirage Horizontal Poulie", "3×8", "RPE 6", "2'00", "T30", "", 3], ["Pullover Poulie", "2×12", "RPE 6", "1'45", null, "", 2], ["Biceps Curl Haltère", "2×10", "RPE 6", "1'30", null, "", 2], ["Brachial Curl", "2×10", "RPE 6", "1'30", null, "", 2], ["Shrugs + Chin Up (ss)", "2×12 / 2×max", "RPE 6", "1'00", null, "", 2]]}, "push": {"f": "Bench 67.5% — légèreté", "e": [["Éch. Plyo Push + Coiffe rot.", "2×5", "—", "—", null, "", 0], ["Bench Press", "3×6", "67.5%", "2'00", "DL", "Wrist wraps.", 3], ["Cable Flies", "2×10 + 1×10", "RPE 6", "1'30", null, "", 3], ["Dips", "2×8", "RPE 6", "1'30", null, "", 2], ["DVP Militaire", "3×8", "RPE 6", "2'00", null, "", 3], ["Lateral Raises", "3×12", "RPE 6", "1'30", null, "", 3], ["Overhead Tric. Ext.", "2×10", "RPE 6", "1'45", null, "", 2], ["Triceps Extension", "2×10", "RPE 6", "1'45", null, "", 2]]}, "legs": {"f": "Décharge jambes", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 6", "1'45", null, "", 3], ["Zercher Lunges", "2×8", "RPE 6", "1'30", null, "Wrist wraps.", 2], ["RDL", "3×8", "RPE 6", "2'00", "T30", "", 3], ["Press Inclinée", "2×10", "RPE 6", "2'00", null, "", 2], ["Seated Calf Raise", "3×15", "RPE 6", "2'00", null, "", 3], ["Pallof Press + Side Plank", "2×30s / 2×30s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "2×12", "RPE 6", "1'30", null, "", 2]]}, "refo": {"f": "Mobilité double durée", "e": [["Mobilité articulaire x2", "—", "15 min", "—", null, "", 0], ["Overhead Carry", "3×10 pas", "Léger", "1'30", null, "", 0], ["Pallof Press ISO", "3×20s", "—", "1'00", null, "", 0], ["One Side BB Hold", "3×20s", "—", "1'00", null, "", 0], ["Traps High Pull", "3×8", "Léger", "1'30", null, "", 3], ["Cuban Press", "2×10", "RPE 6", "1'30", null, "", 2], ["Shrugs", "2×15", "Moyen", "1'30", null, "", 2], ["Étirements prolongés", "—", "15 min", "—", null, "", 0]]}, "upper": {"f": "Clusters réduits @75% — décharge", "e": [["Éch. articulaire + Plyo Push", "2×3", "—", "—", null, "", 0], ["Bench Press — Cluster réduit", "3×(1+1+1)", "75%", "30s intra / 3min inter", "CL11", "Allégé vs S3. Bar speed. Wrist wraps.", 3], ["Cable Flies", "2×10 + 1×10", "RPE 6", "1'30", null, "", 3], ["Rowing BB Explo", "3×8", "70%", "2'00", "T20", "", 3], ["Tirage Vertical", "3×10", "RPE 6", "2'00", null, "", 3], ["Rowing Barre Banc", "2×8", "RPE 6", "1'30", null, "", 2], ["Lateral Raise Bisét", "2×12", "RPE 6", "—", null, "", 2], ["Dips + Tractions", "2×max / 2×max", "RPE 7", "1'30", "DL", "Arrêt 3-4 reps avant échec.", 2]]}, "lower": {"f": "Clusters réduits Zercher 67.5%", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 6", "1'45", null, "", 3], ["Zercher Squat — Cluster réduit", "3×(1+1+1)", "67.5%", "30s intra / 3min inter", "CL11", "Wrist wraps.", 3], ["RDL", "3×6", "67.5%", "2'30", "T30", "", 3], ["Barbell Lunges", "2×10", "RPE 6", "2'00", null, "Wrist wraps.", 2], ["Leg Curl", "2×10", "RPE 6", "2'00", null, "", 2], ["Stand Calf Raises", "3×12", "Moyen", "2'00", null, "", 3], ["AB Wheel Rollout", "2×12", "RPE 6", "1'30", null, "", 2]]}}, "5": {"b": 2, "dl": false, "theme": "BLOC 2. CLUSTER (2+1) Bench 82.5%, Zercher 77.5%. Hip Thrust 4 séries.", "pull": {"f": "+2.5kg vs S3, myo et rest-pause maintenus", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "4×8", "+2.5kg/S3", "1'30", "T30", "", 4], ["Tractions Lestées", "4×8", "+2.5kg/S3", "2'00", null, "", 4], ["Avants (ss)", "4×15", "RPE 7", "—", null, "", 4], ["Tirage Horizontal Poulie", "3×10", "RPE 8-9", "2'00", "T30", "", 3], ["Pullover Poulie", "Myo-reps", "RPE 8-9", "1'45", "MYO", "", 1], ["Biceps Curl Haltère", "Myo-reps", "RPE 8-9", "1'30", "MYO", "", 1], ["Brachial Curl", "Rest-pause", "RPE 9", "1'30", "RP", "", 1], ["Shrugs + Chin Up (ss)", "3×15 / 3×max", "RPE 8", "1'00", null, "", 3]]}, "push": {"f": "Bench 75% — 6 reps", "e": [["Éch. Plyo Push + Coiffe rot.", "2×8", "—", "—", null, "", 0], ["Bench Press", "4×6", "75%", "2'00", null, "Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 8", "1'30", "MYO", "", 1], ["Dips", "3×10", "RPE 8", "1'30", null, "", 3], ["DVP Militaire", "4×10", "RPE 8", "2'00", null, "", 4], ["Lateral Raises", "Myo-reps", "RPE 8", "1'30", "MYO", "", 1], ["Overhead Tric. Ext.", "Rest-pause", "RPE 9", "1'45", "RP", "", 1], ["Triceps Extension", "3×10", "RPE 8", "1'45", null, "", 3]]}, "legs": {"f": "Hip Thrust 4 séries (+2.5kg vs S3)", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×10", "+2.5kg/S3", "1'45", null, "4 séries pour tout le Bloc 2.", 4], ["Zercher Lunges", "3×10", "RPE 8", "1'30", null, "Wrist wraps.", 3], ["RDL", "4×8", "RPE 8", "2'00", "T30", "", 4], ["Press Inclinée", "3×12", "RPE 8", "2'00", null, "", 3], ["Seated Calf Raise", "4×18", "RPE 8-9", "2'00", null, "", 4], ["Pallof Press", "3×35s", "—", "1'00", null, "", 0], ["Side Plank", "3×35s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "3×15", "RPE 8", "1'30", null, "", 3]]}, "refo": {"f": "+5kg vs S3", "e": [["Mobilité articulaire", "—", "—", "—", null, "", 0], ["Overhead Carry", "5×10 pas", "+5kg/S3", "1'30", null, "", 0], ["Pallof Press ISO", "4×25s", "—", "1'00", null, "", 0], ["One Side BB Hold", "4×25s", "—", "1'00", null, "", 0], ["Traps High Pull", "5×8", "+5kg/S3", "1'30", null, "", 5], ["Cuban Press", "3×10", "RPE 8", "1'30", null, "", 3], ["Shrugs", "3×15", "Très lourd", "1'30", null, "", 3], ["Étirements", "—", "—", "—", null, "", 0]]}, "upper": {"f": "CLUSTER (2+1) Bench 82.5% — premier cluster lourd", "e": [["Éch. articulaire + Plyo Push", "3×3", "—", "—", null, "", 0], ["Bench Press — Cluster (2+1)", "4×(2+1)", "82.5%", "30s intra / 3min inter", "CL21", "2 reps exp puis 30s puis 1 rep. Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 8", "1'30", "MYO", "", 1], ["Rowing BB Explo", "4×6", "77.5%", "2'00", "T30", "", 4], ["Tirage Vertical", "4×12", "RPE 8", "2'00", null, "", 4], ["Rowing Barre Banc", "3×8-10", "RPE 8", "1'30", null, "", 3], ["Lateral Raise Bisét", "3×15", "RPE 8", "—", null, "", 3], ["Dips + Tractions", "3×max / 3×max", "max", "1'30", null, "", 3]]}, "lower": {"f": "CLUSTER (2+1) Zercher 77.5%", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×10", "RPE 8", "1'45", null, "", 4], ["Zercher Squat — Cluster (2+1)", "4×(2+1)", "77.5%", "30s intra / 3min inter", "CL21", "2 reps, 30s, 1 rep. Wrist wraps.", 4], ["RDL", "4×6", "77.5%", "2'30", "T30", "", 4], ["Barbell Lunges", "3×10", "RPE 8", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×10", "RPE 8", "2'00", null, "", 3], ["Stand Calf Raises", "5×15", "Lourd", "2'00", null, "", 5], ["AB Wheel Rollout", "3×15", "RPE 8", "1'30", null, "", 3]]}}, "6": {"b": 2, "dl": false, "theme": "Cluster (2+1) 5 séries. Bench 85%, Zercher 80%. Pic volume-force Bloc 2.", "pull": {"f": "+2.5kg vs S5", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "4×8", "+2.5kg/S5", "1'30", "T30", "", 4], ["Tractions Lestées", "4×8", "+2.5kg/S5", "2'00", null, "", 4], ["Avants (ss)", "4×15", "RPE 7", "—", null, "", 4], ["Tirage Horizontal Poulie", "3×10", "RPE 8-9", "2'00", "T30", "", 3], ["Pullover Poulie", "Myo-reps", "RPE 8-9", "1'45", "MYO", "", 1], ["Biceps Curl Haltère", "Myo-reps", "RPE 8-9", "1'30", "MYO", "", 1], ["Brachial Curl", "Rest-pause", "RPE 9", "1'30", "RP", "", 1], ["Shrugs + Chin Up (ss)", "3×15 / 3×max", "RPE 8-9", "1'00", null, "", 3]]}, "push": {"f": "Bench 77.5% — 5 reps, repos 2min30", "e": [["Éch. Plyo Push + Coiffe rot.", "2×8", "—", "—", null, "", 0], ["Bench Press", "4×5", "77.5%", "2'30", null, "Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 8-9", "1'30", "MYO", "", 1], ["Dips", "3×10", "RPE 8-9", "1'30", null, "", 3], ["DVP Militaire", "4×8", "RPE 8-9", "2'00", null, "", 4], ["Lateral Raises", "Myo-reps", "RPE 8-9", "1'30", "MYO", "", 1], ["Overhead Tric. Ext.", "Rest-pause", "RPE 9", "1'45", "RP", "", 1], ["Triceps Extension", "3×10", "RPE 8-9", "1'45", null, "", 3]]}, "legs": {"f": "Progression continue", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×10", "+2.5kg/S5", "1'45", null, "", 4], ["Zercher Lunges", "3×10", "RPE 8-9", "1'30", null, "Wrist wraps.", 3], ["RDL", "4×8", "RPE 8-9", "2'00", "T30", "", 4], ["Press Inclinée", "3×12", "RPE 8-9", "2'00", null, "", 3], ["Seated Calf Raise", "4×18", "RPE 8-9", "2'00", null, "", 4], ["Pallof Press", "3×35s", "—", "1'00", null, "", 0], ["Side Plank", "3×35s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "3×15", "RPE 8-9", "1'30", null, "", 3]]}, "refo": {"f": "+2.5kg sur tout", "e": [["Mobilité articulaire", "—", "—", "—", null, "", 0], ["Overhead Carry", "5×10 pas", "+2.5kg/S5", "1'30", null, "", 0], ["Pallof Press ISO", "4×25s", "—", "1'00", null, "", 0], ["One Side BB Hold", "4×25s", "—", "1'00", null, "", 0], ["Traps High Pull", "5×8", "+2.5kg/S5", "1'30", null, "", 5], ["Cuban Press", "3×10", "RPE 8", "1'30", null, "", 3], ["Shrugs", "3×15", "Max", "1'30", null, "", 3], ["Étirements", "—", "—", "—", null, "", 0]]}, "upper": {"f": "CLUSTER (2+1) 5 séries @85% — pic accumulation", "e": [["Éch. articulaire + Plyo Push", "3×3", "—", "—", null, "", 0], ["Bench Press — Cluster (2+1)", "5×(2+1)", "85%", "30s intra / 3min inter", "CL21", "5 séries. Wrist wraps.", 5], ["Cable Flies 14°", "Myo-reps", "RPE 8-9", "1'30", "MYO", "", 1], ["Rowing BB Explo", "4×6", "80%", "2'00", "T30", "", 4], ["Tirage Vertical", "4×12", "RPE 8-9", "2'00", null, "", 4], ["Rowing Barre Banc", "3×8-10", "RPE 8-9", "1'30", null, "", 3], ["Lateral Raise Bisét", "3×15", "RPE 8-9", "—", null, "", 3], ["Dips + Tractions", "3×max / 3×max", "max", "1'30", null, "", 3]]}, "lower": {"f": "CLUSTER (2+1) 5 séries @80% — pic volume-force", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×10", "RPE 8-9", "1'45", null, "", 4], ["Zercher Squat — Cluster (2+1)", "5×(2+1)", "80%", "30s intra / 3min inter", "CL21", "5 séries. Wrist wraps.", 5], ["RDL", "4×5", "80%", "2'30", "T30", "", 4], ["Barbell Lunges", "3×10", "RPE 8-9", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×10", "RPE 8-9", "2'00", null, "", 3], ["Stand Calf Raises", "5×15", "Lourd", "2'00", null, "", 5], ["AB Wheel Rollout", "3×15", "RPE 8-9", "1'30", null, "", 3]]}}, "7": {"b": 2, "dl": false, "theme": "WAVE LOADING (3-2-1). Remplace les clusters. Charges les plus élevées.", "pull": {"f": "Volume réduit, charges max Bloc 2", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "4×6", "+5kg/S3", "1'30", "T30", "Charge record.", 4], ["Tractions Lestées", "4×6", "+5kg/S3", "2'00", null, "", 4], ["Avants (ss)", "4×15", "RPE 7", "—", null, "", 4], ["Tirage Horizontal Poulie", "3×8", "RPE 9", "2'00", "T30", "", 3], ["Pullover Poulie", "Myo-reps", "RPE 9", "1'45", "MYO", "", 1], ["Biceps Curl Haltère", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Brachial Curl", "Rest-pause", "RPE 9", "1'30", "RP", "", 1], ["Shrugs + Chin Up (ss)", "3×15 / 3×max", "RPE 9", "1'00", null, "", 3]]}, "push": {"f": "Bench 80% — 4 reps", "e": [["Éch. Plyo Push + Coiffe rot.", "2×8", "—", "—", null, "", 0], ["Bench Press", "4×4", "80%", "2'30", null, "Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Dips", "3×8", "RPE 8-9", "1'30", null, "", 3], ["DVP Militaire", "4×8", "RPE 8-9", "2'00", null, "", 4], ["Lateral Raises", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Overhead Tric. Ext.", "Rest-pause", "RPE 9", "1'45", "RP", "", 1], ["Triceps Extension", "3×10", "RPE 8-9", "1'45", null, "", 3]]}, "legs": {"f": "Charges max jambes Bloc 2", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×8", "+5kg/S3", "1'45", null, "", 4], ["Zercher Lunges", "3×8", "RPE 9", "1'30", null, "Wrist wraps.", 3], ["RDL", "4×6", "RPE 9", "2'00", "T30", "", 4], ["Press Inclinée", "3×10", "RPE 9", "2'00", null, "", 3], ["Seated Calf Raise", "4×18", "RPE 9", "2'00", null, "", 4], ["Pallof Press", "3×35s", "—", "1'00", null, "", 0], ["Side Plank", "3×35s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "3×15", "RPE 9", "1'30", null, "", 3]]}, "refo": {"f": "+7.5kg vs S3", "e": [["Mobilité articulaire", "—", "—", "—", null, "", 0], ["Overhead Carry", "5×10 pas", "+7.5kg/S3", "1'30", null, "", 0], ["Pallof Press ISO", "4×30s", "—", "1'00", null, "", 0], ["One Side BB Hold", "4×30s", "—", "1'00", null, "", 0], ["Traps High Pull", "5×8", "+7.5kg/S3", "1'30", null, "", 5], ["Cuban Press", "3×10", "RPE 8-9", "1'30", null, "", 3], ["Shrugs", "3×15", "Max", "1'30", null, "", 3], ["Étirements", "—", "—", "—", null, "", 0]]}, "upper": {"f": "WAVE LOADING Bench 80pct vers 85pct vers 87.5pct — 2 vagues", "e": [["Éch. articulaire + Plyo Push", "3×3", "—", "—", null, "", 0], ["Bench Press — Wave Loading", "2 vagues (6 séries)", "80%>85%>87.5%", "3min entre séries", "WL", "V1: 3@80% / 2@85% / 1@87.5%. Repos 3min. V2: +2.5kg si V1 parfaite. Wrist wraps.", 6], ["Cable Flies 14°", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Rowing BB Explo", "4×5", "82.5%", "2'00", "T30", "", 4], ["Tirage Vertical", "4×10", "RPE 8-9", "2'00", null, "", 4], ["Rowing Barre Banc", "3×8", "RPE 8-9", "1'30", null, "", 3], ["Lateral Raise Bisét", "3×15", "RPE 8", "—", null, "", 3], ["Dips + Tractions", "3×max / 3×max", "max", "1'30", null, "", 3]]}, "lower": {"f": "WAVE LOADING Zercher 77.5pct vers 82.5pct vers 85pct — 2 vagues", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "4×8", "RPE 9", "1'45", null, "", 4], ["Zercher Squat — Wave Loading", "2 vagues (6 séries)", "77.5%>82.5%>85%", "3min entre séries", "WL", "V1: 3@77.5% / 2@82.5% / 1@85%. V2: +2.5kg si technique parfaite. Wrist wraps.", 6], ["RDL", "4×4", "82.5%", "2'30", "T20", "Tempo 2s.", 4], ["Barbell Lunges", "3×10", "RPE 9", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×10", "RPE 9", "2'00", null, "", 3], ["Stand Calf Raises", "5×15", "Max", "2'00", null, "", 5], ["AB Wheel Rollout", "3×15", "RPE 9", "1'30", null, "", 3]]}}, "8": {"b": 2, "dl": true, "theme": "DÉCHARGE — Volume -30%, RPE max 6. Récupération profonde avant Peaking.", "pull": {"f": "Décharge", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "3×8", "RPE 6", "1'30", "T30", "", 3], ["Tractions Lestées", "3×8", "RPE 6", "2'00", null, "", 3], ["Avants (ss)", "3×12", "RPE 6", "—", null, "", 3], ["Tirage Horizontal Poulie", "3×8", "RPE 6", "2'00", "T30", "", 3], ["Pullover Poulie", "2×12", "RPE 6", "1'45", null, "", 2], ["Biceps Curl Haltère", "2×10", "RPE 6", "1'30", null, "", 2], ["Brachial Curl", "2×10", "RPE 6", "1'30", null, "", 2], ["Shrugs + Chin Up (ss)", "2×12 / 2×max", "RPE 6", "1'00", null, "", 2]]}, "push": {"f": "Bench 67.5%", "e": [["Éch. Plyo Push + Coiffe rot.", "2×5", "—", "—", null, "", 0], ["Bench Press", "3×6", "67.5%", "2'00", "DL", "Wrist wraps.", 3], ["Cable Flies", "2×10 + 1×10", "RPE 6", "1'30", null, "", 3], ["Dips", "2×8", "RPE 6", "1'30", null, "", 2], ["DVP Militaire", "3×8", "RPE 6", "2'00", null, "", 3], ["Lateral Raises", "3×12", "RPE 6", "1'30", null, "", 3], ["Overhead Tric. Ext.", "2×10", "RPE 6", "1'45", null, "", 2], ["Triceps Extension", "2×10", "RPE 6", "1'45", null, "", 2]]}, "legs": {"f": "Décharge jambes", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 6", "1'45", null, "", 3], ["Zercher Lunges", "2×8", "RPE 6", "1'30", null, "Wrist wraps.", 2], ["RDL", "3×8", "RPE 6", "2'00", "T30", "", 3], ["Press Inclinée", "2×10", "RPE 6", "2'00", null, "", 2], ["Seated Calf Raise", "3×15", "RPE 6", "2'00", null, "", 3], ["Pallof Press + Side Plank", "2×30s / 2×30s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "2×12", "RPE 6", "1'30", null, "", 2]]}, "refo": {"f": "Mobilité double durée", "e": [["Mobilité articulaire x2", "—", "15 min", "—", null, "", 0], ["Overhead Carry", "3×10 pas", "Léger", "1'30", null, "", 0], ["Pallof Press ISO", "3×20s", "—", "1'00", null, "", 0], ["One Side BB Hold", "3×20s", "—", "1'00", null, "", 0], ["Traps High Pull", "3×8", "Léger", "1'30", null, "", 3], ["Cuban Press", "2×10", "RPE 6", "1'30", null, "", 2], ["Shrugs", "2×15", "Moyen", "1'30", null, "", 2], ["Étirements prolongés", "—", "15 min", "—", null, "", 0]]}, "upper": {"f": "Classique sans techniques", "e": [["Éch. articulaire + Plyo Push", "2×3", "—", "—", null, "", 0], ["Bench Press Explo", "3×3", "72.5%", "3'00", "DL", "Pas de wave ni cluster. Wrist wraps.", 3], ["Cable Flies", "2×10 + 1×10", "RPE 6", "1'30", null, "", 3], ["Rowing BB Explo", "3×8", "70%", "2'00", null, "", 3], ["Tirage Vertical", "3×10", "RPE 6", "2'00", null, "", 3], ["Rowing Barre Banc", "2×8", "RPE 6", "1'30", null, "", 2], ["Lateral Raise Bisét", "2×12", "RPE 6", "—", null, "", 2], ["Dips + Tractions", "2×max / 2×max", "RPE 7", "1'30", "DL", "", 2]]}, "lower": {"f": "Zercher classique sans technique", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 6", "1'45", null, "", 3], ["Zercher Squat", "3×5", "70%", "3'00", "DL", "Wrist wraps.", 3], ["RDL", "3×6", "67.5%", "2'30", null, "", 3], ["Barbell Lunges", "2×10", "RPE 6", "2'00", null, "Wrist wraps.", 2], ["Leg Curl", "2×10", "RPE 6", "2'00", null, "", 2], ["Stand Calf Raises", "3×12", "Moyen", "2'00", null, "", 3], ["AB Wheel Rollout", "2×12", "RPE 6", "1'30", null, "", 2]]}}, "9": {"b": 3, "dl": false, "theme": "BLOC 3. Wave loading optimisé, intensités > Bloc 2. Volume -1 série compound.", "pull": {"f": "-1 série compound, tempo 2s", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "3×8", "RPE 9", "1'30", "T20", "Tempo 2s, charge max.", 3], ["Tractions Lestées", "3×8", "RPE 9", "2'00", null, "", 3], ["Avants (ss)", "4×15", "RPE 7", "—", null, "", 4], ["Tirage Horizontal Poulie", "3×8", "RPE 9", "2'00", "T20", "", 3], ["Pullover Poulie", "Myo-reps", "RPE 9", "1'45", "MYO", "", 1], ["Biceps Curl Haltère", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Brachial Curl", "Rest-pause", "RPE 9", "1'30", "RP", "", 1], ["Shrugs + Chin Up (ss)", "2×15 / 2×max", "RPE 8", "1'00", null, "", 2]]}, "push": {"f": "Bench 82.5% — 4 reps, repos 3min", "e": [["Éch. Plyo Push + Coiffe rot.", "2×5", "—", "—", null, "", 0], ["Bench Press", "4×4", "82.5%", "3'00", null, "Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 9", "1'30", "MYO", "Volume réduit.", 1], ["Dips", "3×8", "RPE 8-9", "1'30", null, "", 3], ["DVP Militaire", "3×8", "RPE 9", "2'00", null, "-1 série.", 3], ["Lateral Raises", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Overhead Tric. Ext.", "Rest-pause", "RPE 9", "1'45", "RP", "", 1], ["Triceps Extension", "2×10", "RPE 9", "1'45", null, "-1 série.", 2]]}, "legs": {"f": "Volume réduit, qualité max", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 9", "1'45", null, "-1 série vs Bloc 2.", 3], ["Zercher Lunges", "3×8", "RPE 9", "1'30", null, "Wrist wraps.", 3], ["RDL", "3×5", "RPE 9", "2'00", "T20", "-1 série, tempo 2s.", 3], ["Press Inclinée", "2×10", "RPE 8-9", "2'00", null, "-1 série.", 2], ["Seated Calf Raise", "4×15", "RPE 9", "2'00", null, "", 4], ["Pallof Press + Side Plank", "3×30s / 3×30s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "3×12", "RPE 8", "1'30", null, "", 3]]}, "refo": {"f": "Charges maximales", "e": [["Mobilité articulaire", "—", "—", "—", null, "", 0], ["Overhead Carry", "5×10 pas", "Max stable", "1'30", null, "", 0], ["Pallof Press ISO", "4×30s", "—", "1'00", null, "", 0], ["One Side BB Hold", "4×30s", "—", "1'00", null, "", 0], ["Traps High Pull", "5×8", "Max technique", "1'30", null, "", 5], ["Cuban Press", "3×10", "RPE 9", "1'30", null, "", 3], ["Shrugs", "3×15", "Max", "1'30", null, "", 3], ["Étirements", "—", "—", "—", null, "", 0]]}, "upper": {"f": "WAVE LOADING Bench 82.5pct vers 87.5pct vers 90pct", "e": [["Éch. articulaire + Plyo Push", "3×3", "—", "—", null, "", 0], ["Bench Press — Wave Loading", "2 vagues (6 séries)", "82.5%>87.5%>90%", "3min entre séries", "WL", "V1: 3@82.5% / 2@87.5% / 1@90%. V2: +2.5kg si V1 propre. Wrist wraps.", 6], ["Cable Flies 14°", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Rowing BB Explo", "4×4", "85%", "2'00", "T20", "", 4], ["Tirage Vertical", "3×10", "RPE 9", "2'00", null, "", 3], ["Rowing Barre Banc", "3×8", "RPE 9", "1'30", null, "", 3], ["Lateral Raise Bisét", "2×15", "RPE 8", "—", null, "", 2], ["Dips + Tractions", "3×max / 3×max", "max", "1'30", null, "", 3]]}, "lower": {"f": "WAVE LOADING Zercher 80pct vers 85pct vers 87.5pct", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 9", "1'45", null, "", 3], ["Zercher Squat — Wave Loading", "2 vagues (6 séries)", "80%>85%>87.5%", "3min entre séries", "WL", "V1: 3@80% / 2@85% / 1@87.5%. V2: +2.5kg si technique parfaite. Wrist wraps.", 6], ["RDL", "4×4", "85%", "2'30", "T20", "", 4], ["Barbell Lunges", "3×10", "RPE 9", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×10", "RPE 9", "2'00", null, "", 3], ["Stand Calf Raises", "4×15", "Max", "2'00", null, "", 4], ["AB Wheel Rollout", "2×12", "RPE 8", "1'30", null, "", 2]]}}, "10": {"b": 3, "dl": false, "theme": "Pic de force — Wave Loading Bench 92.5%, Zercher 90%.", "pull": {"f": "Charges record, tempo 2s", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "3×6", "RPE 9-10", "1'30", "T20", "", 3], ["Tractions Lestées", "3×6", "RPE 9-10", "2'00", null, "", 3], ["Avants (ss)", "4×15", "RPE 7", "—", null, "", 4], ["Tirage Horizontal Poulie", "3×6", "RPE 9-10", "2'00", "T20", "", 3], ["Pullover Poulie", "Myo-reps", "RPE 9", "1'45", "MYO", "", 1], ["Biceps Curl Haltère", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Brachial Curl", "Rest-pause", "RPE 9", "1'30", "RP", "", 1], ["Shrugs + Chin Up (ss)", "2×12 / 2×max", "RPE 8", "1'00", null, "", 2]]}, "push": {"f": "Bench 85% — 3 reps", "e": [["Éch. Plyo Push + Coiffe rot.", "2×5", "—", "—", null, "", 0], ["Bench Press", "4×3", "85%", "3'00", null, "Wrist wraps.", 4], ["Cable Flies 14°", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Dips", "3×8", "RPE 9", "1'30", null, "", 3], ["DVP Militaire", "3×6", "RPE 9", "2'00", null, "", 3], ["Lateral Raises", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Overhead Tric. Ext.", "Rest-pause", "RPE 9", "1'45", "RP", "", 1], ["Triceps Extension", "2×10", "RPE 9", "1'45", null, "", 2]]}, "legs": {"f": "Charges très lourdes, volume minimal", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 9-10", "1'45", null, "", 3], ["Zercher Lunges", "3×6", "RPE 9", "1'30", null, "Wrist wraps.", 3], ["RDL", "3×4", "RPE 9-10", "2'00", "T20", "", 3], ["Press Inclinée", "2×8", "RPE 9", "2'00", null, "", 2], ["Seated Calf Raise", "4×15", "RPE 9-10", "2'00", null, "", 4], ["Pallof Press + Side Plank", "3×30s / 3×30s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "3×10", "RPE 8", "1'30", null, "", 3]]}, "refo": {"f": "Charges max", "e": [["Mobilité articulaire", "—", "—", "—", null, "", 0], ["Overhead Carry", "5×10 pas", "Max stable", "1'30", null, "", 0], ["Pallof Press ISO", "4×30s", "—", "1'00", null, "", 0], ["One Side BB Hold", "4×30s", "—", "1'00", null, "", 0], ["Traps High Pull", "5×6", "Max technique", "1'30", null, "", 5], ["Cuban Press", "3×8", "RPE 9", "1'30", null, "", 3], ["Shrugs", "3×12", "Max", "1'30", null, "", 3], ["Étirements", "—", "—", "—", null, "", 0]]}, "upper": {"f": "WAVE LOADING Bench 85pct vers 90pct vers 92.5pct", "e": [["Éch. articulaire + Plyo Push", "3×3", "—", "—", null, "", 0], ["Bench Press — Wave Loading", "2 vagues (6 séries)", "85%>90%>92.5%", "3min entre séries", "WL", "Si 92.5% propre: V2. Sinon 1 vague. Wrist wraps.", 6], ["Cable Flies 14°", "Myo-reps", "RPE 9", "1'30", "MYO", "", 1], ["Rowing BB Explo", "4×3", "87.5%", "2'30", "T20", "", 4], ["Tirage Vertical", "3×8", "RPE 9", "2'00", null, "", 3], ["Rowing Barre Banc", "3×8", "RPE 9", "1'30", null, "", 3], ["Lateral Raise Bisét", "2×12", "RPE 8", "—", null, "", 2], ["Dips + Tractions", "3×max / 3×max", "max", "1'30", null, "", 3]]}, "lower": {"f": "WAVE LOADING Zercher 82.5pct vers 87.5pct vers 90pct", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×8", "RPE 9-10", "1'45", null, "", 3], ["Zercher Squat — Wave Loading", "2 vagues (6 séries)", "82.5%>87.5%>90%", "3min entre séries", "WL", "V2 optionnelle selon ressenti. Wrist wraps.", 6], ["RDL", "4×3", "87.5%", "2'30", "T20", "", 4], ["Barbell Lunges", "3×8", "RPE 9", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×10", "RPE 9", "2'00", null, "", 3], ["Stand Calf Raises", "4×12", "Max", "2'00", null, "", 4], ["AB Wheel Rollout", "2×10", "RPE 8", "1'30", null, "", 2]]}}, "11": {"b": 3, "dl": false, "theme": "TENTATIVES MAX — Cluster potentialisation SNC puis singles lourds Sam/Dim.", "pull": {"f": "Volume minimal — ressources pour le week-end", "e": [["Éch. articulaire + Rowing KB", "2×10", "—", "—", null, "", 0], ["Rowing Barre Banc", "3×5", "RPE 9", "1'30", "T20", "", 3], ["Tractions Lestées", "3×5", "RPE 9", "2'00", null, "", 3], ["Avants (ss)", "3×12", "RPE 7", "—", null, "", 3], ["Tirage Horizontal Poulie", "2×8", "RPE 9", "2'00", "T20", "", 2], ["Pullover Poulie", "Myo-reps", "RPE 8", "1'45", "MYO", "Conservative.", 1], ["Biceps Curl Haltère", "Myo-reps", "RPE 8", "1'30", "MYO", "", 1], ["Brachial Curl", "2×10", "RPE 8", "1'30", null, "Classique.", 2], ["Chin Up", "2×max", "RPE 9", "1'00", null, "", 2]]}, "push": {"f": "Bench 87.5% — préparation tentative Samedi", "e": [["Éch. Plyo Push + Coiffe rot.", "2×5", "—", "—", null, "", 0], ["Bench Press", "3×3", "87.5%", "3'00", null, "Préparation. Wrist wraps.", 3], ["Cable Flies", "2×10", "RPE 8", "1'30", null, "Classique.", 2], ["Dips", "2×8", "RPE 8", "1'30", null, "", 2], ["DVP Militaire", "3×6", "RPE 9", "2'00", null, "", 3], ["Lateral Raises", "3×12", "RPE 8", "1'30", null, "Classique.", 3], ["Overhead Tric. Ext.", "2×10", "RPE 8", "1'45", null, "", 2], ["Triceps Extension", "2×10", "RPE 8", "1'45", null, "", 2]]}, "legs": {"f": "Volume réduit — préserver pour Dimanche", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×6", "RPE 8", "1'45", null, "Activation, pas de PR.", 3], ["Zercher Lunges", "2×8", "RPE 8", "1'30", null, "Wrist wraps.", 2], ["RDL", "3×4", "RPE 8-9", "2'00", "T20", "Conservative.", 3], ["Press Inclinée", "2×8", "RPE 8", "2'00", null, "", 2], ["Seated Calf Raise", "3×12", "RPE 8", "2'00", null, "", 3], ["Pallof Press + Side Plank", "2×30s / 2×30s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "2×10", "RPE 8", "1'30", null, "", 2]]}, "refo": {"f": "Récupération avant tentatives", "e": [["Mobilité articulaire x2", "—", "—", "—", null, "", 0], ["Overhead Carry", "3×10 pas", "Moyen", "1'30", null, "", 0], ["Pallof Press ISO", "3×25s", "—", "1'00", null, "", 0], ["One Side BB Hold", "3×25s", "—", "1'00", null, "", 0], ["Traps High Pull", "3×8", "Moyen", "1'30", null, "", 3], ["Cuban Press", "2×10", "RPE 7", "1'30", null, "", 2], ["Shrugs", "2×15", "Moyen", "1'30", null, "", 2], ["Étirements prolongés", "—", "—", "—", null, "", 0]]}, "upper": {"f": "TENTATIVE MAX Bench — Cluster potentialisation puis singles", "e": [["Éch. articulaire + Plyo Push", "3×3", "—", "—", null, "", 0], ["Bench — Potentialisation SNC", "3×(1+1+1)", "87.5%", "30s intra / 3min inter", "CL11", "Activer SNC. Apres: 5-7 min repos, visualisation. Wrist wraps.", 3], ["Bench — TENTATIVE MAX", "T1 puis T2 si propre", "T1@92.5% puis T2@95%", "5min entre tentatives", null, "T1 @92.5%. Si propre sans lutte: T2 @95%. Max 2 tentatives. Wrist wraps.", 2], ["Cable Flies", "2×12", "RPE 7", "1'30", null, "Récupération active.", 2], ["Rowing BB Explo", "3×6", "75%", "2'00", null, "Léger.", 3], ["Tirage Vertical", "3×10", "RPE 8", "2'00", null, "", 3], ["Rowing Barre Banc", "2×10", "RPE 8", "1'30", null, "", 2], ["Dips + Tractions", "2×max / 2×max", "max", "1'30", null, "", 2]]}, "lower": {"f": "TENTATIVE MAX Zercher — même protocole", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "3×6", "RPE 8", "1'45", null, "Activation.", 3], ["Zercher — Potentialisation SNC", "3×(1+1+1)", "85%", "30s intra / 3min inter", "CL11", "Repos 5-7 min apres le 3e cluster. Wrist wraps.", 3], ["Zercher — TENTATIVE MAX", "T1 puis T2 si propre", "T1@90% puis T2@92.5%+", "5min entre tentatives", null, "T1 @90%. Si propre: T2. Max 2 tentatives. Wrist wraps.", 2], ["RDL", "3×4", "RPE 9", "2'30", "T20", "", 3], ["Barbell Lunges", "3×8", "RPE 8", "2'00", null, "Wrist wraps.", 3], ["Leg Curl", "3×8", "RPE 8", "2'00", null, "", 3], ["Stand Calf Raises", "3×12", "Moyen", "2'00", null, "", 3], ["AB Wheel Rollout", "2×10", "RPE 8", "1'30", null, "", 2]]}}, "12": {"b": 3, "dl": true, "theme": "DÉCHARGE FINALE — Volume -40%, RPE max 5-6. Bar speed only. Prêt pour la saison.", "pull": {"f": "Maintenance uniquement", "e": [["Éch. articulaire", "—", "—", "—", null, "", 0], ["Rowing Barre Banc", "2×8", "RPE 5-6", "1'30", null, "", 2], ["Tractions Lestées", "2×6", "RPE 5-6", "2'00", null, "", 2], ["Avants (ss)", "3×12", "RPE 5", "—", null, "", 3], ["Tirage Horizontal Poulie", "2×8", "RPE 5-6", "2'00", null, "", 2], ["Pullover Poulie", "2×12", "RPE 5", "1'45", null, "", 2], ["Biceps Curl Haltère", "2×10", "RPE 5-6", "1'30", null, "", 2], ["Brachial Curl", "2×10", "RPE 5-6", "1'30", null, "", 2]]}, "push": {"f": "Bar speed only", "e": [["Éch. Plyo Push + Coiffe rot.", "2×5", "—", "—", null, "", 0], ["Bench Press", "3×5", "65%", "2'00", "DL", "Bar speed, légèreté. Wrist wraps.", 3], ["Cable Flies", "2×10", "RPE 5-6", "1'30", null, "", 2], ["Dips", "2×8", "RPE 5-6", "1'30", null, "", 2], ["DVP Militaire", "2×8", "RPE 5-6", "2'00", null, "", 2], ["Lateral Raises", "3×12", "RPE 5-6", "1'30", null, "", 3], ["Overhead Tric. Ext.", "2×10", "RPE 5-6", "1'45", null, "", 2], ["Triceps Extension", "2×10", "RPE 5-6", "1'45", null, "", 2]]}, "legs": {"f": "Décharge totale", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "2×8", "RPE 5-6", "1'45", null, "", 2], ["Zercher Lunges", "2×8", "RPE 5-6", "1'30", null, "Wrist wraps.", 2], ["RDL", "3×8", "RPE 5-6", "2'00", null, "Pas de tempo.", 3], ["Press Inclinée", "2×10", "RPE 5-6", "2'00", null, "", 2], ["Seated Calf Raise", "3×15", "RPE 5-6", "2'00", null, "", 3], ["Pallof Press + Side Plank", "2×20s / 2×20s", "—", "1'00", null, "", 0], ["AB Wheel Rollout", "2×10", "RPE 5-6", "1'30", null, "", 2]]}, "refo": {"f": "Mobilité intégrale — récupération totale avant saison", "e": [["Mobilité articulaire complète", "—", "20 min", "—", null, "Priorité absolue.", 0], ["Overhead Carry", "2×10 pas", "Léger", "1'30", null, "", 0], ["Pallof Press ISO", "2×20s", "—", "1'00", null, "", 0], ["One Side BB Hold", "2×20s", "—", "1'00", null, "", 0], ["Traps High Pull", "2×8", "Léger", "1'30", null, "", 2], ["Cuban Press", "2×10", "RPE 5-6", "1'30", null, "", 2], ["Shrugs", "2×12", "Léger", "1'30", null, "", 2], ["Étirements 20 min", "—", "—", "—", null, "", 0]]}, "upper": {"f": "Bar speed total", "e": [["Éch. articulaire + Plyo Push", "2×3", "—", "—", null, "", 0], ["Bench Press Explo", "3×3", "65%", "3'00", "DL", "Bar speed. Wrist wraps.", 3], ["Cable Flies", "2×10", "RPE 5-6", "1'30", null, "", 2], ["Rowing BB Explo", "3×8", "65%", "2'00", null, "", 3], ["Tirage Vertical", "2×10", "RPE 5-6", "2'00", null, "", 2], ["Rowing Barre Banc", "2×8", "RPE 5-6", "1'30", null, "", 2], ["Dips + Tractions", "2×8 / 2×8", "RPE 5-6", "1'30", "DL", "", 2]]}, "lower": {"f": "Zercher technique uniquement", "e": [["Éch. articulaire + Abducteurs", "—", "—", "—", null, "", 0], ["Hip Thrust", "2×8", "RPE 5-6", "1'45", null, "", 2], ["Zercher Squat", "3×5", "65%", "3'00", "DL", "Technique pure. Wrist wraps.", 3], ["RDL", "3×6", "65%", "2'30", null, "", 3], ["Barbell Lunges", "2×8", "RPE 5-6", "2'00", null, "Wrist wraps.", 2], ["Leg Curl", "2×8", "RPE 5-6", "2'00", null, "", 2], ["Stand Calf Raises", "3×12", "Léger", "2'00", null, "", 3], ["AB Wheel Rollout", "2×8", "RPE 5-6", "1'30", null, "", 2]]}}};
+
+var TECH = {
+  T30:{lbl:"Tempo 3-0-1",cost:1,title:"Tempo 3-0-1",sub:"Excentrique 3s — Pas de pause — Concentrique explosif",
+  desc:"Le tempo contrôle la vitesse de chaque phase du mouvement. 3-0-1 signifie : 3 secondes pour descendre, 0 seconde de pause en bas, 1 seconde (explosif) pour monter.",
+  steps:["Commence le mouvement normalement.","Phase excentrique (descente) : compte 3 secondes lentement et de façon contrôlée. Ex pour le Rowing : laisse la barre redescendre sur 3 secondes complètes tout en maintenant la tension dans le dos.","En bas : aucune pause. Inverse immédiatement.","Phase concentrique (montée) : tire / pousse aussi fort et vite que possible.","Respecte les 3 secondes à chaque rep sans tricher."],
+  example:"Rowing Barre Banc : tire explosif vers ventre → redescends sur <b>3 secondes</b> → repart immédiatement.",
+  tip:"Si tu ne ressens pas de brûlure après 4-5 reps, tu ne respectes pas les 3 secondes."},
+
+  T20:{lbl:"Tempo 2-0-1",cost:1,title:"Tempo 2-0-1",sub:"Excentrique 2s — Pas de pause — Concentrique explosif",
+  desc:"Version plus rapide du tempo introduite en Bloc 2. 2 secondes de descente permettent de garder une charge plus élevée tout en maintenant la tension musculaire.",
+  steps:["Phase excentrique : 2 secondes de descente. Moins lent que le 3-0-1 mais toujours volontaire.","En bas : aucune pause.","Concentrique : aussi explosif que possible.","Sur le Rowing BB Explo en Bloc 2 : 2s puis remontée vraiment explosive."],
+  example:"RDL Bloc 2 : descends les hanches arrière sur <b>2 secondes</b>, sens le stretch → remonte explosif en poussant le sol.",
+  tip:"En Bloc 3 le tempo sur RDL passe à 2s pour garder la vitesse de barre malgré des charges plus lourdes."},
+
+  MYO:{lbl:"Myo-reps",cost:1,title:"Myo-reps",sub:"1 série d'activation + mini-séries avec pause respiratoire",
+  desc:"Technique d'hypertrophie qui maximise le stimulus musculaire sur les isolations. Une longue série d'activation amène le muscle à bout, puis des mini-séries permettent des reps supplémentaires de haute qualité.",
+  steps:["Série d'activation : fais 12-15 reps jusqu'à RPE 8 (il reste 1-2 reps). Repose la charge.","Prends 5 grandes respirations profondes — pas 5 secondes, 5 vrais souffles.","Mini-série 1 : fais 4 reps. Repose. 5 respirations.","Mini-série 2 : fais 4 reps. Repose. 5 respirations.","Répète jusqu'à 4-5 mini-séries.","Stop quand une mini tombe à 3 reps ou si la technique se dégrade."],
+  example:"Lateral Raises : <b>1×15 @RPE8</b> → 5 souffles → <b>4 reps</b> → 5 souffles → <b>4 reps</b> → 4 reps → stop à 3. Total environ 30 reps sur 1 seule série.",
+  tip:"Ne repose pas trop entre les minis. 5 souffles max. Rester dans la zone de fatigue utile."},
+
+  RP:{lbl:"Rest-pause",cost:2,title:"Rest-pause",sub:"Série proche de l'échec + micro-pauses de 15 secondes",
+  desc:"Permet d'aller au-delà de l'échec musculaire en décomposant une série avec 15 secondes de récupération. Utilisé sur les isolations des bras — Brachial Curl, Overhead Tric. Ext.",
+  steps:["Charge : tu peux faire 8-12 reps avec la dernière difficile (RPE 9).","Série principale : reps jusqu'à ne plus pouvoir en faire une proprement.","Pose la charge. Compte 15 secondes exactes.","Mini-série 1 : reprends et fais 3-5 reps jusqu'au nouvel échec.","15 secondes.","Mini-série 2 : fais 2-3 reps. Stop."],
+  example:"Brachial Curl : <b>10 reps @RPE9</b> → poser → 15s → <b>4 reps</b> → 15s → <b>2 reps</b>. Total 16 reps = 1 série rest-pause.",
+  tip:"C'est 1 seule série au total — pas 3. C'est suffisamment intense."},
+
+  CL11:{lbl:"Cluster 1+1+1",cost:3,title:"Cluster sets 1+1+1",sub:"3 singles séparés par 25-30 secondes de repos",
+  desc:"Permet de déplacer des charges élevées avec vélocité maximale sur chaque rep. Au lieu de 3 reps continues avec fatigue accumulée, 3 singles séparés sont effectués. Chaque rep est aussi explosive que la première.",
+  steps:["Place la charge prescrite — ex: 80% de ton 1RM.","Rep 1 : 1 répétition avec intent explosif maximal. Repose la barre dans le rack.","Reste près de la barre. Compte 25 à 30 secondes.","Rep 2 : 1 rep avec même intent. Repose.","25-30 secondes.","Rep 3 : 1 dernière rep explosive. C'est 1 série terminée. Repos 3 min, puis répète."],
+  example:"Bench 4×(1+1+1) @80% : <b>[rep1 → 30s → rep2 → 30s → rep3]</b> → 3min → répète 3 fois encore.",
+  tip:"Objectif = vitesse de barre. Si tu ralentis, allège légèrement. Wrist wraps obligatoires."},
+
+  CL21:{lbl:"Cluster 2+1",cost:3,title:"Cluster sets 2+1",sub:"2 répétitions, 30 secondes de repos, 1 répétition",
+  desc:"Version Bloc 2 avec des charges encore plus lourdes — 82.5 à 85%. 2 reps ensemble, puis après 30 secondes, une troisième rep finit la série.",
+  steps:["Place la charge — ex: 82.5% Bench, 77.5% Zercher.","2 reps consécutives, explosives. Repose la barre.","Compte exactement 30 secondes.","1 rep explosive pour finir. = 1 série. Repos 3 min."],
+  example:"Zercher 4×(2+1) @77.5% : <b>[2 reps exp → repose → 30s → 1 rep]</b> → 3min → répète 3 fois encore.",
+  tip:"Sur le Zercher, repose la barre sur les supports pendant les 30s. Ne reste pas debout à la porter."},
+
+  WL:{lbl:"Wave loading",cost:3,title:"Wave loading — vagues",sub:"Vagues 3→2→1 avec charges croissantes",
+  desc:"Le wave loading exploite la potentialisation post-activation. Chaque vague = 3 séries avec des reps décroissantes et des charges croissantes. La deuxième vague repart plus haut que la première.",
+  steps:["Vague 1 — Série A : 3 reps à la charge de départ (ex: 80%). Repos 3 min.","Vague 1 — Série B : 2 reps à +5% (ex: 85%). Repos 3 min.","Vague 1 — Série C : 1 rep à +7.5% (ex: 87.5%). Repos 3 min.","Si les 3 séries étaient propres et fluides : commence la Vague 2.","Vague 2 : reprends +2.5kg sur chaque charge de la Vague 1.","Si V1 était difficile : 1 vague suffit. Pas de V2."],
+  example:"Bench S7 : <b>V1 → 3@80% → 2@85% → 1@87.5%</b> avec 3min entre chaque. <b>V2 → 3@82.5% → 2@87.5% → 1@90%</b>.",
+  tip:"3 minutes entre CHAQUE série — non-négociable. C'est ce qui rend la méthode efficace."},
+
+  PA:{lbl:"Pause 1s bas",cost:1,title:"Pause 1 seconde en bas",sub:"Arrêt complet en position basse, zéro rebond",
+  desc:"Élimine le rebond élastique et force le muscle à redémarrer de zéro. Utilisée sur le Zercher Squat en S1 et S2 pour développer la force dans le creux du mouvement.",
+  steps:["Descends normalement jusqu'à ta profondeur habituelle.","En bas : arrêt COMPLET. Aucun rebond. La barre doit être immobile.","Compte 1 seconde complète. Maintiens la position — gainage, pression sol.","Expire doucement pendant la pause.","Reaccélère vers le haut aussi fort que possible."],
+  example:"Zercher @65% : descends → <b>stop complet 1 seconde</b> → pousse le sol du pied aussi fort que possible.",
+  tip:"Réduis la charge de 10% vs une série classique. La pause révèle les faiblesses en position basse."},
+
+  DL:{lbl:"Décharge",cost:0,title:"Semaine de décharge",sub:"Volume -25 à 40%, RPE max 6-7, récupération active",
+  desc:"Les semaines de décharge — S4, S8, S12 — sont aussi importantes que les semaines d'entraînement. Le corps s'adapte pendant la récupération, pas pendant l'effort.",
+  steps:["Réduis TOUTES les charges d'environ 20-25% vs la semaine précédente.","Arrête chaque série 3-4 reps avant l'échec. RPE maximum 6-7.","Supprime les myo-reps et rest-pause cette semaine.","Maintiens les cluster sets uniquement si indiqués — avec charges allégées.","Garde la technique et les patterns de mouvement.","Ton corps doit se sentir léger. Si ce n'est pas le cas, tu n'as pas assez réduit."],
+  example:"S4 : Bench 72.5%×8 en S3 → <b>67.5%×6 en S4</b>. 4 séries → <b>3 séries</b>.",
+  tip:"La fatigue masque la forme physique. Après une décharge, tu seras PLUS fort qu'avant."}
+};
+
+var BLOCS = [
+  {n:1,lbl:"Hypertrophie Structurante",wks:"S1 — S4",col:"#c9841a",bg:"#1f1508"},
+  {n:2,lbl:"Accumulation Force",wks:"S5 — S8",col:"#3b82f6",bg:"#071428"},
+  {n:3,lbl:"Spécifique / Peaking",wks:"S9 — S12",col:"#7b6de0",bg:"#120a28"}
+];
+var SORDER = ["pull","push","legs","refo","upper","lower"];
+var SINFO = {
+  pull:{icon:"🔵",lbl:"Pull",day:"Lundi"},
+  push:{icon:"🔴",lbl:"Push",day:"Mardi"},
+  legs:{icon:"🟢",lbl:"Legs",day:"Jeudi"},
+  refo:{icon:"🟡",lbl:"Refo Spé",day:"Vendredi"},
+  upper:{icon:"⚡",lbl:"Upper Force",day:"Samedi"},
+  lower:{icon:"💪",lbl:"Lower Force",day:"Dimanche"}
+};
+var RM_MATCH = [
+  ["bench press explo","bench"],["bench press — wave","bench"],["bench press — cluster","bench"],
+  ["bench — potentialisation","bench"],["bench — tentative","bench"],
+  ["zercher squat — wave","zercher"],["zercher squat — cluster","zercher"],
+  ["zercher — potentialisation","zercher"],["zercher — tentative","zercher"],
+  ["zercher squat","zercher"],
+  ["rdl","rdl"],
+  ["rowing bb explo","rowing"],
+  ["bench press","benchhyp"]
+];
+
+// Storage
+function gLS(k){try{return localStorage.getItem(k)||null}catch(e){return null}}
+function sLS(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function loadRM(){try{return JSON.parse(gLS("kwd_rm")||"{}")}catch(e){return{}}}
+function saveRM(){
+  var d={bench:"",zercher:"",rdl:"",rowing:"",benchhyp:""};
+  Object.keys(d).forEach(function(k){var el=document.getElementById("rm-"+k);if(el)d[k]=el.value||"";});
+  sLS("kwd_rm",JSON.stringify(d));
+}
+function loadRMInputs(){
+  var d=loadRM();
+  Object.keys(d).forEach(function(k){var el=document.getElementById("rm-"+k);if(el&&d[k])el.value=d[k];});
+}
+function loadLogs(){try{return JSON.parse(gLS("kwd_logs")||"{}")}catch(e){return{}}}
+function saveLogs(d){sLS("kwd_logs",JSON.stringify(d));}
+function loadDone(){try{return JSON.parse(gLS("kwd_done")||"{}")}catch(e){return{}}}
+function saveDoneD(d){sLS("kwd_done",JSON.stringify(d));}
+
+var logs=loadLogs();
+var doneD=loadDone();
+var cBloc=1,cWeek=1,cSess="upper";
+
+function showScr(id){
+  document.querySelectorAll(".scr").forEach(function(s){s.classList.remove("on");});
+  var el=document.getElementById(id);
+  if(el){el.classList.add("on");}
+  window.scrollTo(0,0);
+}
+function dK(w,s){return "w"+w+"_"+s;}
+function lK(w,s,ei,si){return "w"+w+"_"+s+"_e"+ei+"_s"+si;}
+function cDone(w){return SORDER.filter(function(s){return doneD[dK(w,s)];}).length;}
+function rmSet(){var d=loadRM();return Object.values(d).some(function(v){return v&&v.trim()!=="";});}
+
+// RM calc
+function getRMKey(name){
+  var n=name.toLowerCase();
+  for(var i=0;i<RM_MATCH.length;i++){
+    if(n.indexOf(RM_MATCH[i][0])!==-1)return RM_MATCH[i][1];
+  }
+  return null;
+}
+function calcW(pct,rm1){
+  if(!rm1||isNaN(rm1)||rm1<=0)return null;
+  return Math.round((pct/100*rm1)/2.5)*2.5;
+}
+function calcPill(charge,exName){
+  var key=getRMKey(exName);
+  if(!key)return "";
+  var d=loadRM();
+  var rm1=parseFloat(d[key]);
+  if(!rm1||isNaN(rm1))return "";
+  var pcts=[];
+  // Try simple percent
+  var m=charge.match(/^(\d+(?:\.\d+)?)%$/);
+  if(m){pcts=[{p:parseFloat(m[1]),l:null}];}
+  else{
+    // Wave: find all Xpct or X%
+    var re=/(\d+(?:\.\d+)?)%/g,match;
+    while((match=re.exec(charge))!==null){pcts.push({p:parseFloat(match[1]),l:null});}
+    // Tentative: T1@X% T2@Y%
+    var tm=charge.match(/T1@?(\d+(?:\.\d+)?)%.*T2@?(\d+(?:\.\d+)?)%/);
+    if(tm){pcts=[{p:parseFloat(tm[1]),l:"T1"},{p:parseFloat(tm[2]),l:"T2"}];}
+  }
+  if(!pcts.length)return "";
+  var parts=[];
+  for(var i=0;i<pcts.length;i++){
+    var w=calcW(pcts[i].p,rm1);
+    if(w!==null)parts.push(pcts[i].l?pcts[i].l+":"+w+"kg":w+"kg");
+  }
+  if(!parts.length)return "";
+  return '<span class="pl pcalc">&#8776; '+parts.join(" / ")+"</span>";
+}
+
+// RENDER HOME
+function renderHome(){
+  var bl=document.getElementById("blocs");
+  if(!bl){console.log("blocs not found");return;}
+  var h="";
+  BLOCS.forEach(function(b){
+    var wks=b.n===1?[1,2,3,4]:b.n===2?[5,6,7,8]:[9,10,11,12];
+    var tot=wks.length*6;
+    var don=wks.reduce(function(a,w){return a+cDone(w);},0);
+    var pct=tot>0?Math.round(don/tot*100):0;
+    h+='<div class="bc" data-bloc="'+b.n+'" style="border-color:'+b.col+'44">'
+      +'<div class="bn" style="background:'+b.bg+';color:'+b.col+'">'+b.n+'</div>'
+      +'<div class="bi"><div class="bt">'+b.lbl+'</div><div class="bw">'+b.wks+' &nbsp;·&nbsp; '+don+'/'+tot+' séances</div></div>'
+      +'<div style="color:'+b.col+';font-size:15px">›</div>'
+      +'</div>'
+      +'<div class="pb"><div class="pf" style="width:'+pct+'%;background:'+b.col+'"></div></div>';
+  });
+  bl.innerHTML=h;
+  bl.querySelectorAll(".bc").forEach(function(el){
+    el.addEventListener("click",function(){selectBloc(parseInt(el.dataset.bloc));});
+  });
+  var rm=rmSet();
+  var rh=document.getElementById("rm-home");
+  if(rh)rh.innerHTML='<div class="rmb" id="rmb-click">'
+    +'<div class="rmbi">🎯</div>'
+    +'<div class="rmbt"><div class="rmbtl">Mes 1RM</div><div class="rmbts">Calcul automatique des charges</div></div>'
+    +(rm?'<div class="rmbs">Configurés ✓</div>':'<div class="rmbu">→ Configurer</div>')
+    +'</div>';
+  var rb=document.getElementById("rmb-click");
+  if(rb)rb.addEventListener("click",openRM);
+  var th=document.getElementById("tech-home");
+  if(th){
+    var th2="";
+    Object.keys(TECH).forEach(function(k){th2+='<span class="tp tc-'+k+'" data-tkey="'+k+'">'+TECH[k].lbl+'</span>';});
+    th.innerHTML=th2;
+    th.querySelectorAll(".tp").forEach(function(el){
+      el.addEventListener("click",function(){openTech(el.dataset.tkey);});
+    });
+  }
+}
+
+function openRM(){loadRMInputs();showScr("s-rm");}
+
+function selectBloc(n){
+  cBloc=n;
+  var b=BLOCS[n-1];
+  document.getElementById("weeks-title").textContent=b.lbl;
+  document.getElementById("weeks-sub").textContent=b.wks;
+  renderWeeks();showScr("s-weeks");
+}
+
+function renderWeeks(){
+  var wks=cBloc===1?[1,2,3,4]:cBloc===2?[5,6,7,8]:[9,10,11,12];
+  var col=BLOCS[cBloc-1].col;
+  var h="";
+  wks.forEach(function(w){
+    var wd=PROG[w];
+    var dc=cDone(w);
+    var dots=SORDER.map(function(s){return '<div class="wdt'+(doneD[dK(w,s)]?" ok":"")+'"></div>';}).join("");
+    h+='<div class="wc'+(wd.dl?" dl":"")+'" data-week="'+w+'" style="border-color:'+col+'44">'
+      +'<div class="wn" style="color:'+col+'">S'+w+'</div>'
+      +'<div class="wt">'+(wd.dl?"Décharge":"Semaine normale")+'</div>'
+      +'<div style="font-size:10px;color:var(--t3)">'+dc+'/6 séances</div>'
+      +'<div class="wd">'+dots+'</div>'
+      +'</div>';
+  });
+  var wg=document.getElementById("week-grid");
+  if(wg){
+    wg.innerHTML=h;
+    wg.querySelectorAll(".wc").forEach(function(el){
+      el.addEventListener("click",function(){selectWeek(parseInt(el.dataset.week));});
+    });
+  }
+}
+
+function selectWeek(w){
+  cWeek=w;
+  var wd=PROG[w];
+  document.getElementById("sess-title").textContent="Semaine "+w+(wd.dl?" — Décharge":"");
+  var th=wd.theme.length>65?wd.theme.substring(0,65)+"…":wd.theme;
+  document.getElementById("sess-sub").textContent=th;
+  renderSessions();showScr("s-sessions");
+}
+
+function renderSessions(){
+  var wd=PROG[cWeek];
+  var col=BLOCS[wd.b-1].col;
+  var bg=BLOCS[wd.b-1].bg;
+  var h="";
+  SORDER.forEach(function(s){
+    var si=SINFO[s];var sd=wd[s];var isDone=doneD[dK(cWeek,s)];
+    h+='<div class="sc" data-sess="'+s+'" style="border-color:'+col+'44">'
+      +'<div class="si" style="background:'+bg+'">'+si.icon+'</div>'
+      +'<div class="sn"><div class="snl">'+si.lbl+' <span style="color:var(--t3);font-size:11px">· '+si.day+'</span></div><div class="snf">'+sd.f+'</div></div>'
+      +(isDone?'<div class="sdb">✓ Fait</div>':'<div class="sab" style="color:'+col+'">›</div>')
+      +'</div>';
+  });
+  var sl=document.getElementById("sess-list");
+  if(sl){
+    sl.innerHTML=h;
+    sl.querySelectorAll(".sc").forEach(function(el){
+      el.addEventListener("click",function(){selectSess(el.dataset.sess);});
+    });
+  }
+}
+
+function selectSess(s){cSess=s;renderDetail();showScr("s-detail");}
+
+function renderDetail(){
+  var wd=PROG[cWeek];var sd=wd[cSess];var si=SINFO[cSess];
+  var col=BLOCS[wd.b-1].col;var bg=BLOCS[wd.b-1].bg;
+  document.getElementById("det-title").textContent=si.lbl+" — S"+cWeek;
+  document.getElementById("det-sub").textContent=si.day;
+  var bn=document.getElementById("det-banner");
+  if(bn)bn.innerHTML='<div class="sbnt" style="color:'+col+'">S'+cWeek+(wd.dl?" · Décharge":"")+" · "+BLOCS[wd.b-1].lbl+'</div><div class="sbnf">'+sd.f+'</div>';
+  var html="";
+  sd.e.forEach(function(ex,ei){
+    var name=ex[0],sxr=ex[1],charge=ex[2],repos=ex[3],techKey=ex[4],note=ex[5],nbSets=ex[6];
+    var t=techKey&&TECH[techKey]?TECH[techKey]:null;
+    var cp=calcPill(charge,name);
+    html+='<div class="ex"><div class="exh"><div class="exn">'+name+'</div>'
+      +'<div class="exp">'
+      +'<span class="pl pg">'+sxr+'</span>'
+      +(charge!=="—"?'<span class="pl pbl">'+charge+'</span>':"")
+      +cp
+      +(repos!=="—"?'<span class="pl prs">⏱ '+repos+'</span>':"")
+      +(t?'<span class="tp tc-'+techKey+'" data-tkey="'+techKey+'">'+t.lbl+' ℹ</span>':"")
+      +'</div>'
+      +(note?'<div class="enote">'+note+'</div>':"")
+      +'</div>';
+    if(nbSets>0){
+      html+='<div class="sa">';
+      for(var si2=0;si2<nbSets;si2++){
+        var kk=lK(cWeek,cSess,ei,si2);
+        var val=logs[kk]||{};
+        var ck=val.kg||val.reps?'<span style="color:var(--green);font-size:13px">✓</span>':"";
+        html+='<div class="sr">'
+          +'<div class="snr">'+(si2+1)+'</div>'
+          +'<input class="inp" type="number" inputmode="decimal" placeholder="kg" value="'+(val.kg||"")+'" data-ei="'+ei+'" data-si="'+si2+'" data-field="kg" style="max-width:78px">'
+          +'<div class="sx">×</div>'
+          +'<input class="inp" type="number" inputmode="numeric" placeholder="reps" value="'+(val.reps||"")+'" data-ei="'+ei+'" data-si="'+si2+'" data-field="reps">'
+          +'<div class="ck">'+ck+'</div>'
+          +'</div>';
+      }
+      html+='</div>';
+    }
+    html+='</div>';
+  });
+  var de=document.getElementById("det-exs");
+  if(de){
+    de.innerHTML=html;
+    de.querySelectorAll(".inp").forEach(function(inp){
+      inp.addEventListener("change",function(){
+        var ei=parseInt(inp.dataset.ei),si=parseInt(inp.dataset.si),field=inp.dataset.field;
+        var kk=lK(cWeek,cSess,ei,si);
+        if(!logs[kk])logs[kk]={};
+        logs[kk][field]=inp.value;
+        saveLogs(logs);
+        var row=inp.closest(".sr");
+        if(row){var ck=row.querySelector(".ck");if(ck)ck.innerHTML='<span style="color:var(--green);font-size:13px">✓</span>';}
+      });
+    });
+    de.querySelectorAll(".tp").forEach(function(el){
+      el.addEventListener("click",function(){openTech(el.dataset.tkey);});
+    });
+  }
+}
+
+function openTech(key){
+  var t=TECH[key];if(!t)return;
+  var dots="";
+  for(var i=0;i<3;i++)dots+='<div class="csdot'+(i<t.cost?" on":" off")+'"></div>';
+  var stepsH=t.steps.map(function(s,i){
+    return '<li class="msti"><div class="mstn">'+(i+1)+'</div><div class="mstt">'+s+'</div></li>';
+  }).join("");
+  var mi=document.getElementById("modal-inner");
+  if(mi)mi.innerHTML='<div class="mt">'+t.title+'</div><div class="ms">'+t.sub+'</div>'
+    +'<div class="cst"><div class="csl">Coût nerveux :</div><div class="csd">'+dots+'</div></div>'
+    +'<div class="mb">'
+    +'<div class="mst">En quoi ça consiste</div>'
+    +'<div style="font-size:13px;color:var(--t1);line-height:1.6;margin-bottom:11px">'+t.desc+'</div>'
+    +'<div class="mst">Étape par étape</div>'
+    +'<ul class="mstl">'+stepsH+'</ul>'
+    +'<div class="mex"><div class="mexl">Exemple concret</div><div class="mext">'+t.example+'</div></div>'
+    +(t.tip?'<div style="font-size:13px;color:var(--amber);line-height:1.5;padding-bottom:10px">→ '+t.tip+'</div>':"")
+    +'</div>';
+  document.getElementById("tech-modal").classList.add("on");
+}
+
+// Wire up all buttons
+document.getElementById("gear-btn").addEventListener("click",openRM);
+document.getElementById("rm-back").addEventListener("click",function(){saveRM();renderHome();showScr("s-home");});
+document.getElementById("rm-save-btn").addEventListener("click",function(){saveRM();renderHome();showScr("s-home");});
+document.getElementById("weeks-back").addEventListener("click",function(){renderHome();showScr("s-home");});
+document.getElementById("sess-back").addEventListener("click",function(){renderWeeks();showScr("s-weeks");});
+document.getElementById("det-back").addEventListener("click",function(){renderSessions();showScr("s-sessions");});
+document.getElementById("det-done-btn").addEventListener("click",function(){
+  doneD[dK(cWeek,cSess)]=true;
+  saveDoneD(doneD);
+  var btn=document.getElementById("det-done-btn");
+  btn.textContent="✓ Enregistré !";btn.style.background="#15803d";
+  setTimeout(function(){renderSessions();showScr("s-sessions");},700);
+});
+document.getElementById("modal-close-btn").addEventListener("click",function(){document.getElementById("tech-modal").classList.remove("on");});
+document.getElementById("tech-modal").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on");});
+
+// Init
+renderHome();
+</script>
+</body>
+</html>
