@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Prep · Perfo</title>
+<style>
+:root{--bg:#080808;--bg2:#0E0E0E;--bg3:#161616;--t1:#F2F2F2;--t2:#888;--t3:#444;--amber:#F5C800;--amber2:#D4A900;--amberBg:#151200;--b1:#1A1A1A;--b2:#282828;--b3:#333;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--t1);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh;overflow-x:hidden}
+.scr{display:none;min-height:100vh;animation:fi .18s ease}.scr.on{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.top{position:sticky;top:0;z-index:99;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:0.5px solid var(--b1);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.bk{width:34px;height:34px;border-radius:50%;background:var(--bg3);border:0.5px solid var(--b2);color:var(--t1);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.tt{font-size:15px;font-weight:700;flex:1;letter-spacing:-.02em}.ts{font-size:11px;color:var(--t2);margin-top:1px}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(6,6,6,.98);backdrop-filter:blur(24px);border-top:0.5px solid var(--b1);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom)}
+.bni{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 4px 9px;cursor:pointer;gap:3px;border:none;background:none;color:var(--t3);font-size:9px;letter-spacing:.05em;text-transform:uppercase;font-family:inherit;transition:color .15s}
+.bni.act{color:var(--amber)}.bni svg{transition:stroke .15s}
+.hero{padding:30px 18px 14px;display:flex;align-items:center;justify-content:space-between}
+.gear-btn{width:38px;height:38px;border-radius:50%;background:var(--bg3);border:0.5px solid var(--b2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t2);font-size:16px}
+.hero-sub{font-size:10px;color:var(--t3);padding:0 18px 20px;letter-spacing:.12em;text-transform:uppercase}
+.sl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);padding:16px 18px 8px}
+.bloc-card{margin:0 14px 6px;border-radius:12px;border:0.5px solid var(--b1);padding:13px 15px;cursor:pointer;background:var(--bg2);display:flex;align-items:center;gap:11px}
+.bloc-card:active{background:var(--bg3)}
+.bloc-num{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;flex-shrink:0;letter-spacing:-.03em}
+.bloc-info{flex:1;min-width:0}.bloc-title{font-size:13px;font-weight:700;margin-bottom:1px}.bloc-meta{font-size:10px;color:var(--t2)}
+.pb{height:2px;border-radius:1px;background:var(--b1);margin:3px 14px 8px;overflow:hidden}.pf{height:100%;border-radius:1px;transition:width .4s}
+.rm-banner{margin:0 14px 16px;border-radius:12px;background:var(--bg3);border:0.5px solid var(--b2);padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.rm-banner:active{background:var(--b2)}
+.badge-ok{font-size:10px;font-weight:600;background:#0F2A18;color:#22C55E;border-radius:5px;padding:2px 8px;flex-shrink:0}
+.wg{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px 80px}
+.wc{border-radius:12px;border:0.5px solid var(--b1);padding:12px;cursor:pointer;background:var(--bg2);transition:background .12s}
+.wc:active{background:var(--bg3)}.wc.dl{border-style:dashed;opacity:.75}
+.wn{font-size:22px;font-weight:800;letter-spacing:-.05em;margin-bottom:1px}
+.wtag{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--t2);margin-bottom:4px}
+.wdc{font-size:10px;color:var(--t3)}.wdots{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--b2)}.dot.ok{background:#22C55E}
+.sl2{padding:0 14px 80px}
+.sc{border-radius:12px;border:0.5px solid var(--b1);padding:12px 14px;cursor:pointer;background:var(--bg2);margin-bottom:7px;display:flex;align-items:center;gap:10px}
+.sc:active{background:var(--bg3)}
+.si-dot{width:36px;height:36px;border-radius:8px;border:0.5px solid;flex-shrink:0}
+.sn{flex:1;min-width:0}.snl{font-size:13px;font-weight:700;margin-bottom:2px}.snf{font-size:10px;color:var(--t2);line-height:1.3}
+.sess-banner{padding:12px 16px;background:var(--bg2);border-bottom:0.5px solid var(--b1);margin-bottom:2px}
+.sbnt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.sbnf{font-size:12px;color:var(--t1);line-height:1.4}.sbnt2{font-size:10px;color:var(--t2);margin-top:4px;line-height:1.4}
+.ex{margin:6px 12px;border-radius:12px;background:var(--bg2);border:0.5px solid var(--b1);overflow:hidden;animation:fi .2s ease both}
+.exh{padding:10px 12px 6px}.exn{font-size:12px;font-weight:700;margin-bottom:5px;color:var(--t1)}
+.exp{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:2px}
+.pl{display:inline-flex;align-items:center;border-radius:4px;padding:2px 7px;font-size:10px;font-weight:600;border:0.5px solid}
+.pl-main{background:#161616;color:#F2F2F2;border-color:var(--b2);font-size:11px;font-weight:700}
+.pl-load{background:#0E1520;color:#7EB3F0;border-color:#1A3050}
+.pl-calc{background:#0A1F10;color:#4ADE80;border-color:#0F3020}
+.pl-rest{background:#0E180E;color:#6DB86D;border-color:#183018}
+.pl-prev{background:#070E18;color:#5A9ACA;border-color:#0F2030;font-size:9px;padding:1px 6px}
+.enote{margin:0 12px 8px;padding:6px 10px;background:var(--bg3);border-radius:6px;font-size:10px;color:var(--t2);line-height:1.5;border-left:2px solid var(--b2)}
+.wave-presc{margin:0 12px 8px;padding:9px 11px;background:#0D0A20;border-radius:8px;border:0.5px solid #2A1E50}
+.wave-line{font-size:10px;color:#B8A8F0;line-height:2;font-weight:500}
+.wave-line b{color:#D0C0FF;font-size:11px}.wkg{color:#A78BFA;font-weight:700}
+.sa{padding:0 12px 10px}
+.sr{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.snr{font-size:9px;color:var(--t3);width:36px;text-align:center;flex-shrink:0;line-height:1.2}
+.inp{background:var(--bg3);border:0.5px solid var(--b2);border-radius:7px;color:var(--t1);font-size:15px;padding:9px 5px;text-align:center;width:100%;-webkit-appearance:none;appearance:none}
+.inp:focus{outline:none;border-color:var(--amber);background:#111}
+.inp::placeholder{color:var(--t3);font-size:11px}
+.sx{font-size:10px;color:var(--t3);flex-shrink:0}
+.svb{margin:10px 12px 12px;padding:15px;border-radius:12px;background:var(--amber);color:#000;font-size:14px;font-weight:800;border:none;width:calc(100% - 24px);cursor:pointer;letter-spacing:.03em}
+.svb:active{background:var(--amber2)}
+.ath-bloc{margin:0 14px 10px;border-radius:12px;background:var(--bg2);border:0.5px solid var(--b1);overflow:hidden}
+.ath-hdr{padding:9px 14px;border-bottom:0.5px solid var(--b1);display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--t1)}
+.ath-hdr span{font-size:10px;color:var(--t3)}
+.ath-row{display:flex;align-items:flex-start;gap:8px;padding:7px 14px;border-bottom:0.5px solid var(--b1)}
+.ath-row:last-child{border-bottom:none}
+.ath-num{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;margin-top:1px}
+.ath-en{font-size:11px;font-weight:600;color:var(--t1);margin-bottom:1px}
+.ath-ed{font-size:10px;color:var(--t2);line-height:1.4}
+.rms{padding:20px 16px 10px}.rmstl{font-size:20px;font-weight:800;margin-bottom:3px;letter-spacing:-.03em}.rmssl{font-size:12px;color:var(--t2);line-height:1.4}
+.rmib{margin:0 14px 14px;border-radius:12px;background:#060D1F;border:0.5px solid #1A3050;padding:10px 13px}.rmibt{font-size:12px;color:#7EB3F0;line-height:1.6}
+.rmg{margin:0 14px 12px;border-radius:12px;background:var(--bg2);border:0.5px solid var(--b1);overflow:hidden}
+.rmgt{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);padding:8px 13px 5px;background:var(--bg3);border-bottom:0.5px solid var(--b1)}
+.rmr{display:flex;align-items:center;padding:9px 13px;border-bottom:0.5px solid var(--b1);gap:10px}.rmr:last-child{border-bottom:none}
+.rmrl{flex:1;font-size:13px;font-weight:600}
+.rmri{background:var(--bg3);border:0.5px solid var(--b2);border-radius:7px;color:var(--t1);font-size:16px;font-weight:700;padding:7px 9px;text-align:center;width:82px;-webkit-appearance:none;appearance:none}
+.rmri:focus{outline:none;border-color:var(--amber)}
+.rmru{font-size:12px;color:var(--t2);width:20px}
+.rmsvb{margin:0 14px 80px;padding:15px;border-radius:12px;background:var(--amber);color:#000;font-size:14px;font-weight:800;border:none;width:calc(100% - 28px);cursor:pointer}
+.stat-toggle{display:flex;gap:8px;padding:0 14px 14px}
+.stbtn{flex:1;padding:9px;border-radius:8px;border:0.5px solid var(--b2);background:var(--bg2);color:var(--t2);font-size:12px;font-weight:600;cursor:pointer;text-align:center;font-family:inherit;transition:all .15s}
+.stbtn.act{background:var(--amber);color:#000;border-color:var(--amber)}
+.cns-wbtn{font-size:11px;font-weight:700;border-radius:6px;padding:4px 9px;border:0.5px solid var(--b2);background:var(--bg3);color:var(--t2);cursor:pointer;flex-shrink:0}
+.cns-act{color:#000!important}
+.tc{border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;border:0.5px solid;cursor:pointer;letter-spacing:.01em}
+.tc-t30{background:#0D3326;color:#4ADE9A;border-color:#0F4030}.tc-t20{background:#0A2A1F;color:#34C47A;border-color:#0D3828}
+.tc-myo{background:#1A2E0D;color:#86EFAC;border-color:#1F3A10}.tc-rp{background:#2D1C06;color:#FBBF24;border-color:#3A2308}
+.tc-cl11{background:#2D0A0A;color:#F87171;border-color:#3A0F0F}.tc-cl21{background:#2A1008;color:#FB923C;border-color:#371508}
+.tc-wl{background:#15123A;color:#A78BFA;border-color:#1E1A4A}.tc-pa{background:#0A1E30;color:#60A5FA;border-color:#0F2840}
+.tc-dl{background:#1A1A1A;color:#666;border-color:#2A2A2A}.tc-cln{background:#1A0A2E;color:#C084FC;border-color:#2A1050}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;display:none;align-items:flex-end}
+.mo.on{display:flex}
+.md{background:var(--bg2);border-radius:20px 20px 0 0;width:100%;max-height:88vh;overflow-y:auto;padding-bottom:env(safe-area-inset-bottom)}
+.mh{width:36px;height:4px;border-radius:2px;background:var(--b2);margin:12px auto 0}
+.mt{font-size:17px;font-weight:800;padding:13px 17px 3px;color:var(--amber)}.ms{font-size:12px;color:var(--t2);padding:0 17px 10px;border-bottom:0.5px solid var(--b1)}
+.mst{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:6px}
+.mstl{list-style:none;margin-bottom:10px}
+.msti{display:flex;gap:8px;margin-bottom:8px}
+.mstn{width:20px;height:20px;border-radius:50%;background:var(--amberBg);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+.mstt{font-size:12px;color:var(--t1);line-height:1.5}
+.mcl{margin:4px 17px 16px;padding:13px;border-radius:12px;background:var(--bg3);color:var(--t1);font-size:13px;font-weight:600;border:0.5px solid var(--b2);width:calc(100% - 34px);cursor:pointer;font-family:inherit}
+.cdot{width:9px;height:9px;border-radius:50%}.cdot.on{background:#EF4444}.cdot.off{background:var(--b2)}
+</style>
+</head>
+<body>
+<!-- HOME -->
+<div class="scr on" id="s-home">
+  <div class="hero">
+    <div>
+      <div style="font-size:26px;font-weight:900;letter-spacing:-.05em;line-height:1">PREP<span style="color:var(--amber)">.</span>PERFO</div>
+      <div style="font-size:9px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-top:3px">Football Am&#233;ricain &nbsp;&#183;&nbsp; Performance</div>
+    </div>
+    <div class="gear-btn" id="gear-btn">&#9881;</div>
+  </div>
+  <div class="hero-sub">23 ans &nbsp;&#183;&nbsp; 81kg &nbsp;&#183;&nbsp; 40yd 4.55s &nbsp;&#183;&nbsp; 12 Semaines</div>
+  <div id="rmb"></div>
+  <div class="sl">Programme d&#39;entra&#238;nement</div>
+  <div id="blocs"></div>
+  <div class="sl">Techniques d&#39;intensification</div>
+  <div style="padding:0 14px 80px;display:flex;flex-wrap:wrap;gap:7px" id="tech-home"></div>
+</div>
+<!-- 1RM -->
+<div class="scr" id="s-rm">
+  <div class="top"><div class="bk" id="rm-back">&#8592;</div><div><div class="tt">Mes 1RM</div><div class="ts">Charges calcul&#233;es automatiquement</div></div></div>
+  <div class="rms"><div class="rmstl">Renseigne tes 1RM</div><div class="rmssl">Les charges (%) s&#39;affichent en vert. Arrondies au 2.5kg. Accepte virgule ou point (ex&nbsp;: 102,5).</div></div>
+  <div class="rmib"><div class="rmibt">&#128270; Utilise ton meilleur single en technique propre. Mets &#224; jour &#224; chaque nouveau record.</div></div>
+  <div class="rmg">
+    <div class="rmgt">S&#233;ances Force &#8212; Samedi &amp; Dimanche</div>
+    <div class="rmr"><div class="rmrl">Bench Press (force)</div><input class="rmri" type="text" inputmode="decimal" placeholder="&#8212;" id="rm-bench"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">Front Squat (force)</div><input class="rmri" type="text" inputmode="decimal" placeholder="&#8212;" id="rm-frontsquat"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">Power Clean</div><input class="rmri" type="text" inputmode="decimal" placeholder="&#8212;" id="rm-clean"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">RDL (force)</div><input class="rmri" type="text" inputmode="decimal" placeholder="&#8212;" id="rm-rdl"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">Rowing BB Explo</div><input class="rmri" type="text" inputmode="decimal" placeholder="&#8212;" id="rm-rowing"><div class="rmru">kg</div></div>
+  </div>
+  <div class="rmg">
+    <div class="rmgt">Hypertrophie &#8212; Lundi au Jeudi</div>
+    <div class="rmr"><div class="rmrl">Bench Press (hyp.)</div><input class="rmri" type="text" inputmode="decimal" placeholder="&#8212;" id="rm-benchhyp"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">RDL (hyp.)</div><input class="rmri" type="text" inputmode="decimal" placeholder="&#8212;" id="rm-rdlhyp"><div class="rmru">kg</div></div>
+    <div class="rmr"><div class="rmrl">Front Squat (hyp.)</div><input class="rmri" type="text" inputmode="decimal" placeholder="&#8212;" id="rm-fshyp"><div class="rmru">kg</div></div>
+  </div>
+  <button class="rmsvb" id="rm-save">&#10003; Enregistrer et revenir</button>
+</div>
+<!-- WEEKS -->
+<div class="scr" id="s-weeks">
+  <div class="top"><div class="bk" id="wb">&#8592;</div><div><div class="tt" id="wt"></div><div class="ts" id="ws"></div></div></div>
+  <div class="sl">S&#233;lectionne la semaine</div>
+  <div class="wg" id="week-grid"></div>
+</div>
+<!-- SESSIONS -->
+<div class="scr" id="s-sessions">
+  <div class="top"><div class="bk" id="sesb">&#8592;</div><div><div class="tt" id="st"></div><div class="ts" id="ss"></div></div></div>
+  <div class="sl">S&#233;ances de la semaine</div>
+  <div class="sl2" id="sess-list"></div>
+</div>
+<!-- DETAIL -->
+<div class="scr" id="s-detail">
+  <div class="top"><div class="bk" id="detb">&#8592;</div><div><div class="tt" id="dt"></div><div class="ts" id="ds"></div></div></div>
+  <div id="det-banner"></div>
+  <div id="det-exs"></div>
+  <button class="svb" id="det-done">&#10003; S&#233;ance termin&#233;e</button>
+  <div style="height:80px"></div>
+</div>
+<!-- ATHLETICS HOME -->
+<div class="scr" id="s-ath">
+  <div class="top"><div style="width:34px;flex-shrink:0"></div><div><div class="tt">Athl&#233;tisme Piste</div><div class="ts">Mercredi &#8212; 12 semaines</div></div></div>
+  <div class="sl">40 yards 4.55s &#183; Split 20y 2.40s &#183; Objectif : &lt;4.45s</div>
+  <div class="wg" id="ath-grid"></div>
+</div>
+<!-- ATHLETICS DETAIL -->
+<div class="scr" id="s-ath-d">
+  <div class="top"><div class="bk" id="adhb">&#8592;</div><div><div class="tt" id="adt"></div><div class="ts" id="ads"></div></div></div>
+  <div style="height:10px"></div>
+  <div id="ath-det"></div>
+</div>
+<!-- STATS -->
+<div class="scr" id="s-stats">
+  <div class="top"><div style="width:34px;flex-shrink:0"></div><div><div class="tt">Analyse</div><div class="ts">Volume musculaire &amp; charge SNC</div></div></div>
+  <div style="height:12px"></div>
+  <div class="stat-toggle">
+    <button class="stbtn act" id="sv-vol">Volume musculaire</button>
+    <button class="stbtn" id="sv-cns">Charge SNC</button>
+  </div>
+  <div id="stats-body"></div>
+  <div style="height:80px"></div>
+</div>
+<!-- BOTTOM NAV -->
+<div class="bnav">
+  <button class="bni act" id="nh"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Accueil</button>
+  <button class="bni" id="np"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="15" x2="13" y2="15"/></svg>Programme</button>
+  <button class="bni" id="na"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Piste</button>
+  <button class="bni" id="ns"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Analyse</button>
+  <button class="bni" id="nr"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>1RM</button>
+</div>
+<!-- TECH MODAL -->
+<div class="mo" id="tmod"><div class="md"><div class="mh"></div><div id="modal-inner"></div><button class="mcl" id="mclose">Fermer</button><div style="height:6px"></div></div></div>
+<script>
+// ══════════════════════════════════════════════
+// DONNÉES SESSIONS (structure de base)
+// ══════════════════════════════════════════════
+var SESS={
+"pull":{"title":"Pull Hypertrophie","day":"Lundi","dur":"1h max","col":"#3B82F6","bg":"#071428","focus":"Connexion neuromusculaire \u2014 excentrique contr\u00f4l\u00e9. Volume dos prioritaire.","cns":2,"exercises":[
+  ["Rowing Barre Banc",4,"8-10","RPE 7-8","1'30","T30","Excentrique 3s contr\u00f4l\u00e9, concentrique explosif.",true,"rowing"],
+  ["Tractions Lest\u00e9es",4,"6-8","RPE 7-8","2'00",null,"",true,null],
+  ["Avants (ss tractions)",4,"15","RPE 6","\u2014",null,"Encha\u00een\u00e9 aux tractions, repos seulement entre supersets.",true,null],
+  ["Tirage Horizontal Poulie",3,"10-12","RPE 7-8","2'00","T30","Excentrique 3s.",true,null],
+  ["Pullover Poulie",3,"12","RPE 7-8","1'45","MYO","Myo-reps d\u00e8s S2 : 1x12 activation \u2192 5 souffles \u2192 4x4 mini-s\u00e9ries.",true,null],
+  ["Biceps Curl Halt\u00e8re",3,"10","RPE 8","1'30","MYO","Myo-reps d\u00e8s S2.",true,null],
+  ["Brachial Curl",2,"10","RPE 9","1'30","RP","Rest-pause d\u00e8s S3 : 10 reps \u2192 15s \u2192 4 reps \u2192 15s \u2192 2 reps.",true,null],
+  ["Shrugs",3,"15","Lourd","1'00",null,"Finisher trap\u00e8zes \u2014 charge maximale.",true,null]
+]},
+"push":{"title":"Push Hypertrophie","day":"Mardi","dur":"1h max","col":"#F87171","bg":"#2D0A0A","focus":"Volume pectoraux et \u00e9paules. Bench progressif 65%\u219282.5%. Myo-reps isolations.","cns":2,"exercises":[
+  ["Bench Press",4,"8","65-82.5%","2'00",null,"Descente 2s contr\u00f4l\u00e9e, concentrique explosif.",true,"benchhyp"],
+  ["Cable Flies 14\u00b0",2,"10","RPE 7-8","1'30","MYO","Myo-reps d\u00e8s S2 : 1x14 \u2192 4x4. Angle 14\u00b0.",true,null],
+  ["Cable Flies 11\u00b0",2,"10","RPE 7-8","1'30",null,"Angle 11\u00b0 \u2014 \u00e9tirement pecs.",true,null],
+  ["Dips",3,"8-10","RPE 7-8","1'30",null,"",true,null],
+  ["DVP Militaire",4,"8","RPE 7-8","2'00",null,"D\u00e9velopp\u00e9 vertical \u00e9paules ant\u00e9rieures.",true,null],
+  ["Lateral Raises",4,"12-15","RPE 8","1'30","MYO","Myo-reps d\u00e8s S2 : 1x15 \u2192 4x4 mini-s\u00e9ries.",true,null],
+  ["Overhead Tric. Ext.",3,"10","RPE 9","1'45","RP","Rest-pause d\u00e8s S3 : 10 reps \u2192 15s \u2192 4 reps \u2192 15s \u2192 2 reps.",true,null],
+  ["Triceps Extension",3,"10","RPE 8","1'45",null,"",true,null]
+]},
+"legs":{"title":"Legs Hypertrophie","day":"Jeudi","dur":"1h max","col":"#22C55E","bg":"#0A1F10","focus":"Hip Thrust et RDL prioritaires. Front Squat 2x/sem. pour progression technique.","cns":2,"exercises":[
+  ["Hip Thrust",4,"8-10","RPE 7-8","1'45",null,"Pouss\u00e9e explosive en haut, serrage fessiers.",true,null],
+  ["Front Squat",3,"8","60-80%","2'00","PA","Rack position \u2014 coudes hauts. Pause 1s bas S1-S2 uniquement.",true,"fshyp"],
+  ["RDL",4,"10","RPE 7-8","2'00","T30","Excentrique 3s Bloc 1, 2s Bloc 2+. Hanches arri\u00e8re, dos neutre.",true,"rdlhyp"],
+  ["Presse Inclin\u00e9e",3,"12","RPE 7-8","2'00",null,"Compl\u00e9ment quad \u2014 optionnel si temps.",true,null],
+  ["Leg Curl",3,"10","RPE 7-8","2'00",null,"",true,null],
+  ["Seated Calf Raise",4,"20","RPE 7-8","2'00",null,"",true,null],
+  ["Pallof Press",3,"30s","\u2014","1'00",null,"Anti-rotation.",false,null],
+  ["AB Wheel Rollout",3,"12","RPE 7","1'30",null,"",true,null]
+]},
+"refo":{"title":"Renforcement","day":"Vendredi","dur":"1h max \u2014 optionnel","col":"#888","bg":"#1C1C1C","focus":"Trap\u00e8zes, rear delts, gainage anti-rotation, coiffe. Compense les lacunes.","cns":1,"exercises":[
+  ["Mobilit\u00e9 articulaire",1,"10 min","\u2014","\u2014",null,"Hanches et thoracique prioritaires.",false,null],
+  ["Overhead Carry",5,"10 pas","Lourd","1'30",null,"Stabilit\u00e9 globale \u2014 regard droit, poignets stables.",false,null],
+  ["Face Pulls",4,"15","RPE 7","1'00",null,"C\u00e2ble poulie haute. Rear delts + rotateurs externes.",true,null],
+  ["Pallof Press ISO",4,"25s","\u2014","1'00",null,"Anti-rotation \u2014 maintien isom\u00e9trique.",false,null],
+  ["One Side BB Hold",4,"25s","\u2014","1'00",null,"Gainage lat\u00e9ral actif.",false,null],
+  ["Traps High Pull",5,"8","Lourd","1'30",null,"Coudes hauts, haussement complet.",true,null],
+  ["Cuban Press",3,"10","RPE 7","1'30",null,"Rotation externe contr\u00f4l\u00e9e \u2014 sant\u00e9 de coiffe.",true,null],
+  ["Shrugs",3,"15","Lourd","1'30",null,"",true,null],
+  ["Hanging Leg Raises",3,"12","RPE 7","1'30",null,"Finisher core.",true,null]
+]},
+"upper":{"title":"Upper Force","day":"Samedi","dur":"1h30-1h45","col":"#FB923C","bg":"#2A1008","focus":"Bench Explo mouvement central. Clusters S3-S6, Wave Loading S7+. Rowing explosif.","cns":3,"exercises":[
+  ["Bench Press Explo",4,"4","75-95%","3'00","CL11","Surcharge progressive pr\u00e9cise semaine par semaine. Intent explosif max. Wrist wraps.",true,"bench"],
+  ["Cable Flies 14\u00b0",2,"10","RPE 8-9","1'30","MYO","Myo-reps \u2014 r\u00e9cup\u00e9ration active apr\u00e8s la force.",true,null],
+  ["Rowing BB Explo",4,"6","70-87.5%","2'00","T20","Excentrique 2s \u2014 charges progressives semaine par semaine.",true,"rowing"],
+  ["Tirage Vertical",4,"10-12","RPE 8","2'00",null,"",true,null],
+  ["Rowing Barre Banc",3,"8-10","RPE 8","1'30",null,"",true,null],
+  ["DVP Militaire Lourd",3,"5-6","RPE 8-9","2'30",null,"Plus lourd qu\u2019en hypertrophie \u2014 force \u00e9paules.",true,null],
+  ["Lateral Raise Bis\u00e9t",3,"15","RPE 8","\u2014",null,"Bis\u00e9t encha\u00een\u00e9.",true,null],
+  ["Dips + Tractions",3,"max","Poids corps","1'30",null,"Finisher \u2014 aller \u00e0 l\u2019\u00e9chec.",true,null]
+]},
+"lower":{"title":"Lower Force","day":"Dimanche","dur":"1h30-1h45","col":"#A78BFA","bg":"#15123A","focus":"Power Clean EN PREMIER absolu \u2014 SNC frais. Front Squat force. RDL lourd.","cns":3,"exercises":[
+  ["Power Clean",5,"3","50-90%","3'00","CLN","TOUJOURS 1er. SNC frais. Hang Power Clean S1-S2, depuis sol S3+. Triple extension explosive.",true,"clean"],
+  ["Front Squat",4,"5","65-92.5%","3'00","CL11","Clusters S3-S6, Wave Loading S7+. Rack position identique au Clean. Wrist wraps.",true,"frontsquat"],
+  ["RDL",4,"6","65-87.5%","2'30","T30","Excentrique 3s Bloc 1, 2s Bloc 2+. Charges lourdes progressives.",true,"rdl"],
+  ["Hip Thrust",3,"8","RPE 8-9","1'45",null,"Activation fessiers apr\u00e8s les gros mouvements.",true,null],
+  ["Barbell Lunges",3,"10","RPE 8","2'00",null,"Wrist wraps.",true,null],
+  ["Leg Curl",3,"8-10","RPE 8","2'00",null,"",true,null],
+  ["Stand Calf Raises",4,"15","Lourd","2'00",null,"",true,null],
+  ["GHD / Nordic Curl",3,"8","RPE 8","2'00",null,"Pr\u00e9vention ischio \u2014 si disponible.",true,null]
+]}
+};
+// ══════════════════════════════════════════════
+// DONNÉES SEMAINES & ATHLÉTISME
+// ══════════════════════════════════════════════
+var WK_RAW={
+"1":{"bloc":1,"deload":false,"theme":"Rodage \u2014 Tempo 3-0-1, HPC 50% technique pure, Front Squat pause 1s @65%. Connexion neuromusculaire."},
+"2":{"bloc":1,"deload":false,"theme":"Progression +2.5% sur mouvements compos\u00e9s. Myo-reps introduits sur isolations. HPC 57.5%."},
+"3":{"bloc":1,"deload":false,"theme":"PEAK VOLUME \u2014 Clusters 1+1+1 Bench 80% et FS 72.5%. Rest-pause bras. PC depuis sol 62.5%."},
+"4":{"bloc":1,"deload":true,"theme":"D\u00c9CHARGE \u2014 Volume -25%, RPE max 6-7. Clusters all\u00e9g\u00e9s. PC 55% technique. Mobilit\u00e9 prioritaire."},
+"5":{"bloc":2,"deload":false,"theme":"BLOC 2 \u2014 Clusters 2+1 Bench 82.5% et FS 77.5%. PC depuis sol 67.5% 5x3. Tempo passe \u00e0 2s."},
+"6":{"bloc":2,"deload":false,"theme":"Clusters 2+1 \u2014 5 s\u00e9ries Bench 85%, FS 80%. PC 72.5% 5x2. PIC VOLUME-FORCE."},
+"7":{"bloc":2,"deload":false,"theme":"WAVE LOADING introduit (3\u21922\u21921) sur Bench, FS et PC. Charges record Bloc 2."},
+"8":{"bloc":2,"deload":true,"theme":"D\u00c9CHARGE \u2014 Volume -30%, RPE max 6. R\u00e9cup\u00e9ration profonde avant Peaking."},
+"9":{"bloc":3,"deload":false,"theme":"BLOC 3 Wave Loading \u2014 Bench V1:82.5\u219290%/V2:85\u219292.5%. Charges sup\u00e9rieures \u00e0 tout Bloc 2."},
+"10":{"bloc":3,"deload":false,"theme":"PIC DE FORCE \u2014 Bench V1:85\u219292.5%/V2:87.5\u219295%. FS V1:82.5\u219290%/V2:85\u219292.5%. PC 4x2 @82.5%."},
+"11":{"bloc":3,"deload":false,"theme":"TENTATIVES MAX \u2014 Potentialisation clusters \u2192 singles. Bench 92.5\u219295%+. FS 90\u219292.5%+. PC 87.5\u219290%+."},
+"12":{"bloc":3,"deload":true,"theme":"D\u00c9CHARGE FINALE \u2014 Volume -40%, RPE max 5-6. Bar speed only. Pr\u00eat pour la saison."}
+};
+
+var ATH_RAW={
+"1":{"theme":"M\u00e9canique de sprint et phase d\u2019acc\u00e9l\u00e9ration \u2014 construction des bases techniques","total_volume":"200-250m sprints","focus_zone":"0-20m (drive phase)","warm_up":[{"ex":"Marche active + rotation bras","detail":"2 min"},{"ex":"High knees progressifs","detail":"3x20m \u2014 50%/70%/85%"},{"ex":"Butt kicks","detail":"2x20m"},{"ex":"Skips A","detail":"3x20m \u2014 montée genou + extension cheville"},{"ex":"Skips B","detail":"2x20m"},{"ex":"Carioca","detail":"2x20m"}],"sprint_work":[{"ex":"Wall drills","detail":"3x8s chaque côté \u2014 position poussée 45°","recup":"45s"},{"ex":"Départs allongés (falling starts)","detail":"4x10m @85-90% \u2014 premier pas explosif","recup":"90s"},{"ex":"Sprints 20m départ arrêté","detail":"4x20m @90% \u2014 focus shin angle","recup":"2min"},{"ex":"Accélérations progressives 30m","detail":"3x30m @85%","recup":"2min"}],"special":null,"mobility":[{"ex":"90/90 hips","detail":"2x60s chaque côté"},{"ex":"Fente basse + rotation thoracique","detail":"5 reps x 2 côtés"},{"ex":"Ischio-jambiers debout","detail":"2x45s chaque côté"},{"ex":"Pigeon au sol","detail":"2x60s chaque côté"},{"ex":"Knee to wall","detail":"2x10 reps x 2 côtés"},{"ex":"Étirement quadriceps debout","detail":"2x30s chaque côté"}]},
+"2":{"theme":"Consolidation mécanique \u2014 augmentation volume accélération","total_volume":"250-300m sprints","focus_zone":"0-20m affinement + introduction 30m","warm_up":[{"ex":"Marche active + rotation bras","detail":"2 min"},{"ex":"High knees progressifs","detail":"3x20m"},{"ex":"Butt kicks","detail":"2x20m"},{"ex":"Skips A","detail":"3x20m"},{"ex":"Skips B","detail":"2x20m"},{"ex":"Carioca","detail":"2x20m"}],"sprint_work":[{"ex":"Wall drills + posture drive phase","detail":"3x10s","recup":"45s"},{"ex":"Départs depuis sol (crouch start)","detail":"4x10m @90-92% \u2014 position 3 points football","recup":"90s"},{"ex":"Sprints 20m @90-92%","detail":"5x20m","recup":"2min"},{"ex":"Sprints 30m @85-90%","detail":"3x30m","recup":"2min30"}],"special":null,"mobility":[{"ex":"90/90 hips","detail":"2x60s"},{"ex":"Fente basse + rotation thoracique","detail":"5 reps x 2"},{"ex":"Ischio-jambiers debout","detail":"2x45s"},{"ex":"Pigeon au sol","detail":"2x60s"},{"ex":"Knee to wall","detail":"2x10 reps x 2"},{"ex":"Étirement quadriceps","detail":"2x30s"}]},
+"3":{"theme":"Peak Bloc 1 \u2014 intensité maximale courtes distances + shuttle","total_volume":"280-320m sprints","focus_zone":"0-30m intensité maximale","warm_up":[{"ex":"Marche active + rotation bras","detail":"2 min"},{"ex":"High knees progressifs","detail":"3x20m"},{"ex":"Butt kicks","detail":"2x20m"},{"ex":"Skips A","detail":"3x20m"},{"ex":"Skips B","detail":"2x20m"},{"ex":"Carioca","detail":"2x20m"}],"sprint_work":[{"ex":"Falling starts 10m","detail":"4x10m @95%","recup":"90s"},{"ex":"Sprints 20m @95-100%","detail":"4x20m","recup":"2min30"},{"ex":"Sprints 30m @90-95%","detail":"3x30m","recup":"3min"},{"ex":"Shuttle run 5-10-5","detail":"3 répétitions","recup":"2min30"}],"special":{"ex":"Test 20 yards chronométré","detail":"2 essais avec 8 min de récup entre"},"mobility":[{"ex":"90/90 hips","detail":"2x60s"},{"ex":"Fente basse + rotation thoracique","detail":"5 reps x 2"},{"ex":"Ischio-jambiers debout","detail":"2x45s"},{"ex":"Pigeon au sol","detail":"2x60s"},{"ex":"Knee to wall","detail":"2x10 reps x 2"},{"ex":"Étirement quadriceps","detail":"2x30s"}]},
+"4":{"theme":"DÉCHARGE \u2014 Récupération active, mobilité prioritaire","total_volume":"120-150m légers","focus_zone":"Récupération SNC et musculaire","warm_up":[{"ex":"Marche 3 min","detail":"Activation légère"},{"ex":"High knees légers","detail":"2x20m @50%"},{"ex":"Skips A légers","detail":"2x20m @50%"}],"sprint_work":[{"ex":"Accélérations légères 20m","detail":"3x20m @70-75%","recup":"2min"},{"ex":"Strides 60m","detail":"2x60m @70%","recup":"3min"}],"special":null,"mobility":[{"ex":"90/90 hips","detail":"3x60s \u2014 extended hold"},{"ex":"Fente basse + rotation","detail":"8 reps x 2"},{"ex":"Pigeon au sol","detail":"3x60s"},{"ex":"Ischio-jambiers debout","detail":"3x45s"},{"ex":"Knee to wall","detail":"2x12 reps x 2"},{"ex":"Étoile au sol","detail":"2 min \u2014 récupération complète"}]},
+"5":{"theme":"Introduction zone de transition (20-40m) \u2014 premier 40 yards complet","total_volume":"300-350m sprints","focus_zone":"20-40m transition accélération\u2192vitesse max","warm_up":[{"ex":"Marche active + rotation bras","detail":"2 min"},{"ex":"High knees progressifs","detail":"3x20m"},{"ex":"Butt kicks","detail":"2x20m"},{"ex":"Skips A","detail":"3x20m"},{"ex":"Skips B","detail":"2x20m"},{"ex":"Carioca","detail":"2x20m"}],"sprint_work":[{"ex":"Falling starts 10m","detail":"3x10m @92%","recup":"90s"},{"ex":"Sprints 20m @95%","detail":"3x20m","recup":"2min"},{"ex":"Fly 20m (lancé 10m d'élan)","detail":"3x20m @90%","recup":"3min"},{"ex":"40 yards complet @90-92%","detail":"3x40y","recup":"4min"},{"ex":"Shuttle 5-10-5","detail":"2 répétitions @95%","recup":"3min"}],"special":null,"mobility":[{"ex":"90/90 hips","detail":"2x60s"},{"ex":"Fente basse + rotation","detail":"5 reps x 2"},{"ex":"Ischio-jambiers debout","detail":"2x45s"},{"ex":"Pigeon au sol","detail":"2x60s"},{"ex":"Knee to wall","detail":"2x10 reps x 2"},{"ex":"Étirement quadriceps","detail":"2x30s"}]},
+"6":{"theme":"Volume max vitesse \u2014 40 yards et fly 30m","total_volume":"350-400m sprints","focus_zone":"Vitesse maximale \u2014 30-60m","warm_up":[{"ex":"Marche active + rotation bras","detail":"2 min"},{"ex":"High knees progressifs","detail":"3x20m"},{"ex":"Butt kicks","detail":"2x20m"},{"ex":"Skips A","detail":"3x20m"},{"ex":"Skips B","detail":"2x20m"},{"ex":"Carioca","detail":"2x20m"}],"sprint_work":[{"ex":"Falling starts 10m","detail":"3x10m @95%","recup":"90s"},{"ex":"40 yards @95%","detail":"4x40y","recup":"4min"},{"ex":"Fly 30m (lancé 15m d'élan)","detail":"3x30m @90-92%","recup":"4min"},{"ex":"Shuttle 5-10-5","detail":"2 répétitions","recup":"3min"}],"special":null,"mobility":[{"ex":"90/90 hips","detail":"2x60s"},{"ex":"Fente basse + rotation","detail":"5 reps x 2"},{"ex":"Ischio-jambiers debout","detail":"2x45s"},{"ex":"Pigeon au sol","detail":"2x60s"},{"ex":"Knee to wall","detail":"2x10 reps x 2"},{"ex":"Étirement quadriceps","detail":"2x30s"}]},
+"7":{"theme":"Peak Bloc 2 \u2014 intensité maximale 40 yards + fly 40m","total_volume":"320-380m sprints","focus_zone":"Vitesse max soutenue + puissance de démarrage","warm_up":[{"ex":"Marche active + rotation bras","detail":"2 min"},{"ex":"High knees progressifs","detail":"3x20m"},{"ex":"Butt kicks","detail":"2x20m"},{"ex":"Skips A","detail":"3x20m"},{"ex":"Skips B","detail":"2x20m"},{"ex":"Carioca","detail":"2x20m"}],"sprint_work":[{"ex":"Falling starts 10m","detail":"3x10m @95-100%","recup":"2min"},{"ex":"40 yards @95-100%","detail":"3x40y","recup":"5min"},{"ex":"Fly 40m (lancé 15m d'élan)","detail":"2x40m @92%","recup":"5min"},{"ex":"Shuttle 5-10-5","detail":"3 répétitions @100%","recup":"3min"}],"special":{"ex":"Test 40 yards chronométré","detail":"2 essais \u2014 récup 10 min entre"},"mobility":[{"ex":"90/90 hips","detail":"2x60s"},{"ex":"Fente basse + rotation","detail":"5 reps x 2"},{"ex":"Ischio-jambiers debout","detail":"2x45s"},{"ex":"Pigeon au sol","detail":"2x60s"},{"ex":"Knee to wall","detail":"2x10 reps x 2"},{"ex":"Étirement quadriceps","detail":"2x30s"}]},
+"8":{"theme":"DÉCHARGE \u2014 Récupération profonde avant Peaking","total_volume":"120-150m légers","focus_zone":"Récupération SNC avant Bloc 3","warm_up":[{"ex":"Marche 3 min","detail":"Activation légère"},{"ex":"High knees légers","detail":"2x20m @50%"},{"ex":"Skips A légers","detail":"2x20m @50%"}],"sprint_work":[{"ex":"Strides 30m","detail":"3x30m @70%","recup":"3min"},{"ex":"Accélération légère 20m","detail":"2x20m @75%","recup":"2min"}],"special":null,"mobility":[{"ex":"90/90 hips","detail":"3x60s \u2014 extended hold"},{"ex":"Fente basse + rotation","detail":"8 reps x 2"},{"ex":"Pigeon au sol","detail":"3x60s"},{"ex":"Ischio-jambiers debout","detail":"3x45s"},{"ex":"Knee to wall","detail":"2x12 reps x 2"},{"ex":"Étoile au sol","detail":"2 min"}]},
+"9":{"theme":"Peaking \u2014 intensité maximale toutes distances + répétition compétition","total_volume":"300-350m sprints","focus_zone":"Expression maximale vitesse sur toutes zones","warm_up":[{"ex":"Marche active + rotation bras","detail":"2 min"},{"ex":"High knees progressifs","detail":"3x20m"},{"ex":"Butt kicks","detail":"2x20m"},{"ex":"Skips A","detail":"3x20m"},{"ex":"Skips B","detail":"2x20m"},{"ex":"Carioca","detail":"2x20m"}],"sprint_work":[{"ex":"Falling starts 10m","detail":"3x10m @100%","recup":"2min"},{"ex":"40 yards @95-100%","detail":"3x40y","recup":"5min"},{"ex":"Fly 40m @92-95%","detail":"2x40m","recup":"5min"},{"ex":"Shuttle 5-10-5 @100%","detail":"3 répétitions","recup":"3min"},{"ex":"Sprint 60m fly (lancé 15m)","detail":"1x60m @90%","recup":"5min"}],"special":null,"mobility":[{"ex":"90/90 hips","detail":"2x60s"},{"ex":"Fente basse + rotation","detail":"5 reps x 2"},{"ex":"Ischio-jambiers debout","detail":"2x45s"},{"ex":"Pigeon au sol","detail":"2x60s"},{"ex":"Knee to wall","detail":"2x10 reps x 2"},{"ex":"Étirement quadriceps","detail":"2x30s"}]},
+"10":{"theme":"Pic de force-vitesse \u2014 efforts maximaux toutes distances","total_volume":"280-320m sprints","focus_zone":"Intensité absolue 100% sur chaque répétition","warm_up":[{"ex":"Marche active + rotation bras","detail":"2 min"},{"ex":"High knees progressifs","detail":"3x20m"},{"ex":"Butt kicks","detail":"2x20m"},{"ex":"Skips A","detail":"3x20m"},{"ex":"Skips B","detail":"2x20m"},{"ex":"Carioca","detail":"2x20m"}],"sprint_work":[{"ex":"Falling starts 10m","detail":"3x10m @100%","recup":"2min"},{"ex":"40 yards @100%","detail":"3x40y","recup":"6min"},{"ex":"Fly 30m @100%","detail":"2x30m","recup":"5min"},{"ex":"Shuttle @100%","detail":"2 répétitions","recup":"4min"}],"special":null,"mobility":[{"ex":"90/90 hips","detail":"2x60s"},{"ex":"Fente basse + rotation","detail":"5 reps x 2"},{"ex":"Ischio-jambiers debout","detail":"2x45s"},{"ex":"Pigeon au sol","detail":"2x60s"},{"ex":"Knee to wall","detail":"2x10 reps x 2"},{"ex":"Étirement quadriceps","detail":"2x30s"}]},
+"11":{"theme":"SEMAINE DE PERFORMANCE \u2014 Time trials et mesures finales","total_volume":"200-250m sprints mesurés","focus_zone":"Expression maximale \u2014 tests chronométrés","warm_up":[{"ex":"Gammes complètes étendues","detail":"15 min \u2014 protocole compétition"},{"ex":"Accélérations progressives 3x30m","detail":"50% \u2192 75% \u2192 90%"},{"ex":"1 accélération 20m @95%","detail":"Dernière activation"},{"ex":"Repos 5 min assis","detail":"Récupération avant tentatives"}],"sprint_work":[{"ex":"40 yards chronométré \u2014 Essai 1","detail":"EFFORT MAXIMAL","recup":"12min"},{"ex":"40 yards chronométré \u2014 Essai 2","detail":"EFFORT MAXIMAL","recup":"15min"},{"ex":"20 yards split chronométré","detail":"2 essais","recup":"5min"},{"ex":"Shuttle 5-10-5 x2","detail":"Test agilité","recup":"4min"}],"special":{"ex":"Bilan chronométrique final","detail":"Compare 40y, 20y et shuttle vs mesures initiales"},"mobility":[{"ex":"90/90 hips","detail":"3x60s"},{"ex":"Fente basse + rotation","detail":"8 reps x 2"},{"ex":"Pigeon au sol","detail":"3x60s"},{"ex":"Ischio-jambiers debout","detail":"3x45s"},{"ex":"Knee to wall","detail":"2x12 reps x 2"},{"ex":"Étoile au sol","detail":"2 min"}]},
+"12":{"theme":"DÉCHARGE FINALE \u2014 Mobilité intégrale, récupération totale","total_volume":"100m léger","focus_zone":"Récupération avant saison","warm_up":[{"ex":"Marche 3 min","detail":"Activation légère"},{"ex":"High knees légers","detail":"2x20m @50%"},{"ex":"Skips A légers","detail":"2x20m @50%"}],"sprint_work":[{"ex":"Strides légers 30m","detail":"2x30m @65-70%","recup":"3min"}],"special":null,"mobility":[{"ex":"Routine mobilité complète","detail":"25 min"},{"ex":"Étirements statiques prolongés","detail":"10 min"},{"ex":"Position étoile \u2014 récupération","detail":"3 min"}]}
+};
+
+var MVOL={"Dos":{"sets":22,"mev":10,"mav":20,"mrv":25},"Pectoraux":{"sets":17,"mev":8,"mav":18,"mrv":22},"Quadriceps":{"sets":13,"mev":8,"mav":16,"mrv":20},"Ischios":{"sets":14,"mev":6,"mav":14,"mrv":18},"Fessiers":{"sets":17,"mev":8,"mav":18,"mrv":22},"\u00c9paules":{"sets":14,"mev":6,"mav":16,"mrv":20},"Biceps":{"sets":9,"mev":6,"mav":12,"mrv":16},"Triceps":{"sets":9,"mev":6,"mav":12,"mrv":16},"Trap\u00e8zes":{"sets":14,"mev":8,"mav":16,"mrv":20},"Core":{"sets":13,"mev":8,"mav":14,"mrv":18},"Mollets":{"sets":9,"mev":6,"mav":12,"mrv":16}};
+
+var WK={};Object.keys(WK_RAW).forEach(function(k){WK[+k]=WK_RAW[k];});
+var ATH={};Object.keys(ATH_RAW).forEach(function(k){ATH[+k]=ATH_RAW[k];});
+var BLOCS=[{n:1,lbl:"Hypertrophie Structurante",wks:"S1\u2013S4",col:"#C9841A",bg:"#1F1508"},{n:2,lbl:"Accumulation Force",wks:"S5\u2013S8",col:"#3B82F6",bg:"#071428"},{n:3,lbl:"Peaking",wks:"S9\u2013S12",col:"#8B5CF6",bg:"#120A28"}];
+var SORDER=["pull","push","legs","refo","upper","lower"];
+// ══════════════════════════════════════════════
+// TECHNIQUES D'INTENSIFICATION
+// ══════════════════════════════════════════════
+var TECH={
+  T30:{lbl:"Tempo 3-0-1",cls:"t30",cost:1,title:"Tempo 3-0-1",sub:"Excentrique 3s \u2014 Concentrique explosif",
+    desc:"Contr\u00f4le la vitesse de descente. 3 secondes vers le bas, 0 pause en bas, remonte aussi vite que possible.",
+    steps:["D\u00e9bute le mouvement normalement.","Excentrique : compte mentalement 3 secondes, lent et contr\u00f4l\u00e9.","En bas : aucune pause, inverse imm\u00e9diatement.","Concentrique : aussi explosif que possible."],
+    example:"Rowing : tire explosif \u2192 redescends sur <b>3 secondes</b> \u2192 recommence.",
+    tip:"Si tu ne ressens pas de tension apr\u00e8s 4 reps, tu ne respectes pas les 3 secondes."},
+  T20:{lbl:"Tempo 2-0-1",cls:"t20",cost:1,title:"Tempo 2-0-1",sub:"Excentrique 2s \u2014 charges plus \u00e9lev\u00e9es",
+    desc:"Version Bloc 2+. 2 secondes de descente permettent de maintenir la tension avec des charges plus lourdes (Tran 2006).",
+    steps:["Excentrique : 2 secondes de descente contr\u00f4l\u00e9e.","En bas : aucune pause.","Concentrique explosif."],
+    example:"RDL Bloc 2 : hanches arri\u00e8re sur <b>2 secondes</b> \u2192 remonte explosif.",
+    tip:"Bascule 3s \u2192 2s en Bloc 2 sur les mouvements lourds pour maintenir la barre speed."},
+  MYO:{lbl:"Myo-reps",cls:"myo",cost:1,title:"Myo-reps",sub:"1 activation + mini-s\u00e9ries avec pauses respiratoires",
+    desc:"Maximise le stimulus musculaire sur les isolations. Stimule les unit\u00e9s motrices \u00e0 haute seuil sans surcharger le SNC.",
+    steps:["S\u00e9rie activation : 12-15 reps jusqu\u2019\u00e0 RPE 8. Repose la charge.","5 grandes respirations profondes.","Mini-s\u00e9rie 1 : 4 reps. Repose. 5 souffles.","Mini-s\u00e9rie 2 : 4 reps. Repose. 5 souffles.","R\u00e9p\u00e8te 4-5 fois. Stop si tu descends \u00e0 3 reps."],
+    example:"Lateral Raises : <b>1x15 @RPE8</b> \u2192 5 souffles \u2192 <b>4 reps</b> \u2192 5 souffles \u2192 <b>4 reps</b>\u2026 (~30 reps totales).",
+    tip:"5 souffles max entre les minis \u2014 rester dans la zone de fatigue productive."},
+  RP:{lbl:"Rest-pause",cls:"rp",cost:2,title:"Rest-pause",sub:"S\u00e9rie proche \u00e9chec + micro-pauses 15s",
+    desc:"Va au-del\u00e0 de l\u2019\u00e9chec avec des micro-pauses de 15 secondes. 1 seule s\u00e9rie par exercice.",
+    steps:["S\u00e9rie principale : jusqu\u2019\u00e0 RPE 9.","Pose. 15 secondes exactes.","Mini 1 : 3-5 reps.","15 secondes.","Mini 2 : 2-3 reps. Stop."],
+    example:"Brachial Curl : <b>10 reps @RPE9</b> \u2192 15s \u2192 <b>4 reps</b> \u2192 15s \u2192 <b>2 reps</b>.",
+    tip:"1 seule s\u00e9rie rest-pause suffit \u2014 c\u2019est suffisamment intense."},
+  CL11:{lbl:"Cluster 1+1+1",cls:"cl11",cost:3,title:"Cluster sets 1+1+1",sub:"3 singles s\u00e9par\u00e9s par 25-30 secondes",
+    desc:"3 r\u00e9p\u00e9titions individuelles s\u00e9par\u00e9es. Chaque rep aussi explosive que la premi\u00e8re. Optimal pour la puissance \u00e0 haute intensit\u00e9 (Haff 2008).",
+    steps:["Charge : 80-85%.","Rep 1 : 1 r\u00e9p explosif. Repose la barre.","25-30 secondes.","Rep 2 : m\u00eame intent. Repose.","25-30 secondes.","Rep 3 : explosive. = 1 s\u00e9rie. Repos 3 min."],
+    example:"Front Squat 4x(1+1+1) @80% : <b>[rep1 \u2192 30s \u2192 rep2 \u2192 30s \u2192 rep3]</b> \u2192 3min \u2192 r\u00e9p\u00e8te.",
+    tip:"Objectif = vitesse de barre maximale sur chaque single. Wrist wraps obligatoires."},
+  CL21:{lbl:"Cluster 2+1",cls:"cl21",cost:3,title:"Cluster sets 2+1",sub:"2 reps explosives, 30s, 1 rep",
+    desc:"Version Bloc 2 avec charges plus lourdes (82.5-85%). La pause intra-s\u00e9rie permet le maintien de la puissance malgr\u00e9 la charge \u00e9lev\u00e9e.",
+    steps:["2 reps cons\u00e9cutives, explosives. Repose la barre.","30 secondes exactes.","1 rep explosive. = 1 s\u00e9rie. Repos 3 min."],
+    example:"Front Squat 5x(2+1) @80% : <b>[2 reps \u2192 30s \u2192 1 rep]</b> \u2192 3min \u2192 r\u00e9p\u00e8te.",
+    tip:"Repose la barre sur les supports pendant les 30s \u2014 ne reste pas debout \u00e0 la tenir."},
+  WL:{lbl:"Wave loading",cls:"wl",cost:3,title:"Wave loading",sub:"Vagues 3\u21922\u21921 avec charges croissantes",
+    desc:"Exploite la potentialisation post-activation (PAP). Chaque vague = 3\u21922\u21921 reps avec charges croissantes. La 2e vague repart plus haut gr\u00e2ce \u00e0 la PAP (Stone 1999).",
+    steps:["V1 \u2014 3 reps @charge de d\u00e9part. Repos 3 min.","V1 \u2014 2 reps @+5%. Repos 3 min.","V1 \u2014 1 rep @+7.5%. Repos 3 min.","Si V1 propre \u2192 V2 avec +2.5kg sur chaque s\u00e9rie.","Si V1 difficile : 1 vague suffit."],
+    example:"Bench S7 : <b>3@80% \u2192 2@85% \u2192 1@87.5%</b> (3min entre). <b>V2 : 3@82.5% \u2192 2@87.5% \u2192 1@90%</b>.",
+    tip:"3 minutes entre CHAQUE s\u00e9rie \u2014 non-n\u00e9gociable pour la PAP."},
+  PA:{lbl:"Pause 1s bas",cls:"pa",cost:1,title:"Pause 1 seconde en bas",sub:"Arr\u00eat complet \u2014 z\u00e9ro rebond",
+    desc:"\u00c9limine le rebond \u00e9lastique. Force le muscle \u00e0 red\u00e9marrer de z\u00e9ro. Utilis\u00e9 en Bloc 1 sur Front Squat pour d\u00e9velopper la force de sortie.",
+    steps:["Descends \u00e0 ta profondeur habituelle.","Arr\u00eat COMPLET. Z\u00e9ro rebond. Barre immobile.","1 seconde compl\u00e8te \u2014 gainage, pression sol.","Expire doucement.","Reaccél\u00e8re aussi fort que possible."],
+    example:"Front Squat @65% : descends \u2192 <b>stop 1 seconde</b> \u2192 pousse le sol au maximum.",
+    tip:"R\u00e9duis la charge de 10% vs une s\u00e9rie classique pour compenser la perte du r\u00e9flexe myotatique."},
+  DL:{lbl:"D\u00e9charge",cls:"dl",cost:0,title:"Semaine de d\u00e9charge",sub:"Volume -25\u201340% \u2014 RPE max 6-7",
+    desc:"Aussi importantes que les semaines d\u2019entra\u00eenement. Le corps s\u2019adapte PENDANT la r\u00e9cup\u00e9ration (Israetel 2019).",
+    steps:["Charges -20-25% vs semaine pr\u00e9c\u00e9dente.","RPE max 6-7 \u2014 arr\u00eate 3-4 reps avant l\u2019\u00e9chec.","Supprime myo-reps et rest-pause.","Maintiens clusters si indiqu\u00e9s, all\u00e9g\u00e9s.","Ton corps doit se sentir l\u00e9ger."],
+    example:"S4 : Bench 70x9 en S3 \u2192 <b>62.5x8 en S4</b>. 4 s\u00e9ries \u2192 <b>3 s\u00e9ries</b>.",
+    tip:"Apr\u00e8s une d\u00e9charge, tu seras PLUS fort qu\u2019avant \u2014 la fatigue masquait ta forme."},
+  CLN:{lbl:"Power Clean",cls:"cln",cost:3,title:"Power Clean",sub:"Toujours en premier \u2014 SNC frais absolu",
+    desc:"Triple extension cheville-genou-hanche. Meilleur exercice pour d\u00e9velopper la puissance explosive (Hori 2005). TOUJOURS premier exercice de Lower Force.",
+    steps:["Position : pieds \u00e9paules, dos neutre, bras tendus.","1er pull : pousse le sol, barre aux tibias.","2e pull : extension explosive des hanches + haussement.","R\u00e9ception : rack position (coudes hauts) = m\u00eame que Front Squat.","Debout complet avant de poser."],
+    example:"S1-S2 : Hang Power Clean 50-57.5% technique pure. S3+ : depuis le sol. S11 : tentative max.",
+    tip:"Rack position = coudes hauts, barre sur delto\u00efdes. Identique au Front Squat \u2014 les deux se potentialisent."}
+};
+// ══════════════════════════════════════════════
+// SURCHARGE PROGRESSIVE — PROG_DATA
+// Basé sur : Schoenfeld 2010/2017 (hyp), Haff 2008 (clusters),
+// Stone 1999 (wave loading), Israetel 2019 (MEV/MAV/MRV),
+// Bompa & Haff 2009 (périodisation), Hori 2005 (PC puissance)
+// Format par clé : {s:séries, r:reps, load:charge, tech:clé, note:string}
+// ══════════════════════════════════════════════
+var PROG_DATA=(function(){
+var p={};
+function s(w,sess,ei,d){if(!p[w])p[w]={};if(!p[w][sess])p[w][sess]={};p[w][sess][ei]=d;}
+
+// ─── BENCH PRESS EXPLO (upper[0]) ───
+// Bloc 1 : rodage → clusters 1+1+1
+s(1,"upper",0,{s:4,r:"4",load:"75%",tech:null,note:"S1 \u2014 Rodage. Straight sets @75%. Intent concentrique maximal. Pas encore de clusters. Wrist wraps."});
+s(2,"upper",0,{s:4,r:"4",load:"77.5%",tech:null,note:"S2 \u2014 +2.5%. Focus vitesse de barre, chaque rep explosive. Prochaine semaine : clusters."});
+s(3,"upper",0,{s:4,r:"1+1+1",load:"80%",tech:"CL11",note:"S3 \u2014 CLUSTERS 1+1+1 introduits (Haff 2008). 25-30s entre chaque single. Intent explosif absolu."});
+s(4,"upper",0,{s:3,r:"1+1+1",load:"75%",tech:"CL11",note:"S4 \u2014 D\u00c9CHARGE. Clusters all\u00e9g\u00e9s @75%, 3 s\u00e9ries. RPE max 6-7."});
+// Bloc 2 : clusters 2+1 → wave loading
+s(5,"upper",0,{s:4,r:"2+1",load:"82.5%",tech:"CL21",note:"S5 \u2014 BLOC 2. Clusters 2+1 @82.5%. 2 reps explosives + 30s + 1 rep. Transition vers charges sup\u00e9rieures."});
+s(6,"upper",0,{s:5,r:"2+1",load:"85%",tech:"CL21",note:"S6 \u2014 +1 s\u00e9rie, +2.5%. PIC VOLUME-FORCE. 5x(2+1) @85%. Charge SNC maximale du Bloc 2."});
+s(7,"upper",0,{s:6,r:"Wave",load:"V1:3@80%>2@85%>1@87.5%/V2:3@82.5%>2@87.5%>1@90%",tech:"WL",note:"S7 \u2014 WAVE LOADING (Stone 1999). 3 min entre chaque s\u00e9rie \u2014 NON-N\u00c9GOCIABLE pour la PAP. V2 uniquement si V1 propre."});
+s(8,"upper",0,{s:3,r:"3",load:"72.5%",tech:null,note:"S8 \u2014 D\u00c9CHARGE PROFONDE. Straight sets @72.5%. RPE max 6. Pr\u00e9pare le SNC pour le Bloc 3."});
+// Bloc 3 : wave loading optimisé → tentatives max
+s(9,"upper",0,{s:6,r:"Wave",load:"V1:3@82.5%>2@87.5%>1@90%/V2:3@85%>2@90%>1@92.5%",tech:"WL",note:"S9 \u2014 BLOC 3 Wave Loading. Charges sup\u00e9rieures \u00e0 tout Bloc 2. V2 cible 92.5%. Concentration maximale."});
+s(10,"upper",0,{s:6,r:"Wave",load:"V1:3@85%>2@90%>1@92.5%/V2:3@87.5%>2@92.5%>1@95%",tech:"WL",note:"S10 \u2014 PIC DE FORCE. V2 cible 95%. Charges record du programme. Vitesse de barre maximale m\u00eame sous charge."});
+s(11,"upper",0,{s:5,r:"Max",load:"Pot@75%>single@90%>92.5%>95%+",tech:"WL",note:"S11 \u2014 TENTATIVE MAXIMALE. 3 clusters @75% pour potentialisation \u2192 singles montants. Tente 97.5% si S10 r\u00e9ussie."});
+s(12,"upper",0,{s:3,r:"4",load:"65%",tech:null,note:"S12 \u2014 D\u00c9CHARGE FINALE. Bar speed uniquement. RPE max 5. Corps frais pour la saison."});
+
+// ─── ROWING BB EXPLO (upper[2]) ───
+s(1,"upper",2,{s:4,r:"8",load:"70%",tech:"T30",note:"S1 \u2014 Excentrique 3s. Construction connexion neuromusculaire dos."});
+s(2,"upper",2,{s:4,r:"8",load:"72.5%",tech:"T30",note:"S2 \u2014 +2.5%. Excentrique 3s maintenu."});
+s(3,"upper",2,{s:4,r:"8",load:"75%",tech:"T30",note:"S3 \u2014 Peak volume Bloc 1. +2.5%."});
+s(4,"upper",2,{s:3,r:"6",load:"70%",tech:null,note:"S4 \u2014 D\u00c9CHARGE. Volume \u221225%."});
+s(5,"upper",2,{s:4,r:"6",load:"77.5%",tech:"T20",note:"S5 \u2014 Bloc 2: tempo passe \u00e0 2s pour maintenir la vitesse de barre avec charges lourdes."});
+s(6,"upper",2,{s:4,r:"5",load:"80%",tech:"T20",note:"S6 \u2014 +2.5%, \u22121 rep. Charges maximales Bloc 2."});
+s(7,"upper",2,{s:4,r:"5",load:"82.5%",tech:"T20",note:"S7 \u2014 Record Rowing Bloc 2. +2.5%."});
+s(8,"upper",2,{s:3,r:"5",load:"70%",tech:null,note:"S8 \u2014 D\u00c9CHARGE."});
+s(9,"upper",2,{s:4,r:"5",load:"85%",tech:"T20",note:"S9 \u2014 Bloc 3. Record absolu Rowing."});
+s(10,"upper",2,{s:4,r:"4",load:"87.5%",tech:"T20",note:"S10 \u2014 +2.5%. 4 reps charges maximales."});
+s(11,"upper",2,{s:3,r:"5",load:"80%",tech:null,note:"S11 \u2014 All\u00e9g\u00e9. SNC pr\u00e9serv\u00e9 pour Bench et FS."});
+s(12,"upper",2,{s:3,r:"5",load:"65%",tech:null,note:"S12 \u2014 D\u00c9CHARGE."});
+
+// ─── POWER CLEAN (lower[0]) ───
+s(1,"lower",0,{s:5,r:"3",load:"50%",tech:"CLN",note:"S1 \u2014 Hang Power Clean @50%. Technique pure. Focus r\u00e9ception rack position (coudes hauts = identique FS)."});
+s(2,"lower",0,{s:5,r:"3",load:"57.5%",tech:"CLN",note:"S2 \u2014 HPC +7.5%. Focus timing du 2\u00e8me pull."});
+s(3,"lower",0,{s:5,r:"3",load:"62.5%",tech:"CLN",note:"S3 \u2014 Depuis le sol d\u00e9sormais. +5%. Premier pull depuis position basse."});
+s(4,"lower",0,{s:3,r:"2",load:"55%",tech:"CLN",note:"S4 \u2014 D\u00c9CHARGE. HPC @55%, 3x2. Technique uniquement."});
+s(5,"lower",0,{s:5,r:"3",load:"67.5%",tech:"CLN",note:"S5 \u2014 Bloc 2. Depuis le sol. 5x3 @67.5%."});
+s(6,"lower",0,{s:5,r:"2",load:"72.5%",tech:"CLN",note:"S6 \u2014 5x2 @72.5%. Reps r\u00e9duites, charges montantes."});
+s(7,"lower",0,{s:6,r:"Wave",load:"V1:3@75%>2@77.5%>1@80%/V2:3@77.5%>2@80%>1@82.5%",tech:"WL",note:"S7 \u2014 Wave Loading PC. 3 min entre s\u00e9ries. Chaque rep aussi explosive que la premi\u00e8re."});
+s(8,"lower",0,{s:3,r:"2",load:"60%",tech:"CLN",note:"S8 \u2014 D\u00c9CHARGE. Technique pure, 3x2 @60%."});
+s(9,"lower",0,{s:6,r:"Wave",load:"V1:3@80%>2@82.5%>1@85%/V2:3@82.5%>2@85%>1@87.5%",tech:"WL",note:"S9 \u2014 Wave PC Bloc 3. Charges record. Focus qualit\u00e9 technique \u00e0 haute intensit\u00e9."});
+s(10,"lower",0,{s:4,r:"2",load:"82.5%",tech:"CLN",note:"S10 \u2014 4x2 @82.5%. Charges maximales avant semaine pic."});
+s(11,"lower",0,{s:5,r:"Max",load:"Mont\u00e9e@82.5%>85%>87.5%>90%+",tech:"CLN",note:"S11 \u2014 TENTATIVE MAX PC. Mont\u00e9e progressive. Stop si technique compromise. Puissance > charge."});
+s(12,"lower",0,{s:3,r:"2",load:"60%",tech:"CLN",note:"S12 \u2014 D\u00c9CHARGE. Technique pure."});
+
+// ─── FRONT SQUAT FORCE (lower[1]) ───
+s(1,"lower",1,{s:4,r:"5",load:"65%",tech:"PA",note:"S1 \u2014 Pause 1s en bas. Rack position absolue. La pause \u00e9limine le rebond \u00e9lastique."});
+s(2,"lower",1,{s:4,r:"5",load:"67.5%",tech:"PA",note:"S2 \u2014 +2.5%. Pause 1s maintenue."});
+s(3,"lower",1,{s:4,r:"1+1+1",load:"72.5%",tech:"CL11",note:"S3 \u2014 Clusters 1+1+1 introduits. Puissance explosive \u00e0 chaque single."});
+s(4,"lower",1,{s:3,r:"1+1+1",load:"67.5%",tech:"CL11",note:"S4 \u2014 D\u00c9CHARGE. Clusters all\u00e9g\u00e9s."});
+s(5,"lower",1,{s:4,r:"2+1",load:"77.5%",tech:"CL21",note:"S5 \u2014 Bloc 2. Clusters 2+1 @77.5%."});
+s(6,"lower",1,{s:5,r:"2+1",load:"80%",tech:"CL21",note:"S6 \u2014 5 s\u00e9ries @80%. PIC VOLUME-FORCE."});
+s(7,"lower",1,{s:6,r:"Wave",load:"V1:3@77.5%>2@82.5%>1@85%/V2:3@80%>2@85%>1@87.5%",tech:"WL",note:"S7 \u2014 Wave FS. Charges record Bloc 2. 3 min entre s\u00e9ries."});
+s(8,"lower",1,{s:3,r:"3",load:"70%",tech:null,note:"S8 \u2014 D\u00c9CHARGE. Straight sets. RPE max 6."});
+s(9,"lower",1,{s:6,r:"Wave",load:"V1:3@80%>2@85%>1@87.5%/V2:3@82.5%>2@87.5%>1@90%",tech:"WL",note:"S9 \u2014 Wave FS Bloc 3. Charges sup\u00e9rieures \u00e0 tout Bloc 2."});
+s(10,"lower",1,{s:6,r:"Wave",load:"V1:3@82.5%>2@87.5%>1@90%/V2:3@85%>2@90%>1@92.5%",tech:"WL",note:"S10 \u2014 Record FS. V2 cible 92.5%."});
+s(11,"lower",1,{s:5,r:"Max",load:"Pot@75%>single@90%>92.5%+",tech:"WL",note:"S11 \u2014 TENTATIVE MAX FS. 3 clusters @75% \u2192 singles montants."});
+s(12,"lower",1,{s:3,r:"4",load:"65%",tech:null,note:"S12 \u2014 D\u00c9CHARGE. Bar speed."});
+
+// ─── RDL FORCE (lower[2]) ───
+s(1,"lower",2,{s:4,r:"8",load:"65%",tech:"T30",note:"S1 \u2014 Excentrique 3s. Stretch ischios maximal. Technique prioritaire."});
+s(2,"lower",2,{s:4,r:"8",load:"67.5%",tech:"T30",note:"S2 \u2014 +2.5%."});
+s(3,"lower",2,{s:4,r:"8",load:"70%",tech:"T30",note:"S3 \u2014 +2.5%. Peak Bloc 1."});
+s(4,"lower",2,{s:3,r:"6",load:"62.5%",tech:null,note:"S4 \u2014 D\u00c9CHARGE."});
+s(5,"lower",2,{s:4,r:"6",load:"72.5%",tech:"T20",note:"S5 \u2014 Bloc 2. Tempo passe \u00e0 2s. 6 reps @72.5%."});
+s(6,"lower",2,{s:4,r:"5",load:"77.5%",tech:"T20",note:"S6 \u2014 +5%, \u22121 rep. Charges lourdes."});
+s(7,"lower",2,{s:4,r:"5",load:"80%",tech:"T20",note:"S7 \u2014 Record RDL Bloc 2."});
+s(8,"lower",2,{s:3,r:"5",load:"70%",tech:null,note:"S8 \u2014 D\u00c9CHARGE."});
+s(9,"lower",2,{s:4,r:"5",load:"82.5%",tech:"T20",note:"S9 \u2014 Bloc 3. +2.5%."});
+s(10,"lower",2,{s:4,r:"4",load:"85%",tech:"T20",note:"S10 \u2014 +2.5%. 4 reps @85%."});
+s(11,"lower",2,{s:3,r:"5",load:"80%",tech:null,note:"S11 \u2014 All\u00e9g\u00e9. SNC pr\u00e9serv\u00e9 pour PC et FS."});
+s(12,"lower",2,{s:3,r:"5",load:"65%",tech:null,note:"S12 \u2014 D\u00c9CHARGE."});
+
+// ─── BENCH PRESS HYP (push[0]) ─── (Schoenfeld 2017: 65-80% optimal hyp)
+s(1,"push",0,{s:4,r:"10",load:"65%",tech:null,note:"S1 \u2014 Rodage. Descente 2s contr\u00f4l\u00e9e. RPE 6-7."});
+s(2,"push",0,{s:4,r:"10",load:"67.5%",tech:null,note:"S2 \u2014 +2.5%. Myo-reps activ\u00e9s sur Cable Flies et Lateral Raises."});
+s(3,"push",0,{s:4,r:"9",load:"70%",tech:null,note:"S3 \u2014 PEAK VOLUME. +2.5%, \u22121 rep. Rest-pause sur Overhead Tri. Ext."});
+s(4,"push",0,{s:3,r:"8",load:"62.5%",tech:null,note:"S4 \u2014 D\u00c9CHARGE. RPE max 6."});
+s(5,"push",0,{s:4,r:"8",load:"72.5%",tech:null,note:"S5 \u2014 Bloc 2. Charges mont\u00e9es."});
+s(6,"push",0,{s:4,r:"8",load:"75%",tech:null,note:"S6 \u2014 +2.5%."});
+s(7,"push",0,{s:4,r:"7",load:"77.5%",tech:null,note:"S7 \u2014 +2.5%, \u22121 rep. RPE 8."});
+s(8,"push",0,{s:3,r:"6",load:"67.5%",tech:null,note:"S8 \u2014 D\u00c9CHARGE."});
+s(9,"push",0,{s:4,r:"6",load:"77.5%",tech:null,note:"S9 \u2014 Bloc 3. Transition hyp \u2192 force."});
+s(10,"push",0,{s:4,r:"6",load:"80%",tech:null,note:"S10 \u2014 +2.5%. Pic force en hypertrophie."});
+s(11,"push",0,{s:4,r:"5",load:"82.5%",tech:null,note:"S11 \u2014 Charges record hyp. RPE 9."});
+s(12,"push",0,{s:3,r:"6",load:"65%",tech:null,note:"S12 \u2014 D\u00c9CHARGE."});
+
+// ─── FRONT SQUAT HYP (legs[1]) ───
+s(1,"legs",1,{s:3,r:"8",load:"60%",tech:"PA",note:"S1 \u2014 Pause 1s en bas. 2x/semaine = progression technique acc\u00e9l\u00e9r\u00e9e."});
+s(2,"legs",1,{s:3,r:"8",load:"62.5%",tech:"PA",note:"S2 \u2014 +2.5%. Pause 1s maintenue."});
+s(3,"legs",1,{s:3,r:"8",load:"65%",tech:null,note:"S3 \u2014 +2.5%. Pause supprim\u00e9e. Peak volume Bloc 1."});
+s(4,"legs",1,{s:2,r:"6",load:"57.5%",tech:null,note:"S4 \u2014 D\u00c9CHARGE."});
+s(5,"legs",1,{s:3,r:"6",load:"67.5%",tech:null,note:"S5 \u2014 Bloc 2. 6 reps @67.5%."});
+s(6,"legs",1,{s:3,r:"6",load:"70%",tech:null,note:"S6 \u2014 +2.5%."});
+s(7,"legs",1,{s:3,r:"6",load:"72.5%",tech:null,note:"S7 \u2014 +2.5%."});
+s(8,"legs",1,{s:2,r:"5",load:"65%",tech:null,note:"S8 \u2014 D\u00c9CHARGE."});
+s(9,"legs",1,{s:3,r:"5",load:"75%",tech:null,note:"S9 \u2014 Bloc 3. Haute intensit\u00e9."});
+s(10,"legs",1,{s:3,r:"5",load:"77.5%",tech:null,note:"S10 \u2014 +2.5%."});
+s(11,"legs",1,{s:3,r:"4",load:"80%",tech:null,note:"S11 \u2014 4 reps @80%."});
+s(12,"legs",1,{s:2,r:"5",load:"65%",tech:null,note:"S12 \u2014 D\u00c9CHARGE."});
+
+// ─── RDL HYP (legs[2]) ───
+s(1,"legs",2,{s:4,r:"10",load:"62.5%",tech:"T30",note:"S1 \u2014 Excentrique 3s. Rodage Bloc 1."});
+s(2,"legs",2,{s:4,r:"10",load:"65%",tech:"T30",note:"S2 \u2014 +2.5%."});
+s(3,"legs",2,{s:4,r:"10",load:"67.5%",tech:"T30",note:"S3 \u2014 Peak volume."});
+s(4,"legs",2,{s:3,r:"8",load:"60%",tech:null,note:"S4 \u2014 D\u00c9CHARGE."});
+s(5,"legs",2,{s:4,r:"8",load:"70%",tech:"T20",note:"S5 \u2014 Bloc 2. Tempo 2s."});
+s(6,"legs",2,{s:4,r:"8",load:"72.5%",tech:"T20",note:"S6 \u2014 +2.5%."});
+s(7,"legs",2,{s:4,r:"7",load:"75%",tech:"T20",note:"S7 \u2014 +2.5%."});
+s(8,"legs",2,{s:3,r:"6",load:"65%",tech:null,note:"S8 \u2014 D\u00c9CHARGE."});
+s(9,"legs",2,{s:4,r:"6",load:"77.5%",tech:"T20",note:"S9 \u2014 Bloc 3."});
+s(10,"legs",2,{s:4,r:"6",load:"80%",tech:"T20",note:"S10 \u2014 +2.5%."});
+s(11,"legs",2,{s:4,r:"5",load:"82.5%",tech:"T20",note:"S11 \u2014 Charges proches du max."});
+s(12,"legs",2,{s:3,r:"6",load:"65%",tech:null,note:"S12 \u2014 D\u00c9CHARGE."});
+
+// ─── ROWING BARRE (pull[0]) ───
+s(1,"pull",0,{s:4,r:"10",load:"RPE 6-7",tech:"T30",note:"S1 \u2014 Rodage. Excentrique 3s. Concentrique explosif."});
+s(2,"pull",0,{s:4,r:"10",load:"RPE 7",tech:"T30",note:"S2 \u2014 RPE mont\u00e9. Myo-reps activ\u00e9s sur Pullover et Biceps."});
+s(3,"pull",0,{s:4,r:"10",load:"RPE 7-8",tech:"T30",note:"S3 \u2014 PEAK VOLUME Pull. Rest-pause activ\u00e9 sur Brachial Curl."});
+s(4,"pull",0,{s:3,r:"8",load:"RPE 6",tech:null,note:"S4 \u2014 D\u00c9CHARGE. Techniques d\u2019intensification supprim\u00e9es."});
+s(5,"pull",0,{s:4,r:"8",load:"RPE 7",tech:"T20",note:"S5 \u2014 Bloc 2. Tempo 2s."});
+s(6,"pull",0,{s:4,r:"8",load:"RPE 7-8",tech:"T20",note:"S6 \u2014 Pic volume Bloc 2."});
+s(7,"pull",0,{s:4,r:"8",load:"RPE 8",tech:"T20",note:"S7 \u2014 Peak Bloc 2. RPE \u00e9lev\u00e9."});
+s(8,"pull",0,{s:3,r:"8",load:"RPE 6",tech:null,note:"S8 \u2014 D\u00c9CHARGE."});
+s(9,"pull",0,{s:4,r:"8",load:"RPE 7-8",tech:"T20",note:"S9 \u2014 Bloc 3."});
+s(10,"pull",0,{s:4,r:"7",load:"RPE 8",tech:"T20",note:"S10 \u2014 Record Pull."});
+s(11,"pull",0,{s:3,r:"8",load:"RPE 7",tech:null,note:"S11 \u2014 All\u00e9g\u00e9."});
+s(12,"pull",0,{s:3,r:"8",load:"RPE 6",tech:null,note:"S12 \u2014 D\u00c9CHARGE."});
+
+return p;
+})();
+// ══════════════════════════════════════════════
+// RM MATCHING & CALCUL CHARGES
+// ══════════════════════════════════════════════
+var RM_MATCH=[
+  ["bench press explo","bench"],["bench \u2014 tentative","bench"],
+  ["power clean","clean"],
+  ["rowing bb explo","rowing"],
+  ["bench press","benchhyp"],
+  ["front squat","frontsquat"],
+  ["rdl","rdl"]
+];
+// HYP RM fallback mapping
+var RM_HYP_FALLBACK={"benchhyp":"bench","rdlhyp":"rdl","fshyp":"frontsquat"};
+
+function gLS(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function sLS(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function normNum(v){if(!v)return"";return String(v).replace(",",".");}
+function loadRM(){try{return JSON.parse(gLS("kwd4_rm")||"{}")}catch(e){return{}}}
+function saveRM(){
+  var d={};
+  ["bench","frontsquat","clean","rdl","rowing","benchhyp","rdlhyp","fshyp"].forEach(function(k){
+    var el=document.getElementById("rm-"+k);
+    if(el){var v=normNum(el.value);if(v&&!isNaN(parseFloat(v)))d[k]=v;}
+  });
+  sLS("kwd4_rm",JSON.stringify(d));
+}
+function loadRMInputs(){
+  var d=loadRM();
+  Object.keys(d).forEach(function(k){var el=document.getElementById("rm-"+k);if(el&&d[k])el.value=d[k];});
+}
+function loadLogs(){try{return JSON.parse(gLS("kwd4_logs")||"{}")}catch(e){return{}}}
+function saveLogs(d){sLS("kwd4_logs",JSON.stringify(d));}
+function loadDone(){try{return JSON.parse(gLS("kwd4_done")||"{}")}catch(e){return{}}}
+function saveDone(d){sLS("kwd4_done",JSON.stringify(d));}
+
+var logs=loadLogs(),doneD=loadDone();
+var cBloc=1,cWeek=1,cSess="upper";
+
+function dK(w,s){return"w"+w+"_"+s;}
+function lK(w,s,ei,si){return"w"+w+"_"+s+"_e"+ei+"_s"+si;}
+function cDone(w){return SORDER.filter(function(s){return doneD[dK(w,s)];}).length;}
+function rmSetQ(){var d=loadRM();return Object.values(d).some(function(v){return v&&v.trim()!=="";});}
+
+function getRMKey(name){
+  var n=name.toLowerCase();
+  for(var i=0;i<RM_MATCH.length;i++){if(n.indexOf(RM_MATCH[i][0])!==-1)return RM_MATCH[i][1];}
+  return null;
+}
+function getRMVal(key){
+  var d=loadRM();
+  var v=d[key];
+  if(v&&!isNaN(parseFloat(normNum(v))))return parseFloat(normNum(v));
+  // fallback hyp
+  var fb=RM_HYP_FALLBACK[key];
+  if(fb){var v2=d[fb];if(v2&&!isNaN(parseFloat(normNum(v2))))return parseFloat(normNum(v2));}
+  return null;
+}
+function calcW(pct,rm1){
+  if(!rm1||isNaN(rm1)||rm1<=0)return null;
+  return Math.round((pct/100*rm1)/2.5)*2.5;
+}
+function fmtKg(kg){
+  if(kg===null||kg===undefined)return null;
+  // Format: remove trailing .0
+  var s=String(kg);
+  return s.replace(/\.0$/,"")+"kg";
+}
+
+// Extract all % values from a load string
+function extractPcts(load){
+  var re=/(\d+(?:[.,]\d+)?)%/g,m,pcts=[];
+  while((m=re.exec(load))!==null)pcts.push(parseFloat(normNum(m[1])));
+  return pcts;
+}
+
+// Build green kg pill
+function calcPill(load,exName,rmKeyOverride){
+  var key=rmKeyOverride||getRMKey(exName);if(!key)return"";
+  var rm1=getRMVal(key);if(!rm1)return"";
+  var pcts=extractPcts(String(load));
+  if(!pcts.length)return"";
+  var weights=pcts.map(function(p){return calcW(p,rm1);}).filter(function(w){return w!==null;});
+  if(!weights.length)return"";
+  var mn=Math.min.apply(null,weights),mx=Math.max.apply(null,weights);
+  var txt=(mn===mx)?("\u2248 "+fmtKg(mn)):("\u2248 "+fmtKg(mn)+"\u2013"+fmtKg(mx));
+  return'<span class="pl pl-calc">'+txt+'</span>';
+}
+
+// Parse wave load string "V1:3@80%>2@85%>1@87.5%/V2:3@82.5%>2@87.5%>1@90%"
+function parseWaveLoad(load){
+  var lines=String(load).split("/");
+  return lines.map(function(line){
+    var colon=line.indexOf(":");
+    var label=colon>-1?line.substring(0,colon).trim():"";
+    var desc=colon>-1?line.substring(colon+1).trim():line.trim();
+    var parts=desc.split(">");
+    var steps=parts.map(function(p){
+      var m=p.match(/(\d+)@(\d+(?:[.,]\d+)?)%/);
+      if(!m)return{reps:p.trim(),pct:null};
+      return{reps:parseInt(m[1]),pct:parseFloat(normNum(m[2]))};
+    });
+    return{label:label,steps:steps};
+  });
+}
+
+function buildWaveHTML(load,rmKey){
+  var rm1=rmKey?getRMVal(rmKey):null;
+  var waves=parseWaveLoad(load);
+  var html='<div class="wave-presc">';
+  waves.forEach(function(wave){
+    html+='<div class="wave-line"><b>'+wave.label+'</b> : ';
+    var parts=wave.steps.map(function(step){
+      if(step.pct===null)return String(step.reps);
+      var kg=(rm1)?('<span class="wkg">'+fmtKg(calcW(step.pct,rm1))+'</span>'):(step.pct+'%');
+      return step.reps+'r \xd7 '+kg;
+    });
+    html+=parts.join(' \u2192 ')+'</div>';
+  });
+  html+='<div style="font-size:9px;color:#7A6AB0;margin-top:4px">3 min entre chaque s\u00e9rie \u2014 2e vague si V1 propre</div></div>';
+  return html;
+}
+
+function buildMaxHTML(load,rmKey){
+  var rm1=rmKey?getRMVal(rmKey):null;
+  var pcts=extractPcts(String(load));
+  if(!pcts.length||!rm1)return'<div class="enote">'+load+'</div>';
+  var html='<div class="wave-presc">';
+  html+='<div class="wave-line"><b>Mont\u00e9e</b> : ';
+  var parts=pcts.map(function(p){return'<span class="wkg">'+fmtKg(calcW(p,rm1))+'</span>';});
+  html+=parts.join(' \u2192 ')+'</div>';
+  html+='</div>';
+  return html;
+}
+
+function showScr(id){
+  document.querySelectorAll(".scr").forEach(function(s){s.classList.remove("on");});
+  var el=document.getElementById(id);if(el)el.classList.add("on");
+  window.scrollTo(0,0);
+  var nm={"s-home":"nh","s-weeks":"np","s-sessions":"np","s-detail":"np","s-ath":"na","s-ath-d":"na","s-stats":"ns","s-rm":"nr"};
+  document.querySelectorAll(".bni").forEach(function(b){b.classList.remove("act");});
+  var an=nm[id];if(an){var nb=document.getElementById(an);if(nb)nb.classList.add("act");}
+}
+// ══════════════════════════════════════════════
+// HOME
+// ══════════════════════════════════════════════
+function renderHome(){
+  var bl=document.getElementById("blocs");if(!bl)return;
+  var h="";
+  BLOCS.forEach(function(b){
+    var wks=b.n===1?[1,2,3,4]:b.n===2?[5,6,7,8]:[9,10,11,12];
+    var tot=wks.length*6,don=wks.reduce(function(a,w){return a+cDone(w);},0);
+    var pct=tot>0?Math.round(don/tot*100):0;
+    h+='<div class="bloc-card" data-bloc="'+b.n+'" style="border-left:3px solid '+b.col+';border-color:'+b.col+'33 '+b.col+'">'
+      +'<div class="bloc-num" style="background:'+b.bg+';color:'+b.col+'">B'+b.n+'</div>'
+      +'<div class="bloc-info"><div class="bloc-title">'+b.lbl+'</div>'
+      +'<div class="bloc-meta">'+b.wks+' \u00b7 '+don+'/'+tot+' s\u00e9ances</div></div>'
+      +'<div style="color:'+b.col+'">&#8250;</div></div>'
+      +'<div class="pb"><div class="pf" style="width:'+pct+'%;background:'+b.col+'"></div></div>';
+  });
+  bl.innerHTML=h;
+  bl.querySelectorAll(".bloc-card").forEach(function(el){
+    el.addEventListener("click",function(){selectBloc(+el.dataset.bloc);});
+  });
+  var rh=document.getElementById("rmb");
+  if(rh){
+    var rm=rmSetQ();
+    rh.innerHTML='<div class="rm-banner" id="rmb-inner">'
+      +'<div style="font-size:20px">&#127919;</div>'
+      +'<div style="flex:1"><div style="font-size:13px;font-weight:600">Mes 1RM</div>'
+      +'<div style="font-size:11px;color:var(--t2)">Calcul automatique des charges</div></div>'
+      +(rm?'<span class="badge-ok">\u2713 Configur\u00e9s</span>':'<span style="font-size:11px;color:var(--t3)">\u2192 Configurer</span>')
+      +'</div>';
+    document.getElementById("rmb-inner").addEventListener("click",openRM);
+  }
+  var th=document.getElementById("tech-home");
+  if(th){
+    var thh="";
+    Object.keys(TECH).forEach(function(k){thh+='<span class="tc tc-'+TECH[k].cls+'" data-tk="'+k+'">'+TECH[k].lbl+'</span>';});
+    th.innerHTML=thh;
+    th.querySelectorAll("[data-tk]").forEach(function(el){el.addEventListener("click",function(){openTech(el.dataset.tk);});});
+  }
+}
+
+// ══════════════════════════════════════════════
+// NAVIGATION BLOCS / WEEKS / SESSIONS
+// ══════════════════════════════════════════════
+function openRM(){loadRMInputs();showScr("s-rm");}
+function selectBloc(n){
+  cBloc=n;var b=BLOCS[n-1];
+  setText("wt",b.lbl);setText("ws",b.wks);
+  renderWeeks();showScr("s-weeks");
+}
+function renderWeeks(){
+  var wks=cBloc===1?[1,2,3,4]:cBloc===2?[5,6,7,8]:[9,10,11,12];
+  var col=BLOCS[cBloc-1].col;var h="";
+  wks.forEach(function(w){
+    var wd=WK[w];var dc=cDone(w);
+    var dots=SORDER.map(function(s){return'<div class="dot'+(doneD[dK(w,s)]?" ok":"")+'"></div>';}).join("");
+    h+='<div class="wc'+(wd.deload?" dl":"")+'" data-w="'+w+'" style="border-color:'+col+'44">'
+      +'<div class="wn" style="color:'+col+'">S'+w+'</div>'
+      +'<div class="wtag">'+(wd.deload?"D\u00e9charge":"Semaine")+'</div>'
+      +'<div class="wdc">'+dc+'/6 s\u00e9ances</div>'
+      +'<div class="wdots">'+dots+'</div>'
+      +'</div>';
+  });
+  setHTML("week-grid",h);
+  document.getElementById("week-grid").querySelectorAll(".wc").forEach(function(el){
+    el.addEventListener("click",function(){selectWeek(+el.dataset.w);});
+  });
+}
+function selectWeek(w){
+  cWeek=w;var wd=WK[w];
+  setText("st","Semaine "+w+(wd.deload?" \u2014 D\u00e9charge":""));
+  setText("ss",wd.theme.substring(0,62)+(wd.theme.length>62?"\u2026":""));
+  renderSessions();showScr("s-sessions");
+}
+function renderSessions(){
+  var wd=WK[cWeek];var h="";
+  SORDER.forEach(function(s){
+    var si=SESS[s];var isDone=doneD[dK(cWeek,s)];
+    h+='<div class="sc" data-s="'+s+'" style="border-color:'+si.col+'33;border-left:3px solid '+si.col+'">'
+      +'<div class="si-dot" style="background:'+si.bg+';border-color:'+si.col+'33"></div>'
+      +'<div class="sn"><div class="snl" style="color:'+si.col+'">'+si.title+' <span style="color:var(--t3);font-weight:400">\u00b7 '+si.day+'</span></div>'
+      +'<div class="snf">'+si.dur+' \u00b7 '+si.focus.substring(0,50)+(si.focus.length>50?"\u2026":"")+'</div></div>'
+      +(isDone?'<span class="badge-ok">\u2713 Fait</span>':'<span style="color:'+si.col+'">&#8250;</span>')
+      +'</div>';
+  });
+  setHTML("sess-list",h);
+  document.getElementById("sess-list").querySelectorAll(".sc").forEach(function(el){
+    el.addEventListener("click",function(){selectSess(el.dataset.s);});
+  });
+}
+function selectSess(s){cSess=s;renderDetail();showScr("s-detail");}
+
+// ══════════════════════════════════════════════
+// DETAIL — MOTEUR SURCHARGE PROGRESSIVE
+// ══════════════════════════════════════════════
+function renderDetail(){
+  var wd=WK[cWeek];var sd=SESS[cSess];
+  var col=BLOCS[wd.bloc-1].col;
+  var progW=(PROG_DATA[cWeek]&&PROG_DATA[cWeek][cSess])?PROG_DATA[cWeek][cSess]:{};
+  var prevWeek=(cWeek>1)?cWeek-1:null;
+
+  setText("dt",sd.title+" \u2014 S"+cWeek);
+  setText("ds",sd.day+" \u00b7 "+sd.dur);
+
+  var prevBanner=prevWeek?('<div style="font-size:10px;color:#5A9ACA;margin-top:5px;display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:#1A3A55;border:1px solid #5A9ACA;display:inline-block;flex-shrink:0"></span>S'+prevWeek+' visible en bleu sous chaque s\u00e9rie pour comparaison</div>'):"";
+  setHTML("det-banner",'<div class="sess-banner" style="border-left:3px solid '+col+'">'
+    +'<div class="sbnt" style="color:'+col+'">S'+cWeek+(wd.deload?" \u00b7 D\u00c9CHARGE":"")+" \u00b7 "+BLOCS[wd.bloc-1].lbl+'</div>'
+    +'<div class="sbnf">'+sd.focus+'</div>'
+    +'<div class="sbnt2">'+wd.theme.substring(0,100)+(wd.theme.length>100?"\u2026":"")+'</div>'
+    +prevBanner
+    +'</div>');
+
+  var TCLASS={T30:"tc-t30",T20:"tc-t20",MYO:"tc-myo",RP:"tc-rp",CL11:"tc-cl11",CL21:"tc-cl21",WL:"tc-wl",PA:"tc-pa",DL:"tc-dl",CLN:"tc-cln"};
+  var html="";
+
+  sd.exercises.forEach(function(ex,ei){
+    var ov=progW[ei]||{};
+    var name=ex[0];
+    var sets=ov.s!==undefined?ov.s:ex[1];
+    var reps=ov.r!==undefined?ov.r:ex[2];
+    var load=ov.load!==undefined?ov.load:ex[3];
+    var rest=ex[4];
+    var tech=ov.tech!==undefined?ov.tech:ex[5];
+    var note=ov.note!==undefined?ov.note:ex[6];
+    var hasLog=ex[7];
+    var rmKeyOv=ex[8]||null;
+    var loadStr=String(load||"");
+
+    // Detect special formats
+    var isWave=loadStr.indexOf("V1:")!==-1||loadStr.indexOf("V2:")!==-1;
+    var isMax=(String(reps)==="Max"||loadStr.indexOf("Mont\u00e9e")!==-1||loadStr.indexOf("Pot@")!==-1);
+
+    // Number of log rows
+    var logRows=isWave?6:isMax?5:(typeof sets==="number"?sets:parseInt(sets)||3);
+
+    // Wave row labels
+    var waveLabels=["V1 \u00b73r","V1 \u00b72r","V1 \u00b71r","V2 \u00b73r","V2 \u00b72r","V2 \u00b71r"];
+    var maxLabels=["Activation","S1","S2","Tentative","Record +"];
+
+    // Main pill
+    var mainPill;
+    if(isWave)mainPill="Wave 3\u21922\u21921";
+    else if(isMax)mainPill="Singles montants";
+    else mainPill=(typeof sets==="number"?sets+"\xd7":"")+String(reps);
+
+    // Load pill (blue)
+    var loadPill=isWave?"Wave Loading":isMax?"Max attempt":loadStr;
+
+    // Kg calc pill (green)
+    var cp=(!isWave&&!isMax)?calcPill(loadStr,name,rmKeyOv):"";
+
+    var tp=tech&&TECH[tech]?'<span class="pl '+TCLASS[tech]+'" data-tk="'+tech+'" style="cursor:pointer">'+TECH[tech].lbl+' \u2139</span>':"";
+    var restPill=rest&&rest!=="\u2014"?'<span class="pl pl-rest">\u23f1 '+rest+'</span>':"";
+
+    html+='<div class="ex" style="animation-delay:'+(ei*0.03)+'s">';
+    html+='<div class="exh">';
+    html+='<div class="exn">'+name+'</div>';
+    html+='<div class="exp">'
+      +'<span class="pl pl-main">'+mainPill+'</span>'
+      +(loadPill?'<span class="pl pl-load">'+loadPill+'</span>':"")
+      +cp+restPill+tp
+      +'</div></div>';
+
+    // Wave prescription detail
+    if(isWave)html+=buildWaveHTML(loadStr,rmKeyOv||getRMKey(name));
+    if(isMax&&extractPcts(loadStr).length)html+=buildMaxHTML(loadStr,rmKeyOv||getRMKey(name));
+
+    if(note)html+='<div class="enote">'+note+'</div>';
+
+    // Log rows
+    if(hasLog&&logRows>0){
+      html+='<div class="sa">';
+      for(var si=0;si<logRows;si++){
+        var kk=lK(cWeek,cSess,ei,si);
+        var val=logs[kk]||{};
+        var ck=(val.kg||val.reps)?'<span style="color:#22C55E">\u2713</span>':"";
+        var rowLbl=isWave?waveLabels[si]:isMax?maxLabels[si]:String(si+1);
+
+        // Previous week data
+        var prevHtml="";
+        if(prevWeek){
+          var pk=lK(prevWeek,cSess,ei,si);
+          var pv=logs[pk];
+          if(pv&&(pv.kg||pv.reps)){
+            var pvTxt=(pv.kg?pv.kg+"kg":"?")+" \xd7 "+(pv.reps?pv.reps:"?")+" reps";
+            prevHtml='<span class="pl pl-prev">S'+prevWeek+': '+pvTxt+'</span>';
+          }
+        }
+
+        html+='<div>'
+          +'<div class="sr">'
+          +'<div class="snr">'+rowLbl+'</div>'
+          +'<input class="inp" type="text" inputmode="decimal" placeholder="kg" value="'+(val.kg||"")+'" style="max-width:72px" data-ei="'+ei+'" data-si="'+si+'" data-f="kg">'
+          +'<div class="sx">\xd7</div>'
+          +'<input class="inp" type="text" inputmode="numeric" placeholder="reps" value="'+(val.reps||"")+'" data-ei="'+ei+'" data-si="'+si+'" data-f="reps">'
+          +'<div style="width:18px;text-align:center;font-size:13px">'+ck+'</div>'
+          +'</div>';
+        if(prevHtml){
+          html+='<div style="padding:0 0 3px 42px">'+prevHtml+'</div>';
+        }
+        html+='</div>';
+      }
+      html+='</div>';
+    }
+    html+='</div>';
+  });
+
+  setHTML("det-exs",html);
+
+  // Wire inputs — accept comma and dot
+  document.getElementById("det-exs").querySelectorAll(".inp").forEach(function(inp){
+    inp.addEventListener("blur",function(){
+      var v=normNum(inp.value.trim());
+      if(v!=="")inp.value=v;
+      var ei=+inp.dataset.ei,si=+inp.dataset.si,f=inp.dataset.f;
+      var kk=lK(cWeek,cSess,ei,si);
+      if(!logs[kk])logs[kk]={};
+      logs[kk][f]=v;
+      saveLogs(logs);
+      // Update checkmark
+      var row=inp.closest(".sr");
+      if(row){var ck=row.querySelector("div[style*='width:18px']");if(ck)ck.innerHTML=v?'<span style="color:#22C55E">\u2713</span>':"";}
+    });
+    inp.addEventListener("change",function(){inp.dispatchEvent(new Event("blur"));});
+  });
+  document.getElementById("det-exs").querySelectorAll("[data-tk]").forEach(function(el){
+    el.addEventListener("click",function(){openTech(el.dataset.tk);});
+  });
+}
+// ══════════════════════════════════════════════
+// ATHLETICS
+// ══════════════════════════════════════════════
+function renderAthHome(){
+  var h="";
+  for(var w=1;w<=12;w++){
+    var wd=WK[w];var ath=ATH[w];var col=BLOCS[wd.bloc-1].col;
+    h+='<div class="wc'+(wd.deload?" dl":"")+'" data-aw="'+w+'" style="border-color:'+col+'44">'
+      +'<div class="wn" style="color:'+col+'">S'+w+'</div>'
+      +'<div class="wtag">'+(wd.deload?"D\u00e9charge":"Mercredi piste")+'</div>'
+      +'<div style="font-size:10px;color:var(--t2);margin-top:2px;line-height:1.3">'+ath.focus_zone+'</div>'
+      +'<div style="font-size:10px;color:var(--t3);margin-top:2px">'+ath.total_volume+'</div>'
+      +'<div class="wdots"></div></div>';
+  }
+  setHTML("ath-grid",h);
+  document.getElementById("ath-grid").querySelectorAll("[data-aw]").forEach(function(el){
+    el.addEventListener("click",function(){renderAthDetail(+el.dataset.aw);});
+  });
+}
+function renderAthDetail(w){
+  var ath=ATH[w];var wd=WK[w];var col=BLOCS[wd.bloc-1].col;
+  setText("adt","Piste \u2014 S"+w);
+  setText("ads",ath.total_volume+" \u00b7 "+ath.focus_zone);
+  function phaseHTML(title,dur,items,nc,nb){
+    var h='<div class="ath-bloc"><div class="ath-hdr"><b>'+title+'</b><span>'+dur+'</span></div>';
+    items.forEach(function(e,i){
+      h+='<div class="ath-row"><div class="ath-num" style="background:'+nb+';color:'+nc+'">'+(i+1)+'</div>'
+        +'<div><div class="ath-en">'+e.ex+'</div><div class="ath-ed">'+e.detail
+        +(e.recup?'<br><span style="color:var(--amber)">\u2192 R\u00e9cup : '+e.recup+'</span>':"")+'</div></div></div>';
+    });
+    return h+'</div>';
+  }
+  var html='<div class="ath-bloc" style="border-left:3px solid '+col+'"><div class="ath-hdr" style="color:'+col+'"><b>Objectif S'+w+'</b><span>'+ath.total_volume+'</span></div>'
+    +'<div style="padding:6px 14px;font-size:11px;color:var(--t2);font-style:italic">'+ath.theme+'</div>'
+    +'<div style="padding:0 14px 10px;font-size:11px;color:var(--amber)">Zone : '+ath.focus_zone+'</div></div>';
+  html+=phaseHTML("Gammes \u2014 Activation","12-15 min",ath.warm_up,"#22C55E","#0A1F10");
+  html+=phaseHTML("Travail de sprint","20-25 min",ath.sprint_work,"#F5C800","#1A1500");
+  if(ath.special){
+    html+='<div class="ath-bloc" style="border:1px solid var(--amber)">'
+      +'<div class="ath-hdr" style="background:var(--amberBg);color:var(--amber)"><b>'+ath.special.ex+'</b></div>'
+      +'<div style="padding:8px 14px;font-size:11px;color:var(--t1)">'+ath.special.detail+'</div></div>';
+  }
+  html+=phaseHTML("Mobilit\u00e9 \u2014 R\u00e9cup","18-20 min",ath.mobility,"#3B82F6","#071428");
+  html+='<div style="height:80px"></div>';
+  setHTML("ath-det",html);
+  showScr("s-ath-d");
+}
+
+// ══════════════════════════════════════════════
+// STATS — VOLUME & CNS
+// ══════════════════════════════════════════════
+var statView="volume";
+function renderStats(){
+  var v=statView;
+  document.getElementById("sv-vol").classList.toggle("act",v==="volume");
+  document.getElementById("sv-cns").classList.toggle("act",v==="cns");
+  if(v==="volume")renderVolStats();else renderCNSStats();
+}
+function renderVolStats(){
+  var h='<div style="padding:10px 14px 6px;font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em">Volume musculaire hebdomadaire</div>';
+  h+='<div style="padding:0 14px 6px;font-size:11px;color:var(--t2);line-height:1.5">Fourchettes Israetel 2019 : <span style="color:#F5C800">MEV</span> = minimum efficace \u00b7 <span style="color:#22C55E">MAV</span> = zone cible \u00b7 <span style="color:#EF4444">MRV</span> = maximum r\u00e9cup\u00e9rable</div>';
+  Object.keys(MVOL).forEach(function(muscle){
+    var mv=MVOL[muscle];
+    var sets=mv.sets,mev=mv.mev,mav=mv.mav,mrv=mv.mrv;
+    var pct=Math.min(sets/mrv*100,105);
+    var sc=sets<mev?"#EF4444":sets<=mav?"#22C55E":sets<mrv?"#F5C800":"#EF4444";
+    var sl=sets<mev?"Sous MEV":sets<=mav?"MAV \u2713":sets<mrv?"Proche MRV":"MRV atteint";
+    h+='<div style="margin:0 14px 10px;border-radius:10px;background:var(--bg2);border:0.5px solid var(--b1);padding:12px 14px">'
+      +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">'
+      +'<div style="font-size:13px;font-weight:600">'+muscle+'</div>'
+      +'<span style="font-size:10px;font-weight:600;border-radius:4px;padding:2px 8px;background:'+sc+'20;color:'+sc+'">'+sl+'</span>'
+      +'</div>'
+      +'<div style="position:relative;height:10px;border-radius:5px;background:var(--b1);margin-bottom:6px;overflow:visible">'
+      +'<div style="position:absolute;left:'+Math.min(mev/mrv*100,100)+'%;top:-3px;bottom:-3px;width:1px;background:#F5C800;opacity:.5"></div>'
+      +'<div style="position:absolute;left:'+Math.min(mav/mrv*100,100)+'%;top:-3px;bottom:-3px;width:1px;background:#22C55E;opacity:.5"></div>'
+      +'<div style="height:100%;border-radius:5px;width:'+Math.min(pct,100)+'%;background:'+sc+';transition:width .5s"></div>'
+      +'</div>'
+      +'<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t3)">'
+      +'<span style="color:#F5C800">MEV '+mev+'s</span>'
+      +'<span style="color:'+sc+';font-weight:600">'+sets+' s\u00e9ries</span>'
+      +'<span style="color:#EF4444">MRV '+mrv+'s</span>'
+      +'</div></div>';
+  });
+  setHTML("stats-body",h);
+}
+function renderCNSStats(){
+  var DAYCNS={"pull":2,"push":2,"legs":2,"refo":1,"upper":3,"lower":3,"ath":2};
+  var DAYNAMES=["Lun\nPull","Mar\nPush","Mer\nPiste","Jeu\nLegs","Ven\nRefo","Sam\nUpper","Dim\nLower"];
+  var DAY_KEYS=["pull","push","ath","legs","refo","upper","lower"];
+  var h='<div style="padding:10px 14px 6px;font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em">Charge SNC par semaine</div>';
+  h+='<div style="padding:0 14px 12px;font-size:11px;color:var(--t2)">Charge nerveuse cumul\u00e9e en fonction des techniques d\u2019intensification. Les d\u00e9charges r\u00e9cup\u00e8rent le SNC.</div>';
+  h+='<div style="display:flex;gap:5px;padding:0 14px 12px;flex-wrap:wrap" id="cns-week-sel">';
+  for(var w=1;w<=12;w++){
+    var col=BLOCS[WK[w].bloc-1].col;
+    h+='<div class="cns-wbtn'+(w===1?" cns-act":"")+'" data-cw="'+w+'" style="'+(w===1?"background:"+col+";color:#000;":"")+'border-color:'+col+'">S'+w+'</div>';
+  }
+  h+='</div><div id="cns-detail"></div>';
+  setHTML("stats-body",h);
+  function renderCNSWeek(w){
+    var wd=WK[w];var col=BLOCS[wd.bloc-1].col;
+    var mult=w<=4?1:w<=8?1.3:1.6;if(wd.deload)mult=0.5;
+    var html='<div style="margin:0 14px;border-radius:10px;background:var(--bg2);border:0.5px solid var(--b1);overflow:hidden;margin-bottom:10px">'
+      +'<div style="padding:9px 14px;border-bottom:0.5px solid var(--b1);display:flex;align-items:center;justify-content:space-between">'
+      +'<span style="font-size:12px;font-weight:600">S'+w+' \u2014 '+(wd.deload?"D\u00e9charge":"Charge SNC estim\u00e9e")+'</span>'
+      +'<span style="font-size:10px;color:'+col+'">'+(wd.deload?"R\u00e9cup\u00e9ration":"Bloc "+wd.bloc)+'</span>'
+      +'</div><div style="padding:12px 14px">';
+    DAY_KEYS.forEach(function(dk,i){
+      var baseCNS=DAYCNS[dk];
+      var weekCNS=Math.round(baseCNS*mult*10)/10;
+      var pct=weekCNS/3*100;
+      var c2=weekCNS<1.5?"#22C55E":weekCNS<2.2?"#F5C800":"#EF4444";
+      if(dk==="refo"){weekCNS=wd.deload?0.3:0.8;pct=weekCNS/3*100;c2="#22C55E";}
+      html+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'
+        +'<div style="width:64px;font-size:10px;color:var(--t2);flex-shrink:0">'+DAYNAMES[i].replace("\n","<br>")+'</div>'
+        +'<div style="flex:1;height:8px;border-radius:4px;background:var(--b1);overflow:hidden">'
+        +'<div style="height:100%;border-radius:4px;width:'+Math.min(pct,100)+'%;background:'+c2+';transition:width .4s ease"></div>'
+        +'</div>'
+        +'<div style="width:30px;font-size:10px;font-weight:600;color:'+c2+';text-align:right">'+weekCNS.toFixed(1)+'</div>'
+        +'</div>';
+    });
+    var totalCNS=wd.deload?
+      DAY_KEYS.reduce(function(a,dk){return a+(dk==="refo"?0.3:DAYCNS[dk]*0.5);},0):
+      DAY_KEYS.reduce(function(a,dk){return a+(dk==="refo"?0.8:DAYCNS[dk]*mult);},0);
+    totalCNS=Math.round(totalCNS*10)/10;
+    var tc=totalCNS<10?"#22C55E":totalCNS<14?"#F5C800":"#EF4444";
+    html+='<div style="margin-top:8px;padding-top:8px;border-top:0.5px solid var(--b1);display:flex;justify-content:space-between;align-items:center">'
+      +'<span style="font-size:11px;color:var(--t2)">Charge SNC totale estim\u00e9e</span>'
+      +'<span style="font-size:14px;font-weight:700;color:'+tc+'">'+totalCNS+' / 21</span>'
+      +'</div>';
+    if(!wd.deload){
+      var tn=w<=2?"Pas de technique intensive \u2014 rodage SNC":
+        w===3?"Clusters 1+1+1 introduits \u2014 co\u00fbt SNC maximum":
+        w<=6?"Clusters 2+1 \u2014 charges >80% \u2014 co\u00fbt SNC \u00e9lev\u00e9":
+        w===7?"Wave loading \u2014 charges record Bloc 2":
+        w<=10?"Wave loading Bloc 3 \u2014 intensit\u00e9s maximales":
+        w===11?"Tentatives max \u2014 pic absolu SNC":"D\u00e9charge finale";
+      html+='<div style="margin-top:6px;padding:7px 10px;background:var(--bg3);border-radius:7px;font-size:11px;color:var(--t2);border-left:2px solid var(--amber)">'+tn+'</div>';
+    }
+    html+='</div></div>';
+    var recovHours={"pull":"24h Pull \u2192 72h avant reprendre le dos","push":"24h Push \u2192 72h avant reprendre les pecs","legs":"24h Legs \u2192 72h avant reprendre les jambes","upper":"SNC : 48-72h \u2014 le plus dem.","lower":"SNC : 48-72h + Power Clean \u2014 critique","refo":"8-12h (f. acces.)","ath":"24h sprint \u2014 24h avant Legs jeudi"};
+    html+='<div style="margin:0 14px 16px;border-radius:10px;background:var(--bg2);border:0.5px solid var(--b1);padding:12px 14px">'
+      +'<div style="font-size:11px;font-weight:600;margin-bottom:8px">R\u00e9cup\u00e9ration estim\u00e9e avant la prochaine s\u00e9ance</div>';
+    DAY_KEYS.forEach(function(dk,i){
+      html+='<div style="display:flex;gap:8px;margin-bottom:5px;align-items:center">'
+        +'<div style="width:64px;font-size:10px;color:var(--t3)">'+DAYNAMES[i].replace("\n","<br>")+'</div>'
+        +'<div style="flex:1;font-size:10px;color:var(--t2)">'+recovHours[dk]+'</div></div>';
+    });
+    html+='</div>';
+    setHTML("cns-detail",html);
+  }
+  renderCNSWeek(1);
+  setTimeout(function(){
+    var btns=document.querySelectorAll(".cns-wbtn");
+    btns.forEach(function(btn){
+      btn.addEventListener("click",function(){
+        btns.forEach(function(b){b.classList.remove("cns-act");b.style.background="";b.style.color="";});
+        btn.classList.add("cns-act");
+        var bw=+btn.dataset.cw;var bcol=BLOCS[WK[bw].bloc-1].col;
+        btn.style.background=bcol;btn.style.color="#000";
+        renderCNSWeek(bw);
+      });
+    });
+  },100);
+}
+
+// ══════════════════════════════════════════════
+// TECH MODAL
+// ══════════════════════════════════════════════
+function openTech(key){
+  var t=TECH[key];if(!t)return;
+  var dots="";for(var i=0;i<3;i++)dots+='<div class="cdot'+(i<t.cost?" on":" off")+'"></div>';
+  var steps=t.steps.map(function(st,i){return'<li class="msti"><div class="mstn">'+(i+1)+'</div><div class="mstt">'+st+'</div></li>';}).join("");
+  setHTML("modal-inner",'<div class="mt">'+t.title+'</div><div class="ms">'+t.sub+'</div>'
+    +'<div style="display:flex;align-items:center;gap:8px;padding:8px 17px 6px"><span style="font-size:11px;color:var(--t2)">Co\u00fbt nerveux :</span><div style="display:flex;gap:3px">'+dots+'</div></div>'
+    +'<div style="padding:10px 17px">'
+    +'<div class="mst">En quoi \u00e7a consiste</div><div style="font-size:12px;color:var(--t1);line-height:1.6;margin-bottom:10px">'+t.desc+'</div>'
+    +'<div class="mst">\u00c9tapes</div><ul class="mstl">'+steps+'</ul>'
+    +'<div style="background:var(--bg3);border-radius:8px;padding:10px 12px;margin-bottom:10px;border:0.5px solid var(--b1)"><div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:4px">Exemple concret</div>'
+    +'<div style="font-size:12px;color:var(--t1);line-height:1.5">'+t.example+'</div></div>'
+    +(t.tip?'<div style="font-size:12px;color:var(--amber);line-height:1.5">\u2192 '+t.tip+'</div>':"")
+    +'</div>');
+  document.getElementById("tmod").classList.add("on");
+}
+
+// ══════════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════════
+function setText(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}
+function setHTML(id,v){var el=document.getElementById(id);if(el)el.innerHTML=v;}
+
+// ══════════════════════════════════════════════
+// WIRING
+// ══════════════════════════════════════════════
+document.getElementById("gear-btn").addEventListener("click",openRM);
+document.getElementById("rm-back").addEventListener("click",function(){saveRM();renderHome();showScr("s-home");});
+document.getElementById("rm-save").addEventListener("click",function(){saveRM();renderHome();showScr("s-home");});
+document.getElementById("wb").addEventListener("click",function(){renderHome();showScr("s-home");});
+document.getElementById("sesb").addEventListener("click",function(){renderWeeks();showScr("s-weeks");});
+document.getElementById("detb").addEventListener("click",function(){renderSessions();showScr("s-sessions");});
+document.getElementById("det-done").addEventListener("click",function(){
+  doneD[dK(cWeek,cSess)]=true;saveDone(doneD);
+  var btn=document.getElementById("det-done");
+  btn.textContent="\u2713 Enregistr\u00e9 !";btn.style.background="#15803D";
+  setTimeout(function(){renderSessions();showScr("s-sessions");},700);
+});
+document.getElementById("adhb").addEventListener("click",function(){renderAthHome();showScr("s-ath");});
+document.getElementById("mclose").addEventListener("click",function(){document.getElementById("tmod").classList.remove("on");});
+document.getElementById("tmod").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on");});
+["nh","np","na","ns","nr"].forEach(function(id){
+  var el=document.getElementById(id);if(!el)return;
+  el.addEventListener("click",function(){
+    if(id==="nh"){renderHome();showScr("s-home");}
+    else if(id==="np"){renderHome();showScr("s-home");}
+    else if(id==="na"){renderAthHome();showScr("s-ath");}
+    else if(id==="ns"){renderStats();showScr("s-stats");}
+    else if(id==="nr"){openRM();}
+  });
+});
+document.getElementById("sv-vol").addEventListener("click",function(){statView="volume";renderStats();});
+document.getElementById("sv-cns").addEventListener("click",function(){statView="cns";renderStats();});
+
+renderHome();
+</script>
+</body>
+</html>
